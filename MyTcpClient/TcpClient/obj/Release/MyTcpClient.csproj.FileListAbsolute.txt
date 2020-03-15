@@ -1,0 +1,9 @@
+F:\Workspace\C#\MyTcpClient\TcpClient\bin\Release\MyTcpClient.exe.config
+F:\Workspace\C#\MyTcpClient\TcpClient\bin\Release\MyTcpClient.exe
+F:\Workspace\C#\MyTcpClient\TcpClient\bin\Release\MyTcpClient.pdb
+F:\Workspace\C#\MyTcpClient\TcpClient\obj\Release\MyTcpClient.csprojAssemblyReference.cache
+F:\Workspace\C#\MyTcpClient\TcpClient\obj\Release\MyTcpClient.Form1.resources
+F:\Workspace\C#\MyTcpClient\TcpClient\obj\Release\MyTcpClient.Properties.Resources.resources
+F:\Workspace\C#\MyTcpClient\TcpClient\obj\Release\MyTcpClient.csproj.GenerateResource.cache
+F:\Workspace\C#\MyTcpClient\TcpClient\obj\Release\MyTcpClient.exe
+F:\Workspace\C#\MyTcpClient\TcpClient\obj\Release\MyTcpClient.pdb

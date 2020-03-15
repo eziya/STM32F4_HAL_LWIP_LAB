@@ -12,21 +12,26 @@
 #include "lwip/stats.h"
 #include "lwip/tcp.h"
 
-/* 서버 상태값 */
+#define  ECHO_SERVER_LISTEN_PORT	7
+
+/* server states */
 enum tcp_echoserver_states
 {
-	ES_NONE = 0, ES_ACCEPTED, ES_RECEIVED, ES_CLOSING
+	ES_NONE = 0,
+	ES_ACCEPTED,
+	ES_RECEIVED,
+	ES_CLOSING
 };
 
-/* 상태 저장용 구조체 */
+/* server info */
 struct tcp_echoserver_struct
 {
-	u8_t state; /* 서버 상태값 */
-	u8_t retries; /* 안쓰임 */
-	struct tcp_pcb *pcb; /* PCB 포인터 */
-	struct pbuf *p; /* 송수신 버퍼 포인터 */
+	uint8_t state; //ES_NOE, ES_ACCEPTED, ES_RECEIVED, ES_CLOSING
+	uint8_t retries; //retry counter
+	struct tcp_pcb *pcb; //PCB 포인터
+	struct pbuf *p; //송수신 버퍼 포인터
 };
 
-void tcp_echoserver_init(void);
+err_t app_echoserver_init(void);
 
 #endif /* INC_TCP_ECHO_H_ */

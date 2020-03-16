@@ -1,0 +1,11 @@
+ntp_client.c:32:7:app_ntp_gettime	16	static
+ntp_client.c:47:13:dns_callback_found	24	static
+ntp_client.c:63:14:tcp_callback_connected	32	static
+ntp_client.c:97:14:tcp_callback_sent	32	static
+ntp_client.c:113:14:tcp_callback_received	40	static
+ntp_client.c:174:13:tcp_callback_error	24	static
+ntp_client.c:189:14:tcp_callback_poll	24	static
+ntp_client.c:213:14:app_open_connection	24	static
+ntp_client.c:242:13:app_close_connection	16	static
+ntp_client.c:260:13:app_send_data	32	static
+ntp_client.c:296:13:app_receive_data	24	static

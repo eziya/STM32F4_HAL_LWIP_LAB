@@ -1,0 +1,14 @@
+etharp.c:168:1:etharp_free_entry	16	static
+etharp.c:197:1:etharp_tmr	16	static
+etharp.c:256:1:etharp_find_entry	48	static
+etharp.c:422:1:etharp_update_arp_entry	40	static
+etharp.c:559:1:etharp_cleanup_netif	24	static
+etharp.c:583:1:etharp_find_addr	32	static
+etharp.c:612:1:etharp_get_entry	24	static
+etharp.c:641:1:etharp_input	56	static
+etharp.c:748:1:etharp_output_to_arp_index	32	static
+etharp.c:791:1:etharp_output	48	static
+etharp.c:933:1:etharp_query	56	static
+etharp.c:1101:1:etharp_raw	48	static
+etharp.c:1181:1:etharp_request_dst	40	static
+etharp.c:1198:1:etharp_request	16	static

@@ -1,0 +1,6 @@
+slipif.c:116:1:slipif_output	32	static
+slipif.c:172:1:slipif_output_v4	24	static
+slipif.c:207:1:slipif_rxbyte	24	static
+slipif.c:310:1:slipif_rxbyte_input	24	static
+slipif.c:360:1:slipif_init	24	static
+slipif.c:426:1:slipif_poll	24	static

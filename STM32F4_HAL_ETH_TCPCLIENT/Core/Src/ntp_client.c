@@ -34,11 +34,10 @@ err_t app_ntp_gettime(void)
   err_t ret_err;
 
   ret_err = app_open_connection(pcb_ntp_client);
-  if(ret_err != ERR_OK)
+  if (ret_err != ERR_OK)
   {
     return ret_err;
   }
-
 
   return ERR_OK;
 }
@@ -49,7 +48,7 @@ static void dns_callback_found(const char *name, const ip_addr_t *ipaddr, void *
   LWIP_UNUSED_ARG(name);
   LWIP_UNUSED_ARG(arg);
 
-  if(ipaddr == NULL) //fail to resolve host name
+  if (ipaddr == NULL) //fail to resolve host name
   {
     dns_resolved = false;
   }
@@ -202,7 +201,7 @@ static err_t tcp_callback_poll(void *arg, struct tcp_pcb *tpcb)
     app_receive_data(tpcb, cs); //handle received data
   }
 
-  if(cs->ptx != NULL)
+  if (cs->ptx != NULL)
   {
     app_send_data(tpcb, cs);
   }
@@ -297,15 +296,15 @@ static void app_receive_data(struct tcp_pcb *tpcb, struct ntp_client_struct *cs)
 {
   struct pbuf *ptr;
 
-  while(cs->prx != NULL)
+  while (cs->prx != NULL)
   {
     u8_t freed;
     ptr = cs->prx;
 
-    //payload 에 있는 데이터를 모아서 ntp 패킷을 구성한다.
+    //payload 에 있는 버퍼에 담는다.
 
     cs->prx = ptr->next;
-    if(cs->prx != NULL)
+    if (cs->prx != NULL)
     {
       pbuf_ref(cs->prx);
     }
@@ -314,6 +313,8 @@ static void app_receive_data(struct tcp_pcb *tpcb, struct ntp_client_struct *cs)
     {
       freed = pbuf_free(ptr);
     }
-    while(freed == 0);
+    while (freed == 0);
   }
+
+  //버퍼를 확인해서 48바이트 ntp 패킷이 완성되어 있으면 처리한다.
 }

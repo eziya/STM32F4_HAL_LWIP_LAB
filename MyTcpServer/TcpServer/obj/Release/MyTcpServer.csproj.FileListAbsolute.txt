@@ -1,0 +1,9 @@
+F:\Workspace\C#\MyTcpServer\TcpServer\bin\Release\TcpServer.exe.config
+F:\Workspace\C#\MyTcpServer\TcpServer\bin\Release\TcpServer.exe
+F:\Workspace\C#\MyTcpServer\TcpServer\bin\Release\TcpServer.pdb
+F:\Workspace\C#\MyTcpServer\TcpServer\obj\Release\MyTcpServer.csprojAssemblyReference.cache
+F:\Workspace\C#\MyTcpServer\TcpServer\obj\Release\TcpServer.Form1.resources
+F:\Workspace\C#\MyTcpServer\TcpServer\obj\Release\TcpServer.Properties.Resources.resources
+F:\Workspace\C#\MyTcpServer\TcpServer\obj\Release\MyTcpServer.csproj.GenerateResource.cache
+F:\Workspace\C#\MyTcpServer\TcpServer\obj\Release\TcpServer.exe
+F:\Workspace\C#\MyTcpServer\TcpServer\obj\Release\TcpServer.pdb

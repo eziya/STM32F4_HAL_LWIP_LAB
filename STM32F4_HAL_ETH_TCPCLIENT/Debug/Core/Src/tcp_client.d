@@ -1,4 +1,4 @@
-Core/Src/ntp_client.o: ../Core/Src/ntp_client.c ../Core/Inc/ntp_client.h \
+Core/Src/tcp_client.o: ../Core/Src/tcp_client.c ../Core/Inc/tcp_client.h \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/debug.h \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/arch.h \
  ../Middlewares/Third_Party/LwIP/system/arch/cc.h \
@@ -53,11 +53,9 @@ Core/Src/ntp_client.o: ../Core/Src/ntp_client.c ../Core/Inc/ntp_client.h \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/ip6.h \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/ip.h \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/icmp.h \
- ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/icmp.h \
- ../Middlewares/Third_Party/LwIP/src/include/lwip/netdb.h \
- ../Middlewares/Third_Party/LwIP/src/include/lwip/dns.h
+ ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/icmp.h
 
-../Core/Inc/ntp_client.h:
+../Core/Inc/tcp_client.h:
 
 ../Middlewares/Third_Party/LwIP/src/include/lwip/debug.h:
 
@@ -170,7 +168,3 @@ Core/Src/ntp_client.o: ../Core/Src/ntp_client.c ../Core/Inc/ntp_client.h \
 ../Middlewares/Third_Party/LwIP/src/include/lwip/icmp.h:
 
 ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/icmp.h:
-
-../Middlewares/Third_Party/LwIP/src/include/lwip/netdb.h:
-
-../Middlewares/Third_Party/LwIP/src/include/lwip/dns.h:

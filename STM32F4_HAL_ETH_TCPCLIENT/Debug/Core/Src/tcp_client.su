@@ -1,0 +1,9 @@
+tcp_client.c:29:6:app_start_get_time	8	static
+tcp_client.c:38:14:app_open_conn	16	static
+tcp_client.c:68:14:tcp_callback_connected	24	static
+tcp_client.c:93:13:app_send_data	8	static
+tcp_client.c:107:14:tcp_callback_sent	24	static
+tcp_client.c:128:14:tcp_callback_received	56	static
+tcp_client.c:170:13:app_close_conn	8	static
+tcp_client.c:184:13:tcp_callback_error	16	static
+tcp_client.c:193:14:tcp_callback_poll	16	static

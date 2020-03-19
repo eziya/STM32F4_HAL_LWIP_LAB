@@ -1,5 +1,5 @@
 /*
- * ntp_client.h
+ * tcp_client.h
  *
  *  Created on: 2020. 3. 12.
  *      Author: KIKI
@@ -33,7 +33,7 @@ struct time_packet
   uint8_t hour;
   uint8_t minute;
   uint8_t second;
-  uint8_t dummy[247];
+  uint8_t dummy[247]; //you may add more information
   uint8_t tail; //0xEA
 };//256 bytes
 

@@ -47,7 +47,7 @@
 
 /* USER CODE BEGIN PV */
 extern struct netif gnetif;
-extern bool ntpFlag;
+extern bool timeFlag;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -131,10 +131,10 @@ int main(void)
     /* USER CODE BEGIN 3 */
     MX_LWIP_Process();
 
-    if(ntpFlag)
+    if(timeFlag)
     {
-      ntpFlag = false;
-      app_start_get_time();
+      timeFlag = false;
+      app_start_get_time(); //get time information from the server
     }
   }
   /* USER CODE END 3 */

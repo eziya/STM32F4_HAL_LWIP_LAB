@@ -1,4 +1,0 @@
-main.c:60:6:ethernetif_notify_conn_changed	16	static
-main.c:83:5:main	8	static
-main.c:129:6:SystemClock_Config	88	static
-main.c:177:6:Error_Handler	4	static

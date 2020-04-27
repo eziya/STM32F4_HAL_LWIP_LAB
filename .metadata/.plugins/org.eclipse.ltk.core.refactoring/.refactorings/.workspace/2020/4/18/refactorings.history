@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;STM32F4_HAL_ETH_TCPCLIENT&apos;" deleteContents="false" description="Delete resource &apos;STM32F4_HAL_ETH_TCPCLIENT&apos;" element1="/STM32F4_HAL_ETH_TCPCLIENT" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1587904642489"/>
+</session>

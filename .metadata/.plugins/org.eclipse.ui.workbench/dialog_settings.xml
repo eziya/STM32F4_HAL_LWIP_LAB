@@ -18,4 +18,15 @@
 		<list key="textArray">
 		</list>
 	</section>
+	<section name="WorkbenchPreferenceDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="651"/>
+		<item key="DIALOG_Y_ORIGIN" value="218"/>
+	</section>
+	<section name="InstallationDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="-35"/>
+		<item key="DIALOG_Y_ORIGIN" value="-343"/>
+		<item key="DIALOG_WIDTH" value="702"/>
+		<item key="DIALOG_HEIGHT" value="740"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+	</section>
 </section>

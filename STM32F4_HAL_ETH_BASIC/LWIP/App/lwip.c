@@ -124,6 +124,12 @@ void MX_LWIP_Process(void)
 
 /* USER CODE BEGIN 4_3 */
   ethernetif_set_link(&gnetif);
+  if (netif_is_link_up(&gnetif) && !netif_is_up(&gnetif))
+  {
+	  netif_set_up(&gnetif);
+	  dhcp_start(&gnetif);
+  }
+
 /* USER CODE END 4_3 */
 }
 

@@ -58,9 +58,6 @@
 					<entry kind="macro" name="__ARM_PCS" value="1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__ARM_SIZEOF_MINIMAL_ENUM" value="1">
-						<flag value="BUILTIN|READONLY"/>
-					</entry>
 					<entry kind="macro" name="__ARM_SIZEOF_WCHAR_T" value="4">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
@@ -839,6 +836,9 @@
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__SIZEOF_FLOAT__" value="4">
+						<flag value="BUILTIN|READONLY"/>
+					</entry>
+					<entry kind="macro" name="__SIZEOF_FLOAT__" value="1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__SIZEOF_INT__" value="4">

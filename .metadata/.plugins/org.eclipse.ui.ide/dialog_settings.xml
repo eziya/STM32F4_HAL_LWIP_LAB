@@ -19,6 +19,9 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="D:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\STM32F4_HAL_ETH_TCPECHO"/>
+			<item value="D:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\STM32F4_HAL_ETH_TCPCLIENT"/>
+			<item value="D:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\STM32F4_HAL_ETH_BASIC"/>
 			<item value="D:\Workspace\STM32\STM32F4_HAL_LWIP_LAB\STM32F4_HAL_ETH_TCPCLIENT"/>
 		</list>
 	</section>

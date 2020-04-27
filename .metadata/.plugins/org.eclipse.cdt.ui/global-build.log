@@ -1,6 +1,4 @@
-18:15:00 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_BASIC ****
+18:28:36 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_BASIC ****
 make -j4 clean 
 rm -rf *
-rm: can't remove 'STM32F4_HAL_ETH_BASIC.elf': Permission denied
-make: [makefile:74: clean] Error 1 (ignored)
  

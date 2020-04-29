@@ -20,6 +20,9 @@ typedef struct Network Network;
 struct Network
 {
 	struct netconn *conn;
+	struct netbuf *buf;
+	int offset;
+
 	int (*mqttread) (Network*, unsigned char*, int, int);
 	int (*mqttwrite) (Network*, unsigned char*, int, int);
 	void (*disconnect) (Network*);

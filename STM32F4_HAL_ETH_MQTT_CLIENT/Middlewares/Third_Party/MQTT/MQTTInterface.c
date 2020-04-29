@@ -37,54 +37,64 @@ void TimerInit(Timer *timer) {
 
 void NewNetwork(Network *n) {
 	n->conn = NULL;
+	n->buf = NULL;
+	n->offset = 0;
+
 	n->mqttread = net_read;
 	n->mqttwrite = net_write;
 	n->disconnect = net_disconnect;
 }
 
 int net_read(Network *n, unsigned char *buffer, int len, int timeout_ms) {
-	struct netbuf *buf;
-	void *data;
+	int rc;
+	struct netbuf *inbuf;
+	int offset = 0;
+	int bytes = 0;
 
-	uint16_t nLen = 0; //buffer length
-	uint16_t nRead = 0; //read buffer index
+	while(bytes < len) {
+		if(n->buf != NULL) {
+			inbuf = n->buf;
+			offset = n->offset;
+			rc = ERR_OK;
+		} else {
+			rc = netconn_recv(n->conn, &inbuf);
+			offset = 0;
+		}
 
-	while (netconn_recv(n->conn, &buf) == ERR_OK) //receive the response
-	{
-		do {
-			netbuf_data(buf, &data, &nLen); //receive data pointer & length
-			memcpy(buffer + nRead, data, nLen);
-			nRead += nLen;
-		} while (netbuf_next(buf) >= 0); //check buffer empty
-		netbuf_delete(buf); //clear buffer
+		if(rc != ERR_OK) {
+			if(rc != ERR_TIMEOUT) {
+				bytes = -1;
+			}
+			break;
+		} else {
+			int nblen = netbuf_len(inbuf) - offset;
+			if((bytes+nblen) > len) {
+				netbuf_copy_partial(inbuf, buffer+bytes, len-bytes,offset);
+				n->buf = inbuf;
+				n->offset = offset + len - bytes;
+				bytes = len;
+			} else {
+				netbuf_copy_partial(inbuf, buffer+bytes, nblen, offset);
+				bytes += nblen;
+				netbuf_delete(inbuf);
+				n->buf = NULL;
+				n->offset = 0;
+			}
+		}
 	}
-
-	return nRead;
+	return bytes;
 }
 
 int net_write(Network *n, unsigned char *buffer, int len, int timeout_ms) {
-	uint16_t nLen = 0; //buffer length
-	uint16_t nWritten = 0; //write buffer index
-
-	do {
-		if (netconn_write_partly(n->conn, //connection
-				(const void*) (buffer + nWritten), //buffer pointer
-				(len - nWritten), //buffer length
-				NETCONN_NOFLAG, //no copy
-				(size_t*) &nLen) != ERR_OK) //written len
-				{
-			return -1;
-		} else {
-			nWritten += nLen;
-		}
-	} while (nWritten < len); //send request
-
-	return nWritten;
+	int rc = netconn_write(n->conn, buffer, len, NETCONN_NOCOPY);
+	if(rc != ERR_OK) return -1;
+	return len;
 }
 
 void net_disconnect(Network *n) {
 	netconn_close(n->conn); //close session
 	netconn_delete(n->conn); //free memory
+	n->conn = NULL;
 }
 
 int ConnectNetwork(Network *n, char *ip, int port) {

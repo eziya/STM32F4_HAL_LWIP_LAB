@@ -1,0 +1,10 @@
+MQTTInterface.c:16:6:TimerIsExpired	24	static
+MQTTInterface.c:21:6:TimerCountdownMS	16	static
+MQTTInterface.c:25:6:TimerCountdown	16	static
+MQTTInterface.c:29:5:TimerLeftMS	24	static
+MQTTInterface.c:34:6:TimerInit	16	static
+MQTTInterface.c:38:6:NewNetwork	16	static
+MQTTInterface.c:45:5:net_read	40	static
+MQTTInterface.c:65:5:net_write	40	static
+MQTTInterface.c:85:6:net_disconnect	16	static
+MQTTInterface.c:90:5:ConnectNetwork	32	static

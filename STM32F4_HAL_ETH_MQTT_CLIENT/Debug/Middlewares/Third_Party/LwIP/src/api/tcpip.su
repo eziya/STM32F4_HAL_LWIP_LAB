@@ -1,0 +1,17 @@
+tcpip.c:84:1:tcpip_timeouts_mbox_fetch	24	static
+tcpip.c:127:1:tcpip_thread	24	static
+tcpip.c:156:1:tcpip_thread_handle_msg	16	static
+tcpip.c:240:1:tcpip_inpkt	32	static
+tcpip.c:283:1:tcpip_input	16	static
+tcpip.c:309:1:tcpip_callback	24	static
+tcpip.c:345:1:tcpip_try_callback	24	static
+tcpip.c:437:1:tcpip_send_msg_wait_sem	24	static
+tcpip.c:473:1:tcpip_api_call	24	static
+tcpip.c:531:1:tcpip_callbackmsg_new	24	static
+tcpip.c:552:1:tcpip_callbackmsg_delete	16	static
+tcpip.c:567:1:tcpip_callbackmsg_trycallback	16	static
+tcpip.c:586:1:tcpip_callbackmsg_trycallback_fromisr	16	static
+tcpip.c:602:1:tcpip_init	24	static
+tcpip.c:627:1:pbuf_free_int	24	static
+tcpip.c:640:1:pbuf_free_callback	16	static
+tcpip.c:653:1:mem_free_callback	16	static

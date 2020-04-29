@@ -1,0 +1,13 @@
+ethernetif.c:88:6:HAL_ETH_MspInit	64	static
+ethernetif.c:151:6:HAL_ETH_MspDeInit	16	static
+ethernetif.c:194:6:HAL_ETH_RxCpltCallback	16	static
+ethernetif.c:213:13:low_level_init	80	static
+ethernetif.c:330:14:low_level_output	48	static
+ethernetif.c:414:22:low_level_input	56	static
+ethernetif.c:504:6:ethernetif_input	24	static
+ethernetif.c:563:7:ethernetif_init	16	static
+ethernetif.c:610:7:sys_jiffies	8	static
+ethernetif.c:621:7:sys_now	8	static
+ethernetif.c:633:6:ethernetif_set_link	24	static
+ethernetif.c:674:6:ethernetif_update_config	24	static
+ethernetif.c:762:6:ethernetif_notify_conn_changed	16	static

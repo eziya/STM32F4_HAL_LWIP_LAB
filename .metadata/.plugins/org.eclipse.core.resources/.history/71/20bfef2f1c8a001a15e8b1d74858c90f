@@ -1,0 +1,13 @@
+/*
+ * MQTTInterface.h
+ *
+ *  Created on: 2020. 4. 29.
+ *      Author: jihoo
+ */
+
+#ifndef THIRD_PARTY_MQTT_MQTTINTERFACE_H_
+#define THIRD_PARTY_MQTT_MQTTINTERFACE_H_
+
+
+
+#endif /* THIRD_PARTY_MQTT_MQTTINTERFACE_H_ */

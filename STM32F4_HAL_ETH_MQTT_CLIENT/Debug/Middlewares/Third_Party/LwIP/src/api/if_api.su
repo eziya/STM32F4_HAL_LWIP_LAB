@@ -1,0 +1,2 @@
+if_api.c:61:1:lwip_if_indextoname	16	static
+if_api.c:86:1:lwip_if_nametoindex	16	static

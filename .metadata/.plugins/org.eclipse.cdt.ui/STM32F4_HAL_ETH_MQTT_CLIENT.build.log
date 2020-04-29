@@ -1,0 +1,10 @@
+23:52:36 **** Incremental Build of configuration Debug for project STM32F4_HAL_ETH_MQTT_CLIENT ****
+make -j4 all 
+arm-none-eabi-size   STM32F4_HAL_ETH_MQTT_CLIENT.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 117992	    504	  66240	 184736	  2d1a0	STM32F4_HAL_ETH_MQTT_CLIENT.elf
+Finished building: default.size.stdout
+ 
+
+23:52:38 Build Finished. 0 errors, 0 warnings. (took 2s.450ms)
+

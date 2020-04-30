@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item key="org.eclipse.cdt.utils.ui.controls.FileListControl" value="../Middlewares/Third_Party/MQTT"/>
+	<item key="org.eclipse.cdt.utils.ui.controls.FileListControl" value="../Middlewares/Third_Party/MQTT/MQTTPacket"/>
 	<item key="LastUsedSourceTemplate" value="Default C source template"/>
 	<item key="LastUsedHeaderTemplate" value="Default C header template"/>
 	<section name="completion_proposal_size">
@@ -37,5 +37,22 @@
 	</section>
 	<section name="CResourceRenameRefactoringInputPage">
 		<item key="updateReferences" value="true"/>
+	</section>
+	<section name="org.eclipse.cdt.internal.ui.typehierarchy.OpenTypeInHierarchyActionSettings">
+		<item key="show_namespaces" value="false"/>
+		<item key="show_classes" value="true"/>
+		<item key="show_structs" value="true"/>
+		<item key="show_typedefs" value="true"/>
+		<item key="show_enums" value="true"/>
+		<item key="show_unions" value="true"/>
+		<item key="show_functions" value="false"/>
+		<item key="show_variables" value="false"/>
+		<item key="show_enumerators" value="false"/>
+		<item key="show_macros" value="false"/>
+		<item key="show_lowlevel" value="true"/>
+		<item key="x" value="744"/>
+		<item key="y" value="138"/>
+		<item key="width" value="432"/>
+		<item key="height" value="663"/>
 	</section>
 </section>

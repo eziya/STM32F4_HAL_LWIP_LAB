@@ -1,7 +1,7 @@
-22:16:04 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_RTOS_TCPCLIENT ****
+22:11:46 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_RTOS_TCPCLIENT ****
 make -j4 clean 
 make: *** No rule to make target 'clean'.  Stop.
 "make -j4 clean" terminated with exit code 2. Build might be incomplete.
 
-22:16:05 Build Failed. 1 errors, 0 warnings. (took 821ms)
+22:11:46 Build Failed. 1 errors, 0 warnings. (took 183ms)
 

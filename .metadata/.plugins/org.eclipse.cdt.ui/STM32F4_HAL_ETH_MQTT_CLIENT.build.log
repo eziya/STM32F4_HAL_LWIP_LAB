@@ -1,10 +1,7 @@
-01:11:21 **** Incremental Build of configuration Debug for project STM32F4_HAL_ETH_MQTT_CLIENT ****
-make -j4 all 
-arm-none-eabi-size   STM32F4_HAL_ETH_MQTT_CLIENT.elf 
-   text	   data	    bss	    dec	    hex	filename
- 117456	    504	  66240	 184200	  2cf88	STM32F4_HAL_ETH_MQTT_CLIENT.elf
-Finished building: default.size.stdout
- 
+22:11:42 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_MQTT_CLIENT ****
+make -j4 clean 
+make: *** No rule to make target 'clean'.  Stop.
+"make -j4 clean" terminated with exit code 2. Build might be incomplete.
 
-01:11:23 Build Finished. 0 errors, 0 warnings. (took 2s.348ms)
+22:11:43 Build Failed. 1 errors, 0 warnings. (took 162ms)
 

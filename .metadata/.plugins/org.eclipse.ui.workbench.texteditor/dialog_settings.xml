@@ -6,11 +6,13 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="MQTT_SUCESS"/>
+		<item key="selection" value="MQTT_SUCCESS"/>
 		<list key="findhistory">
+			<item value="MQTT_SUCESS"/>
 			<item value="SUCCESS"/>
 		</list>
 		<list key="replacehistory">
+			<item value="MQTT_SUCCESS"/>
 			<item value="MQTT_SUCESS"/>
 		</list>
 	</section>

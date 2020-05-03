@@ -1,0 +1,5 @@
+rsa_internal.c:68:5:mbedtls_rsa_deduce_primes	136	static
+rsa_internal.c:203:5:mbedtls_rsa_deduce_private_exponent	56	static
+rsa_internal.c:249:5:mbedtls_rsa_validate_crt	56	static
+rsa_internal.c:337:5:mbedtls_rsa_validate_params	56	static
+rsa_internal.c:458:5:mbedtls_rsa_deduce_crt	40	static

@@ -1,0 +1,12 @@
+chachapoly.c:63:12:chachapoly_pad_aad	48	static
+chachapoly.c:83:12:chachapoly_pad_ciphertext	48	static
+chachapoly.c:97:6:mbedtls_chachapoly_init	24	static
+chachapoly.c:109:6:mbedtls_chachapoly_free	24	static
+chachapoly.c:122:5:mbedtls_chachapoly_setkey	24	static
+chachapoly.c:134:5:mbedtls_chachapoly_starts	104	static
+chachapoly.c:174:5:mbedtls_chachapoly_update_aad	32	static
+chachapoly.c:189:5:mbedtls_chachapoly_update	40	static
+chachapoly.c:240:5:mbedtls_chachapoly_finish	48	static
+chachapoly.c:297:12:chachapoly_crypt_and_tag	32	static
+chachapoly.c:327:5:mbedtls_chachapoly_encrypt_and_tag	48	static
+chachapoly.c:348:5:mbedtls_chachapoly_auth_decrypt	80	static

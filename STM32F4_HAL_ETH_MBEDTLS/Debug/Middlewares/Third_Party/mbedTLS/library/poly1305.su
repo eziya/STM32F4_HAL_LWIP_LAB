@@ -1,0 +1,9 @@
+poly1305.c:88:24:mul64	24	static
+poly1305.c:106:13:poly1305_process	136	static
+poly1305.c:214:13:poly1305_compute_mac	96	static
+poly1305.c:283:6:mbedtls_poly1305_init	16	static
+poly1305.c:290:6:mbedtls_poly1305_free	16	static
+poly1305.c:298:5:mbedtls_poly1305_starts	16	static
+poly1305.c:329:5:mbedtls_poly1305_update	40	static
+poly1305.c:393:5:mbedtls_poly1305_finish	16	static
+poly1305.c:420:5:mbedtls_poly1305_mac	104	static

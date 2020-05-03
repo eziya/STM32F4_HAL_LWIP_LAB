@@ -1,0 +1,13 @@
+asn1parse.c:50:5:mbedtls_asn1_get_len	24	static
+asn1parse.c:108:5:mbedtls_asn1_get_tag	24	static
+asn1parse.c:123:5:mbedtls_asn1_get_bool	32	static
+asn1parse.c:142:5:mbedtls_asn1_get_int	32	static
+asn1parse.c:167:5:mbedtls_asn1_get_mpi	32	static
+asn1parse.c:185:5:mbedtls_asn1_get_bitstring	32	static
+asn1parse.c:218:5:mbedtls_asn1_get_bitstring_null	32	static
+asn1parse.c:237:5:mbedtls_asn1_get_sequence_of	40	static
+asn1parse.c:287:5:mbedtls_asn1_get_alg	32	static
+asn1parse.c:331:5:mbedtls_asn1_get_alg_null	40	static
+asn1parse.c:349:6:mbedtls_asn1_free_named_data	16	static
+asn1parse.c:360:6:mbedtls_asn1_free_named_data_list	24	static
+asn1parse.c:372:26:mbedtls_asn1_find_named_data	24	static

@@ -1,0 +1,1 @@
+platform_util.c:73:6:mbedtls_platform_zeroize	16	static

@@ -1,0 +1,14 @@
+/*
+ * ssl_client.h
+ *
+ *  Created on: 2020. 5. 3.
+ *      Author: jihoo
+ */
+
+#ifndef SSL_CLIENT_H_
+#define SSL_CLIENT_H_
+
+#include "ssl_client.h"
+
+
+#endif /* SSL_CLIENT_H_ */

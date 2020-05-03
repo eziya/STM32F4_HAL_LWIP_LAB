@@ -1,0 +1,13 @@
+pk.h:157:36:mbedtls_pk_rsa	16	static
+pk.h:170:36:mbedtls_pk_ec	16	static
+pkparse.c:188:12:pk_get_ecparams	32	static
+pkparse.c:461:12:pk_use_ecparams	24	static
+pkparse.c:500:12:pk_get_ecpubkey	40	static
+pkparse.c:527:12:pk_get_rsapubkey	64	static
+pkparse.c:582:12:pk_get_pk_alg	40	static
+pkparse.c:615:5:mbedtls_pk_parse_subpubkey	56	static
+pkparse.c:683:12:pk_parse_key_pkcs1_der	88	static
+pkparse.c:810:12:pk_parse_key_sec1_der	80	static
+pkparse.c:948:12:pk_parse_key_pkcs8_unencrypted_der	64	static
+pkparse.c:1163:5:mbedtls_pk_parse_key	64	static
+pkparse.c:1376:5:mbedtls_pk_parse_public_key	80	static

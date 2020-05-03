@@ -1,0 +1,14 @@
+ecdsa.c:229:12:derive_mpi	40	static
+ecdsa.c:253:12:ecdsa_sign_restartable	144	static
+ecdsa.c:384:5:mbedtls_ecdsa_sign	48	static
+ecdsa.c:489:12:ecdsa_verify_restartable	136	static
+ecdsa.c:597:5:mbedtls_ecdsa_verify	40	static
+ecdsa.c:616:12:ecdsa_signature_to_asn1	144	static
+ecdsa.c:640:5:mbedtls_ecdsa_write_signature_restartable	88	static
+ecdsa.c:688:5:mbedtls_ecdsa_write_signature	48	static
+ecdsa.c:722:5:mbedtls_ecdsa_read_signature	32	static
+ecdsa.c:736:5:mbedtls_ecdsa_read_signature_restartable	80	static
+ecdsa.c:800:5:mbedtls_ecdsa_genkey	40	static
+ecdsa.c:819:5:mbedtls_ecdsa_from_keypair	24	static
+ecdsa.c:838:6:mbedtls_ecdsa_init	16	static
+ecdsa.c:848:6:mbedtls_ecdsa_free	16	static

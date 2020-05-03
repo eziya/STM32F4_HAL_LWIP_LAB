@@ -31,4 +31,6 @@
 	</section>
 	<section name="NewWizardAction">
 	</section>
+	<section name="FileSystemImportWizard">
+	</section>
 </section>

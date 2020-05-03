@@ -1,0 +1,3 @@
+pem.c:49:6:mbedtls_pem_init	16	static
+pem.c:230:5:mbedtls_pem_read_buffer	64	static
+pem.c:424:6:mbedtls_pem_free	16	static

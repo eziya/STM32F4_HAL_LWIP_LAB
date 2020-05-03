@@ -1,0 +1,12 @@
+debug.c:55:6:mbedtls_debug_set_threshold	16	static
+debug.c:63:20:debug_send_line	40	static
+debug.c:81:6:mbedtls_debug_print_msg	560	static
+debug.c:123:6:mbedtls_debug_print_ret	552	static
+debug.c:151:6:mbedtls_debug_print_buf	584	static
+debug.c:211:6:mbedtls_debug_print_ecp	552	static
+debug.c:234:6:mbedtls_debug_print_mpi	576	static
+debug.c:304:13:debug_print_pk	88	static
+debug.c:342:13:debug_print_line_by_line	568	static
+debug.c:367:6:mbedtls_debug_print_crt	1584	static
+debug.c:401:13:mbedtls_debug_printf_ecdh_internal	40	static
+debug.c:432:6:mbedtls_debug_printf_ecdh	32	static

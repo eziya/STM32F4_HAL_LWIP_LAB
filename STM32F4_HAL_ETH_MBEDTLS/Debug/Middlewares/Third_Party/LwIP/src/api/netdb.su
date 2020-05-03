@@ -1,0 +1,4 @@
+netdb.c:87:1:lwip_gethostbyname	24	static
+netdb.c:162:1:lwip_gethostbyname_r	48	static
+netdb.c:236:1:lwip_freeaddrinfo	24	static
+netdb.c:269:1:lwip_getaddrinfo	64	static

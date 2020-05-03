@@ -19,6 +19,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\jihoo\Downloads\cxemotexnika-master\cxemotexnika-master\Examples\NUCLEO_F429ZI\nucleo_f429zi_https_client"/>
 			<item value="C:\Users\jihoo\Downloads\STM32CubeExpansion_Cloud_CLD_GEN_V1.0.0\Projects\STM32F769I-Discovery\Applications\Cloud\GenericMQTT\SW4STM32\STM32F769I_Discovery_GenericMQTT"/>
 			<item value="D:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\STM32F4_HAL_ETH_TCPECHO"/>
 			<item value="D:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\STM32F4_HAL_ETH_TCPCLIENT"/>

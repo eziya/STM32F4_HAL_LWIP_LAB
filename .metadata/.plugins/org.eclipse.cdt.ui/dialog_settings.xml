@@ -15,6 +15,18 @@
 		<item key="caseSensitive" value="false"/>
 		<item key="searchFlags" value="227191"/>
 		<list key="previousPatterns">
+			<item value="MBEDTLS_PLATFORM_PRINTF_MACRO"/>
+			<item value="mbedtls_ssl_set_hostname"/>
+			<item value="0x7780"/>
+			<item value="MBEDTLS_PKCS1_V21"/>
+			<item value="0x262e"/>
+			<item value="tcpip_init"/>
+			<item value="lwip_init"/>
+			<item value="dns_init"/>
+			<item value="MBEDTLS_PLATFORM_FREE_MACRO"/>
+			<item value="MBEDTLS_PLATFORM_STD_CALLOC"/>
+			<item value="mbedtls_calloc"/>
+			<item value="MBEDTLS_MEMORY_BUFFER_ALLOC_C"/>
 			<item value="BUFFER_OVERFLOW"/>
 			<item value="SUCCESS"/>
 			<item value="osSystickHandler"/>

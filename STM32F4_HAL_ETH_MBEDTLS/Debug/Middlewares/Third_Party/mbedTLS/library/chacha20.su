@@ -1,0 +1,9 @@
+chacha20.c:91:20:chacha20_quarter_round	24	static
+chacha20.c:126:13:chacha20_inner_block	24	static
+chacha20.c:145:13:chacha20_block	88	static
+chacha20.c:188:6:mbedtls_chacha20_init	16	static
+chacha20.c:199:6:mbedtls_chacha20_free	16	static
+chacha20.c:207:5:mbedtls_chacha20_setkey	16	static
+chacha20.c:232:5:mbedtls_chacha20_starts	24	static
+chacha20.c:255:5:mbedtls_chacha20_update	32	static
+chacha20.c:320:5:mbedtls_chacha20_crypt	160	static

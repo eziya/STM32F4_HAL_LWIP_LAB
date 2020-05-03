@@ -1,0 +1,9 @@
+mem.c:451:1:ptr_to_mem	16	static
+mem.c:457:1:mem_to_ptr	16	static
+mem.c:474:1:plug_holes	32	static
+mem.c:516:1:mem_init	16	static
+mem.c:551:1:mem_link_valid	32	static
+mem.c:617:1:mem_free	40	static
+mem.c:699:1:mem_trim	40	static
+mem.c:831:1:mem_malloc	40	static
+mem.c:999:1:mem_calloc	24	static

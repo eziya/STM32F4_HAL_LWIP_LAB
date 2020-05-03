@@ -1,0 +1,20 @@
+22:56:38 **** Incremental Build of configuration Debug for project STM32F4_HAL_ETH_MBEDTLS ****
+make -j4 all 
+arm-none-eabi-gcc "../Src/freertos.c" -mcpu=cortex-m4 -std=gnu11 -g3 '-DMBEDTLS_CONFIG_FILE="mbedtls_config.h"' -DUSE_HAL_DRIVER -DDEBUG -DSTM32F429xx -c -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Middlewares/Third_Party/LwIP/system/arch -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/system -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/mbedTLS/include/mbedtls -I../Inc -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/mbedTLS/include -I../Middlewares/Third_Party/LwIP/src/include/netif -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/freertos.d" -MT"Src/freertos.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/freertos.o"
+arm-none-eabi-gcc -o "STM32F4_HAL_ETH_MBEDTLS.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\STM32F4_HAL_ETH_MBEDTLS\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F4_HAL_ETH_MBEDTLS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F4_HAL_ETH_MBEDTLS.elf
+ 
+arm-none-eabi-objdump -h -S  STM32F4_HAL_ETH_MBEDTLS.elf  > "STM32F4_HAL_ETH_MBEDTLS.list"
+arm-none-eabi-objcopy  -O binary  STM32F4_HAL_ETH_MBEDTLS.elf  "STM32F4_HAL_ETH_MBEDTLS.bin"
+arm-none-eabi-size   STM32F4_HAL_ETH_MBEDTLS.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 332256	    560	 134424	 467240	  72128	STM32F4_HAL_ETH_MBEDTLS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F4_HAL_ETH_MBEDTLS.bin
+ 
+Finished building: STM32F4_HAL_ETH_MBEDTLS.list
+ 
+
+22:56:44 Build Finished. 0 errors, 0 warnings. (took 6s.217ms)
+

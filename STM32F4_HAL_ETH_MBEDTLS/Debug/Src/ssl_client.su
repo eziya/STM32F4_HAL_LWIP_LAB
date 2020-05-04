@@ -1,4 +1,0 @@
-ssl_client.c:71:7:mbedtls_calloc	24	static
-ssl_client.c:82:6:mbedtls_free	16	static
-ssl_client.c:87:13:my_debug	32	static
-ssl_client.c:97:6:StartSSLClientTask	2768	static

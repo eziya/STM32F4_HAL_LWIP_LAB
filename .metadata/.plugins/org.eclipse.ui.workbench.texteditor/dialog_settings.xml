@@ -2,27 +2,27 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item key="wrap" value="true"/>
-		<item key="casesensitive" value="false"/>
+		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="MBEDTLS_PKCS1"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
-			<item value="mbedtls_printf"/>
-			<item value="mbedtls_ssl_set_hostname"/>
-			<item value="MBEDTLS_PKCS1"/>
-			<item value="MBEDTLS_PKCS1_V21"/>
-			<item value="MBEDTLS_RSA_C"/>
-			<item value="RCA"/>
-			<item value="RSA"/>
-			<item value="MBEDTLS_PLATFORM_FREE_MACRO"/>
-			<item value="MBEDTLS_PLATFORM_STD_CALLOC"/>
-			<item value="mbedtls_calloc"/>
-			<item value="MBEDTLS_PLATFORM_MEMORY"/>
-			<item value="mbedtls_root_certificate"/>
-			<item value="MBEDTLS_PLATFORM_C"/>
-			<item value="MBEDTLS_PLATFORM_CALLOC_MACRO"/>
-			<item value="MBEDTLS_MEMORY_BUFFER_ALLOC_C "/>
+			<item value="mbedtls_ssl_get_session"/>
+			<item value="mbedtls_ssl_set_session"/>
+			<item value="MBEDTLS_SSL_RENEGOTIATION"/>
+			<item value="PKCS1"/>
+			<item value="MBEDTLS_SSL_MAX_CONTENT_LEN "/>
+			<item value="MPI"/>
+			<item value="PLATFORM_MEMORY"/>
+			<item value="free"/>
+			<item value="MBEDTLS_ASN1_PARSE_C"/>
+			<item value="MBEDTLS_AES_C"/>
+			<item value="MBEDTLS_SSL_PROTO_DTLS"/>
+			<item value="MBEDTLS_SSL_PROTO_TLS1_2"/>
+			<item value="MBEDTLS_SSL_SRV_RESPECT_CLIENT_PREFERENCE"/>
+			<item value="MBEDTLS_SSL_DEBUG_ALL"/>
+			<item value="MBEDTLS_SELF_TEST"/>
 		</list>
 		<list key="replacehistory">
 			<item value="MQTT_SUCCESS"/>
@@ -30,7 +30,7 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1168"/>
+		<item key="DIALOG_X_ORIGIN" value="615"/>
 		<item key="DIALOG_Y_ORIGIN" value="307"/>
 		<item key="DIALOG_WIDTH" value="288"/>
 		<item key="DIALOG_HEIGHT" value="391"/>

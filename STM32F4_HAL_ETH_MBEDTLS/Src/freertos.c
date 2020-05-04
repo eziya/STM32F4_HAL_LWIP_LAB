@@ -138,7 +138,7 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void const * argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
-	osThreadDef(sslTask, StartSSLClientTask, osPriorityAboveNormal, 0, (configMINIMAL_STACK_SIZE*10));
+	osThreadDef(sslTask, StartSSLClientTask, osPriorityNormal, 0, (configMINIMAL_STACK_SIZE*10));
 	sslTaskHandle = osThreadCreate(osThread(sslTask), NULL);
 
 	/* Infinite loop */

@@ -8,6 +8,9 @@
 		<item key="isRegEx" value="false"/>
 		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="MBEDTLS_MEMORY_BUFFER_ALLOC_C "/>
+			<item value="mbedtls_x509_crt_parse_der()"/>
+			<item value="DEBUG"/>
 			<item value="mbedtls_ssl_get_session"/>
 			<item value="mbedtls_ssl_set_session"/>
 			<item value="MBEDTLS_SSL_RENEGOTIATION"/>
@@ -20,9 +23,6 @@
 			<item value="MBEDTLS_AES_C"/>
 			<item value="MBEDTLS_SSL_PROTO_DTLS"/>
 			<item value="MBEDTLS_SSL_PROTO_TLS1_2"/>
-			<item value="MBEDTLS_SSL_SRV_RESPECT_CLIENT_PREFERENCE"/>
-			<item value="MBEDTLS_SSL_DEBUG_ALL"/>
-			<item value="MBEDTLS_SELF_TEST"/>
 		</list>
 		<list key="replacehistory">
 			<item value="MQTT_SUCCESS"/>

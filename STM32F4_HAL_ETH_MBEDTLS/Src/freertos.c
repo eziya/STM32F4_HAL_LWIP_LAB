@@ -26,6 +26,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */     
+#include <stdio.h>
 #include "ssl_client.h"
 /* USER CODE END Includes */
 
@@ -50,6 +51,7 @@ osThreadId sslTaskHandle;
 
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
+osThreadId sslTaskHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -57,6 +59,7 @@ osThreadId defaultTaskHandle;
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
+void StartSSLClientTask(void const * argument);
 
 extern void MX_LWIP_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -122,6 +125,10 @@ void MX_FREERTOS_Init(void) {
   osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 256);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
+  /* definition and creation of sslTask */
+  osThreadDef(sslTask, StartSSLClientTask, osPriorityNormal, 0, 2560);
+  sslTaskHandle = osThreadCreate(osThread(sslTask), NULL);
+
   /* USER CODE BEGIN RTOS_THREADS */
 	/* add threads,a ... */
   /* USER CODE END RTOS_THREADS */
@@ -138,16 +145,43 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void const * argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
-	osThreadDef(sslTask, StartSSLClientTask, osPriorityNormal, 0, (configMINIMAL_STACK_SIZE*10));
-	sslTaskHandle = osThreadCreate(osThread(sslTask), NULL);
+	TaskStatus_t sslTaskStatus;
+
+	MX_LWIP_Init(); //moved MX_LWIP_Init from mbedtls_net_init
 
 	/* Infinite loop */
 	for(;;)
 	{
+		vTaskGetInfo(sslTaskHandle, &sslTaskStatus, pdFALSE, eInvalid);
+		if(sslTaskStatus.eCurrentState == eDeleted)
+		{
+			printf("Recreate sslTask...\n\n");
+			osThreadDef(sslTask, StartSSLClientTask, osPriorityNormal, 0, 2560);
+			sslTaskHandle = osThreadCreate(osThread(sslTask), NULL);
+		}
+
 		HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin);
 		osDelay(500);
 	}
   /* USER CODE END StartDefaultTask */
+}
+
+/* USER CODE BEGIN Header_StartSSLClientTask */
+/**
+* @brief Function implementing the sslTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartSSLClientTask */
+__weak void StartSSLClientTask(void const * argument)
+{
+  /* USER CODE BEGIN StartSSLClientTask */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END StartSSLClientTask */
 }
 
 /* Private application code --------------------------------------------------*/

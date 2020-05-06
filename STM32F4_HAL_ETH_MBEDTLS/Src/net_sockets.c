@@ -109,7 +109,7 @@ void mbedtls_net_init( mbedtls_net_context *ctx )
 /* USER CODE BEGIN 0 */
 
 /* USER CODE END 0 */
-  MX_LWIP_Init();
+  //MX_LWIP_Init();
 /* USER CODE BEGIN 1 */
 
 /* USER CODE END 1 */

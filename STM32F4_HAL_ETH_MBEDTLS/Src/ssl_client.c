@@ -72,7 +72,7 @@ const char mbedtls_google_root_certificate[] = "-----BEGIN CERTIFICATE-----\r\n"
 const size_t mbedtls_google_root_certificate_len = sizeof(mbedtls_google_root_certificate);
 
 #if defined(MBEDTLS_MEMORY_BUFFER_ALLOC_C)
-#define MEMORY_HEAP_SIZE      102400
+#define MEMORY_HEAP_SIZE      65536
 uint8_t alloc_buf[MEMORY_HEAP_SIZE];
 #endif
 

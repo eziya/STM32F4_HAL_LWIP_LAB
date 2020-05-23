@@ -1,9 +1,7 @@
-22:21:40 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_MQTT_CLIENT_MBEDTLS ****
+01:41:00 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_MQTT_CLIENT_MBEDTLS ****
 make -j4 clean 
 rm -rf *
-rm: can't remove 'STM32F4_HAL_ETH_MQTT_CLIENT_MBEDTLS.elf': Permission denied
-make: [makefile:80: clean] Error 1 (ignored)
  
 
-22:21:41 Build Finished. 0 errors, 0 warnings. (took 1s.3ms)
+01:41:01 Build Finished. 0 errors, 0 warnings. (took 1s.31ms)
 

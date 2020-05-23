@@ -7,6 +7,7 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="E:\Workspace\STM\en.x-cube-cld-gen\STM32CubeExpansion_Cloud_CLD_GEN_V1.0.0\Projects\STM32F769I-Discovery\Applications\Cloud\GenericMQTT\SW4STM32\STM32F769I_Discovery_GenericMQTT"/>
 			<item value="D:\Workspace\STM32\STM32F4_HAL_LWIP_LAB\STM32F4_HAL_ETH_RTOS_TCPECHO"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">

@@ -1,0 +1,147 @@
+#include "MQTTInterface.h"
+#include "stm32f4xx_hal.h"
+
+#include <string.h>
+#include "lwip.h"
+#include "lwip/api.h"
+#include "lwip/sockets.h"
+
+#if defined(MBEDTLS_MEMORY_BUFFER_ALLOC_C)
+#include "mbedtls/memory_buffer_alloc.h"
+#endif
+
+#include "mbedtls/net_sockets.h"
+#include "mbedtls/debug.h"
+#include "mbedtls/ssl.h"
+#include "mbedtls/entropy.h"
+#include "mbedtls/ctr_drbg.h"
+#include "mbedtls/error.h"
+#include "mbedtls/certs.h"
+
+#define DEBUG_LEVEL 1
+
+const char mbedtls_root_certificate[] = "-----BEGIN CERTIFICATE-----\r\n"
+    "MIIDujCCAqKgAwIBAgILBAAAAAABD4Ym5g0wDQYJKoZIhvcNAQEFBQAwTDEgMB4G\r\n"
+    "A1UECxMXR2xvYmFsU2lnbiBSb290IENBIC0gUjIxEzARBgNVBAoTCkdsb2JhbFNp\r\n"
+    "Z24xEzARBgNVBAMTCkdsb2JhbFNpZ24wHhcNMDYxMjE1MDgwMDAwWhcNMjExMjE1\r\n"
+    "MDgwMDAwWjBMMSAwHgYDVQQLExdHbG9iYWxTaWduIFJvb3QgQ0EgLSBSMjETMBEG\r\n"
+    "A1UEChMKR2xvYmFsU2lnbjETMBEGA1UEAxMKR2xvYmFsU2lnbjCCASIwDQYJKoZI\r\n"
+    "hvcNAQEBBQADggEPADCCAQoCggEBAKbPJA6+Lm8omUVCxKs+IVSbC9N/hHD6ErPL\r\n"
+    "v4dfxn+G07IwXNb9rfF73OX4YJYJkhD10FPe+3t+c4isUoh7SqbKSaZeqKeMWhG8\r\n"
+    "eoLrvozps6yWJQeXSpkqBy+0Hne/ig+1AnwblrjFuTosvNYSuetZfeLQBoZfXklq\r\n"
+    "tTleiDTsvHgMCJiEbKjNS7SgfQx5TfC4LcshytVsW33hoCmEofnTlEnLJGKRILzd\r\n"
+    "C9XZzPnqJworc5HGnRusyMvo4KD0L5CLTfuwNhv2GXqF4G3yYROIXJ/gkwpRl4pa\r\n"
+    "zq+r1feqCapgvdzZX99yqWATXgAByUr6P6TqBwMhAo6CygPCm48CAwEAAaOBnDCB\r\n"
+    "mTAOBgNVHQ8BAf8EBAMCAQYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUm+IH\r\n"
+    "V2ccHsBqBt5ZtJot39wZhi4wNgYDVR0fBC8wLTAroCmgJ4YlaHR0cDovL2NybC5n\r\n"
+    "bG9iYWxzaWduLm5ldC9yb290LXIyLmNybDAfBgNVHSMEGDAWgBSb4gdXZxwewGoG\r\n"
+    "3lm0mi3f3BmGLjANBgkqhkiG9w0BAQUFAAOCAQEAmYFThxxol4aR7OBKuEQLq4Gs\r\n"
+    "J0/WwbgcQ3izDJr86iw8bmEbTUsp9Z8FHSbBuOmDAGJFtqkIk7mpM0sYmsL4h4hO\r\n"
+    "291xNBrBVNpGP+DTKqttVCL1OmLNIG+6KYnX3ZHu01yiPqFbQfXf5WRDLenVOavS\r\n"
+    "ot+3i9DAgBkcRcAtjOj4LaR0VknFBbVPFd5uRHg5h6h+u/N5GJG79G+dwfCMNYxd\r\n"
+    "AfvDbbnvRG15RjF+Cv6pgsH/76tuIMRQyV+dTZsXjAzlAcmgQWpzU/qlULRuJQ/7\r\n"
+    "TBj0/VLZjmmx6BEP3ojY+x1J96relc8geMJgEtslQIxq/H5COEBkEveegeGTLg==\r\n"
+    "-----END CERTIFICATE-----\r\n";
+
+const size_t mbedtls_root_certificate_len = sizeof(mbedtls_root_certificate);
+
+#if defined(MBEDTLS_MEMORY_BUFFER_ALLOC_C)
+#define MEMORY_HEAP_SIZE      65536
+uint8_t alloc_buf[MEMORY_HEAP_SIZE];
+#endif
+
+mbedtls_net_context server_fd;
+uint32_t flags;
+unsigned char buf[1024];
+const char *pers = "ssl_client1";
+
+mbedtls_entropy_context entropy;
+mbedtls_ctr_drbg_context ctr_drbg;
+mbedtls_ssl_context ssl;
+mbedtls_ssl_config conf;
+mbedtls_x509_crt cacert;
+
+
+uint32_t MilliTimer;
+
+//Timer functions
+char TimerIsExpired(Timer *timer) {
+	long left = timer->end_time - MilliTimer;
+	return (left < 0);
+}
+
+void TimerCountdownMS(Timer *timer, unsigned int timeout) {
+	timer->end_time = MilliTimer + timeout;
+}
+
+void TimerCountdown(Timer *timer, unsigned int timeout) {
+	timer->end_time = MilliTimer + (timeout * 1000);
+}
+
+int TimerLeftMS(Timer *timer) {
+	long left = timer->end_time - MilliTimer;
+	return (left < 0) ? 0 : left;
+}
+
+void TimerInit(Timer *timer) {
+	timer->end_time = 0;
+}
+
+void NewNetwork(Network *n) {
+	n->socket = 0; //clear
+	n->mqttread = net_read; //receive function
+	n->mqttwrite = net_write; //send function
+	n->disconnect = net_disconnect; //disconnection function
+}
+
+int ConnectNetwork(Network *n, char *ip, int port) {
+	struct sockaddr_in server_addr;
+
+	if(n->socket)
+	{
+		close(n->socket);
+	}
+
+	n->socket = socket(PF_INET, SOCK_STREAM, 0); //create socket
+	if(n->socket < 0)
+	{
+		n->socket = 0;
+		return -1;
+	}
+
+	memset(&server_addr, 0, sizeof(struct sockaddr_in)); //broker address info
+	server_addr.sin_family = AF_INET;
+	server_addr.sin_addr.s_addr = inet_addr(ip);
+	server_addr.sin_port = htons(port);
+
+	if(connect(n->socket, (struct sockaddr*)&server_addr, sizeof(struct sockaddr_in)) < 0) //connect to the broker
+	{
+		close(n->socket);
+		return -1;
+	}
+	return 0;
+}
+
+int net_read(Network *n, unsigned char *buffer, int len, int timeout_ms) {
+	int available;
+
+	/* !!! LWIP_SO_RCVBUF must be enabled !!! */
+	if(ioctl(n->socket, FIONREAD, &available) < 0) return -1; //check receive buffer
+
+	if(available > 0)
+	{
+		return recv(n->socket, buffer, len, 0);
+	}
+
+	return 0;
+}
+
+int net_write(Network *n, unsigned char *buffer, int len, int timeout_ms) {
+	return send(n->socket, buffer, len, 0);
+}
+
+void net_disconnect(Network *n) {
+	close(n->socket);
+	n->socket = 0;
+}
+

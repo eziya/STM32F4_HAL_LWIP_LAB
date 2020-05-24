@@ -3662,3 +3662,18 @@ Reason: (2) ST-LINK DLL error.
 !SUBENTRY 2 com.st.stm32cube.ide.mcu.debug.stlink 4 0 2020-05-24 01:28:37.653
 !MESSAGE Error in initializing ST-LINK device.
 Reason: (2) ST-LINK DLL error.
+!SESSION 2020-05-24 18:09:44.526 -----------------------------------------------
+eclipse.buildId=Version 1.3.1
+java.version=1.8.0_202
+java.vendor=AdoptOpenJdk
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2020-05-24 18:10:09.711
+!MESSAGE Log4j initialized with config file E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2020-05-24 18:10:16.951
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 4 4 2020-05-24 18:10:18.124
+!MESSAGE com.st.stm32cube.ide.mcu.ide/META-INF/version/build_ref file not found, build reference will not be reported into properties

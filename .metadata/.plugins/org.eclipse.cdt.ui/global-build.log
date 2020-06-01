@@ -1,4 +1,4 @@
-22:54:23 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_WIZ5100_TCPCLIENT ****
+23:50:12 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_WIZ5100_TCPCLIENT ****
 make -j4 clean 
 rm -rf *
  

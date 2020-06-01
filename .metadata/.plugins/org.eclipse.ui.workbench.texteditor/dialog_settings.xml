@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="disconnect"/>
 		<list key="findhistory">
+			<item value="disconnect"/>
 			<item value="VERSION"/>
 			<item value="cs_sel"/>
 			<item value="flags"/>
@@ -22,7 +23,6 @@
 			<item value="mbedtls_ssl_get_session"/>
 			<item value="mbedtls_ssl_set_session"/>
 			<item value="MBEDTLS_SSL_RENEGOTIATION"/>
-			<item value="PKCS1"/>
 		</list>
 		<list key="replacehistory">
 			<item value="MQTT_SUCCESS"/>

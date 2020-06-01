@@ -47,7 +47,7 @@ void cbIPAddrConfict(void) {
 }
 
 void StartWizTcpClientTask(void const *argument) {
-	int8_t ret;
+	int32_t ret;
 
 	reg_wizchip_cs_cbfunc(WIZ_SPI_Select, WIZ_SPI_Deselect); //register chip select functions
 	reg_wizchip_spi_cbfunc(WIZ_SPI_RxByte, WIZ_SPI_TxByte); //register spi functions
@@ -87,16 +87,16 @@ void StartWizTcpClientTask(void const *argument) {
 	while (1) {
 		ret = socket(CLIENT_SOCKET, Sn_MR_TCP, 3000, 0);
 		if (ret < 0) {
-			printf("socket failed.\n");
+			printf("socket failed{%d}.\n", ret);
 			close(CLIENT_SOCKET);
-			break;
+			continue;
 		}
 
 		ret = connect(CLIENT_SOCKET, serverIP, SERVER_PORT);
 		if (ret < 0) {
-			printf("connect failed.\n");
+			printf("connect failed{%d}.\n", ret);
 			close(CLIENT_SOCKET);
-			break;
+			continue;
 		}
 
 		struct time_packet packet;
@@ -112,7 +112,7 @@ void StartWizTcpClientTask(void const *argument) {
 		do {
 			ret = send(CLIENT_SOCKET, (uint8_t*) (&packet + written), sizeof(struct time_packet) - written);
 			if (ret < 0) {
-				printf("send failed.\n");
+				printf("send failed{%d}.\n", ret);
 				disconnect(CLIENT_SOCKET);
 				close(CLIENT_SOCKET);
 				failed = 1;
@@ -127,7 +127,7 @@ void StartWizTcpClientTask(void const *argument) {
 		while (1) {
 			ret = recv(CLIENT_SOCKET, (uint8_t*) (&packet + read), sizeof(struct time_packet) - read);
 			if (ret < 0) {
-				printf("recv failed.\n");
+				printf("recv failed.{%d}\n", ret);
 				disconnect(CLIENT_SOCKET);
 				close(CLIENT_SOCKET);
 				failed = 1;
@@ -151,7 +151,6 @@ void StartWizTcpClientTask(void const *argument) {
 
 		disconnect(CLIENT_SOCKET);
 		close(CLIENT_SOCKET);
-
 		osDelay(100);
 	}
 

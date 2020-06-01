@@ -52,30 +52,19 @@ void StartWizTcpClientTask(void const *argument) {
 	reg_wizchip_cs_cbfunc(WIZ_SPI_Select, WIZ_SPI_Deselect); //register chip select functions
 	reg_wizchip_spi_cbfunc(WIZ_SPI_RxByte, WIZ_SPI_TxByte); //register spi functions
 
-	ret = wizchip_init(buff_size, buff_size); //rx, tx buffer sizes
-	if(ret < 0)
-	{
-		printf("wozchip_init failed.\n");
-		while(1);
-	}
-
+	wizchip_init(buff_size, buff_size); //rx, tx buffer sizes
 	wiz_NetInfo netInfo = { .mac 	= {0x00, 0x08, 0xdc, 0xab, 0xcd, 0xef},	// Mac address
-			.ip 	= {192, 168, 1, 180},					// IP address
+			.ip 	= {192, 168, 1, 192},					// IP address
 			.sn 	= {255, 255, 255, 0},					// Subnet mask
 			.gw 	= {192, 168, 1, 1}};
 
-	setSHAR(netInfo.mac); //set MAC address
-	DHCP_init(DHCP_SOCKET, dhcp_buffer); //init DHCP
-	reg_dhcp_cbfunc(cbIPAddrAssigned, cbIPAddrAssigned, cbIPAddrConfict); //register DHCP callbacks
+	//setSHAR(netInfo.mac); //set MAC address
+	//DHCP_init(DHCP_SOCKET, dhcp_buffer); //init DHCP
+	//reg_dhcp_cbfunc(cbIPAddrAssigned, cbIPAddrAssigned, cbIPAddrConfict); //register DHCP callbacks
 
-	while(!isIPAddrAssigned)
-	{
-		DHCP_run();
-	}
-
-	getIPfromDHCP(netInfo.ip);
-	getGWfromDHCP(netInfo.gw);
-	getSNfromDHCP(netInfo.sn);
+	//getIPfromDHCP(netInfo.ip);
+	//getGWfromDHCP(netInfo.gw);
+	//getSNfromDHCP(netInfo.sn);
 
 	wizchip_setnetinfo(&netInfo);
 	wizchip_getnetinfo(&netInfo);

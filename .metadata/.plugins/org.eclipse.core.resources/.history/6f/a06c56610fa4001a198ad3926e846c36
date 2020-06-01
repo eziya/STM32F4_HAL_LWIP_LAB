@@ -60,7 +60,7 @@ void StartWizTcpClientTask(void const *argument) {
 	}
 
 	wiz_NetInfo netInfo = { .mac 	= {0x00, 0x08, 0xdc, 0xab, 0xcd, 0xef},	// Mac address
-			.ip 	= {192, 168, 1, 180},					// IP address
+			.ip 	= {192, 168, 1, 192},					// IP address
 			.sn 	= {255, 255, 255, 0},					// Subnet mask
 			.gw 	= {192, 168, 1, 1}};
 

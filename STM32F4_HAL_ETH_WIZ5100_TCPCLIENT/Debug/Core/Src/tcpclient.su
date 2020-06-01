@@ -1,3 +1,0 @@
-tcpclient.c:38:6:cbIPAddrAssigned	8	static
-tcpclient.c:44:6:cbIPAddrConfict	8	static
-tcpclient.c:50:6:StartWizTcpClientTask	376	static

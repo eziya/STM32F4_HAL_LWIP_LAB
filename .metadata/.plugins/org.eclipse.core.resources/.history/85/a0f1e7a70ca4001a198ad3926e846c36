@@ -52,37 +52,45 @@ void StartWizTcpClientTask(void const *argument) {
 	reg_wizchip_cs_cbfunc(WIZ_SPI_Select, WIZ_SPI_Deselect); //register chip select functions
 	reg_wizchip_spi_cbfunc(WIZ_SPI_RxByte, WIZ_SPI_TxByte); //register spi functions
 
-	ret = wizchip_init(buff_size, buff_size); //rx, tx buffer sizes
-	if(ret < 0)
-	{
-		printf("wozchip_init failed.\n");
-		while(1);
-	}
-
-	wiz_NetInfo netInfo = { .mac 	= {0x00, 0x08, 0xdc, 0xab, 0xcd, 0xef},	// Mac address
-			.ip 	= {192, 168, 1, 180},					// IP address
-			.sn 	= {255, 255, 255, 0},					// Subnet mask
-			.gw 	= {192, 168, 1, 1}};
+	wizchip_init(buff_size, buff_size); //rx, tx buffer sizes
+	wiz_NetInfo netInfo = { .mac = { 0x00, 0x08, 0xdc, 0xab, 0xcd, 0xef },	// Mac address
+			.dhcp = NETINFO_DHCP //DHCP
+			};
 
 	setSHAR(netInfo.mac); //set MAC address
 	DHCP_init(DHCP_SOCKET, dhcp_buffer); //init DHCP
-	reg_dhcp_cbfunc(cbIPAddrAssigned, cbIPAddrAssigned, cbIPAddrConfict); //register DHCP callbacks
 
-	while(!isIPAddrAssigned)
-	{
-		DHCP_run();
+	//reg_dhcp_cbfunc(cbIPAddrAssigned, cbIPAddrAssigned, cbIPAddrConfict); //register DHCP callbacks
+
+	while (1) {
+		switch (DHCP_run()) {
+		case DHCP_IP_ASSIGN:
+		case DHCP_IP_CHANGED:
+		case DHCP_IP_LEASED:
+			printf(">> DHCP %d O.K.\n");
+			break;
+		case DHCP_FAILED:
+			dhcp_retry++;
+			if (dhcp_retry > 10000) {
+				printf(">> DHCP %d Failed.\n", dhcp_retry);
+				dhcp_retry = 0;
+				DHCP_stop();
+			}
+			break;
+		default:
+			break;
+		}
 	}
 
 	getIPfromDHCP(netInfo.ip);
 	getGWfromDHCP(netInfo.gw);
 	getSNfromDHCP(netInfo.sn);
 
-	wizchip_setnetinfo(&netInfo);
-	wizchip_getnetinfo(&netInfo);
-
 	printf("IP: %03d.%03d.%03d.%03d\nGW: %03d.%03d.%03d.%03d\nNet: %03d.%03d.%03d.%03d\n", netInfo.ip[0], netInfo.ip[1],
-				netInfo.ip[2], netInfo.ip[3], netInfo.gw[0], netInfo.gw[1], netInfo.gw[2], netInfo.gw[3], netInfo.sn[0],
-				netInfo.sn[1], netInfo.sn[2], netInfo.sn[3]);
+			netInfo.ip[2], netInfo.ip[3], netInfo.gw[0], netInfo.gw[1], netInfo.gw[2], netInfo.gw[3], netInfo.sn[0],
+			netInfo.sn[1], netInfo.sn[2], netInfo.sn[3]);
+
+	wizchip_setnetinfo(&netInfo);
 
 	while (1) {
 		ret = socket(CLIENT_SOCKET, Sn_MR_TCP, 3000, 0);

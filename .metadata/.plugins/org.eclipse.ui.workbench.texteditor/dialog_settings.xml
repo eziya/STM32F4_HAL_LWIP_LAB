@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="flags"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="VERSION"/>
 			<item value="cs_sel"/>
 			<item value="flags"/>
 			<item value="mbedtls_ssl_conf_read_timeout"/>
@@ -22,7 +23,6 @@
 			<item value="mbedtls_ssl_set_session"/>
 			<item value="MBEDTLS_SSL_RENEGOTIATION"/>
 			<item value="PKCS1"/>
-			<item value="MBEDTLS_SSL_MAX_CONTENT_LEN "/>
 		</list>
 		<list key="replacehistory">
 			<item value="MQTT_SUCCESS"/>
@@ -34,6 +34,6 @@
 		<item key="DIALOG_Y_ORIGIN" value="193"/>
 		<item key="DIALOG_WIDTH" value="340"/>
 		<item key="DIALOG_HEIGHT" value="454"/>
-		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|5|0|맑은 고딕"/>
 	</section>
 </section>

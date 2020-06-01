@@ -1,0 +1,2 @@
+httpUtil.c:17:9:http_get_cgi_handler	32	static
+httpUtil.c:41:9:http_post_cgi_handler	32	static

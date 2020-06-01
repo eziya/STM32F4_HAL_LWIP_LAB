@@ -1,0 +1,13 @@
+/*
+ * tcpclient.c
+ *
+ *  Created on: 2020. 5. 31.
+ *      Author: eziya76@gmail.com
+ */
+
+#include "tcpclient.h"
+#include "wizInterface.h"
+
+
+
+

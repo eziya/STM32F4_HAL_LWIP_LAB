@@ -1,0 +1,13 @@
+/*
+ * tcpclient.h
+ *
+ *  Created on: 2020. 5. 31.
+ *      Author: eziya76@gmail.com
+ */
+
+#ifndef INC_TCPCLIENT_H_
+#define INC_TCPCLIENT_H_
+
+
+
+#endif /* INC_TCPCLIENT_H_ */

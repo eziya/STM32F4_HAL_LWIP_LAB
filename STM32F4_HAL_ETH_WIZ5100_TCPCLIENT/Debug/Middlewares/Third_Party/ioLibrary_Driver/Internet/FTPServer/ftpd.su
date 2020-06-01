@@ -1,0 +1,6 @@
+ftpd.c:108:5:fsprintf	20	static
+ftpd.c:129:6:ftpd_init	16	static
+ftpd.c:146:9:ftpd_run	40	static
+ftpd.c:557:6:proc_ftpd	280	static
+ftpd.c:906:6:ftplogin	128	static
+ftpd.c:924:5:pport	40	static

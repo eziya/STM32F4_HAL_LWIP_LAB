@@ -1,0 +1,40 @@
+/*
+ * tcpclient.c
+ *
+ *  Created on: 2020. 5. 31.
+ *      Author: eziya76@gmail.com
+ */
+
+#include "main.h"
+#include "tcpclient.h"
+#include "wizInterface.h"
+#include "wizchip_conf.h"
+#include "socket.h"
+
+void WIZClientTask(void const *argument)
+{
+	reg_wizchip_cs_cbfunc(cs_sel, cs_desel);
+	reg_wizchip_spi_cbfunc(spi_rb, spi_wb);
+
+	wizchip_init(bufSize, bufSize);
+	wiz_NetInfo netInfo = { .mac 	= {0x00, 0x08, 0xdc, 0xab, 0xcd, 0xef},	// Mac address
+			.ip 	= {192, 168, 2, 192},					// IP address
+			.sn 	= {255, 255, 255, 0},					// Subnet mask
+			.gw 	= {192, 168, 2, 1}};					// Gateway address
+	wizchip_setnetinfo(&netInfo);
+	wizchip_getnetinfo(&netInfo);
+
+	nRead = 0; //clear indexes
+	nWritten = 0;
+
+	int8_t ret;
+
+	ret = socket(0, Sn_MR_TCP, 5000, 0);
+	if(ret < 0)
+	{
+		printf("socket failed.\n");
+		goto error;
+	}
+}
+
+

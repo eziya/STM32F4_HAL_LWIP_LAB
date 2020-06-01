@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item key="org.eclipse.cdt.utils.ui.controls.FileListControl" value="../Middlewares/Third_Party/MQTT/"/>
+	<item key="org.eclipse.cdt.utils.ui.controls.FileListControl" value="&quot;../Middlewares/Third_Party/ioLibrary_Driver/Internet/DNS&quot;"/>
 	<item key="LastUsedSourceTemplate" value="Default C source template"/>
 	<item key="LastUsedHeaderTemplate" value="Default C header template"/>
 	<item key="org.eclipse.cdt.uiformatter_page.white_space.c_view.inner" value="0"/>
@@ -25,6 +25,7 @@
 		<item key="caseSensitive" value="false"/>
 		<item key="searchFlags" value="227191"/>
 		<list key="previousPatterns">
+			<item value="net_clear"/>
 			<item value="MBEDTLS_PLATFORM_PRINTF_MACRO"/>
 			<item value="mbedtls_ssl_set_hostname"/>
 			<item value="0x7780"/>

@@ -8,6 +8,7 @@
 		<item key="isRegEx" value="false"/>
 		<item key="selection" value="flags"/>
 		<list key="findhistory">
+			<item value="cs_sel"/>
 			<item value="flags"/>
 			<item value="mbedtls_ssl_conf_read_timeout"/>
 			<item value="ret"/>
@@ -22,7 +23,6 @@
 			<item value="MBEDTLS_SSL_RENEGOTIATION"/>
 			<item value="PKCS1"/>
 			<item value="MBEDTLS_SSL_MAX_CONTENT_LEN "/>
-			<item value="MPI"/>
 		</list>
 		<list key="replacehistory">
 			<item value="MQTT_SUCCESS"/>
@@ -32,8 +32,8 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="1360"/>
 		<item key="DIALOG_Y_ORIGIN" value="193"/>
-		<item key="DIALOG_WIDTH" value="288"/>
-		<item key="DIALOG_HEIGHT" value="391"/>
-		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|5|0|맑은 고딕"/>
+		<item key="DIALOG_WIDTH" value="340"/>
+		<item key="DIALOG_HEIGHT" value="454"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 	</section>
 </section>

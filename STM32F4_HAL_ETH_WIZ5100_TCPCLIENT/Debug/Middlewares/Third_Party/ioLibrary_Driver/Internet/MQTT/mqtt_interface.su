@@ -1,0 +1,11 @@
+mqtt_interface.c:53:6:MilliTimer_Handler	4	static
+mqtt_interface.c:62:6:TimerInit	16	static
+mqtt_interface.c:71:6:TimerIsExpired	24	static
+mqtt_interface.c:82:6:TimerCountdownMS	16	static
+mqtt_interface.c:92:6:TimerCountdown	16	static
+mqtt_interface.c:101:5:TimerLeftMS	24	static
+mqtt_interface.c:113:6:NewNetwork	16	static
+mqtt_interface.c:128:5:w5x00_read	24	static
+mqtt_interface.c:145:5:w5x00_write	24	static
+mqtt_interface.c:158:6:w5x00_disconnect	16	static
+mqtt_interface.c:170:6:ConnectNetwork	32	static

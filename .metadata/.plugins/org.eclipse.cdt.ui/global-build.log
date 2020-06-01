@@ -1,4 +1,4 @@
-18:58:04 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_MBEDTLS ****
+20:55:59 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_MQTT_CLIENT_MBEDTLS ****
 make -j4 clean 
-make: *** No rule to make target 'clean'.  Stop.
-"make -j4 clean" terminated with exit code 2. Build might be incomplete.
+rm -rf *
+ 

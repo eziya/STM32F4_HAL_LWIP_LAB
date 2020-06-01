@@ -1,0 +1,2 @@
+multicast.c:7:9:multicast_loopback	64	static
+multicast.c:65:9:multicast_recv	64	static

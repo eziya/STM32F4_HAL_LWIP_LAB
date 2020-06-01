@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="SearchDialog">
-		<item key="PREVIOUS_PAGE" value="org.eclipse.search.internal.ui.text.TextSearchPage"/>
+		<item key="PREVIOUS_PAGE" value="org.eclipse.cdt.ui.pdomSearchPage"/>
 	</section>
 	<section name="Search">
 		<list key="Search.processedPageIds">
@@ -21,9 +21,9 @@
 	<section name="DialogBounds_SearchDialog">
 		<item key="DIALOG_X_ORIGIN" value="684"/>
 		<item key="DIALOG_Y_ORIGIN" value="295"/>
-		<item key="DIALOG_WIDTH" value="568"/>
-		<item key="DIALOG_HEIGHT" value="463"/>
-		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|5|0|맑은 고딕"/>
+		<item key="DIALOG_WIDTH" value="679"/>
+		<item key="DIALOG_HEIGHT" value="525"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|5|0|맑은 고딕"/>
 	</section>
 	<section name="org.eclipse.cdt.ui.pdomSearchViewPage">
 		<item key="showEnclosingDefinitions" value="true"/>
@@ -34,12 +34,12 @@
 		<item key="WHOLE_WORD" value="false"/>
 		<item key="SEARCH_DERIVED" value="false"/>
 		<item key="SEARCH_IN_BINARIES" value="false"/>
-		<item key="HISTORY_SIZE" value="10"/>
+		<item key="HISTORY_SIZE" value="11"/>
 		<section name="HISTORY0">
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
-			<item key="textPattern" value="mbedtls_net_recv_timeout"/>
+			<item key="textPattern" value="cs_sel"/>
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
 				<item value="*.c"/>
@@ -54,7 +54,7 @@
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
-			<item key="textPattern" value="mbedtls_memory_buffer_alloc_init"/>
+			<item key="textPattern" value="mbedtls_net_recv_timeout"/>
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
 				<item value="*.c"/>
@@ -66,7 +66,7 @@
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
-			<item key="textPattern" value="mbedtls_ssl_handshake_client_step"/>
+			<item key="textPattern" value="mbedtls_memory_buffer_alloc_init"/>
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
 				<item value="*.c"/>
@@ -78,7 +78,7 @@
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
-			<item key="textPattern" value="mbedtls_ssl_handshake_step"/>
+			<item key="textPattern" value="mbedtls_ssl_handshake_client_step"/>
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
 				<item value="*.c"/>
@@ -90,7 +90,7 @@
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
-			<item key="textPattern" value="mbedtls_x509_crt_parse_der"/>
+			<item key="textPattern" value="mbedtls_ssl_handshake_step"/>
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
 				<item value="*.c"/>
@@ -102,7 +102,7 @@
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
-			<item key="textPattern" value="struct netif gnetif"/>
+			<item key="textPattern" value="mbedtls_x509_crt_parse_der"/>
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
 				<item value="*.c"/>
@@ -114,7 +114,7 @@
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
-			<item key="textPattern" value="7780"/>
+			<item key="textPattern" value="struct netif gnetif"/>
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
 				<item value="*.c"/>
@@ -126,7 +126,7 @@
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
-			<item key="textPattern" value="void * mbedtls_calloc( size_t n, size_tsize )"/>
+			<item key="textPattern" value="7780"/>
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
 				<item value="*.c"/>
@@ -138,7 +138,7 @@
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
-			<item key="textPattern" value="MBEDTLS_CONFIG_FILE"/>
+			<item key="textPattern" value="void * mbedtls_calloc( size_t n, size_tsize )"/>
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
 				<item value="*.c"/>
@@ -147,6 +147,18 @@
 			</list>
 		</section>
 		<section name="HISTORY9">
+			<item key="ignoreCase" value="true"/>
+			<item key="isRegExSearch" value="false"/>
+			<item key="isWholeWord" value="false"/>
+			<item key="textPattern" value="MBEDTLS_CONFIG_FILE"/>
+			<item key="scope" value="0"/>
+			<list key="fileNamePatterns">
+				<item value="*.c"/>
+			</list>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY10">
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
@@ -163,9 +175,6 @@
 		<item key="org.eclipse.search.resultpage.limit" value="1000"/>
 	</section>
 	<section name="org.eclipse.search.text.FileSearchResultPage">
-		<item key="org.eclipse.search.resultpage.limit" value="1000"/>
-	</section>
-	<section name="">
 		<item key="org.eclipse.search.resultpage.limit" value="1000"/>
 	</section>
 </section>

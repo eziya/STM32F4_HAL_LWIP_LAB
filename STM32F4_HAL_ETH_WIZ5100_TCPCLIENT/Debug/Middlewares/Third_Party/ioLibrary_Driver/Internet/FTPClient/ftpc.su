@@ -1,0 +1,5 @@
+ftpc.c:20:6:ftpc_init	16	static
+ftpc.c:32:9:ftpc_run	16	static
+ftpc.c:468:6:proc_ftpc	48	static
+ftpc.c:547:5:pportc	40	static
+ftpc.c:575:10:User_Keyboard_MSG	16	static

@@ -1,0 +1,153 @@
+/*
+ * tcpclient.c
+ *
+ *  Created on: 2020. 5. 31.
+ *      Author: eziya76@gmail.com
+ */
+
+#include "main.h"
+#include "tcpclient.h"
+#include "wizInterface.h"
+#include "wizchip_conf.h"
+#include "socket.h"
+#include "dhcp.h"
+#include "dns.h"
+
+#include <string.h>
+#include <stdbool.h>
+
+#define SERVER_IP	"192.168.1.227" //server ip
+#define SERVER_PORT	1234 //server listen port
+
+static bool isIPAddrAssigned = 0;
+
+void cbIPAddrAssigned(void)
+{
+	isIPAddrAssigned = true;
+}
+
+void cbIPAddrConfict(void)
+{
+	printf("IP Address is conflicted.\n");
+	isIPAddrAssigned = false;
+}
+
+void StartWizTcpClientTask(void const *argument)
+{
+	int8_t ret;
+	uint8_t sn = 0;
+
+	uint8_t dhcp_buffer[1024];
+	uint8_t dns_buffer[1024];
+	uint8_t buff_size[] = {2,2,2,2};
+
+	uint8_t dnsAddr[4];
+
+	reg_wizchip_cs_cbfunc(WIZ_SPI_Select, WIZ_SPI_Deselect); //register chip select functions
+	reg_wizchip_spi_cbfunc(WIZ_SPI_RxByte, WIZ_SPI_TxByte); //register spi functions
+
+	wizchip_init(buff_size, buff_size); //rx, tx buffer sizes
+	wiz_NetInfo netInfo = {
+			.mac 	= {0x00, 0x08, 0xdc, 0xab, 0xcd, 0xef},	// Mac address
+			.dhcp = NETINFO_DHCP //DHCP
+			};
+
+	setSHAR(net_info.mac); //set MAC address
+	DHCP_init(DHCP_SOCKET, dhcp_buffer); //init DHCP
+
+	reg_dhcp_cbfunc(cbIPAssigned, cbIPAddrAssigned, cbIPAddrConflict); //register DHCP callbacks
+
+	while(!isIPAddrAssigned)
+	{
+		DHCP_run();
+	}
+
+	getIPfromDHCP(netInfo.ip);
+	getGWfromDHCP(netInfo.gw);
+	getSNfromDHCP(netInfo.sn);
+	getDNSfromDHCP(dnsAddr);
+
+	printf("IP: %03d.%03d.%03d.%03d\nGW: %03d.%03d.%03d.%03d\nNet: %03d.%03d.%03d.%03d\nDNS: %03d.%03d.%03d.%03d\n",
+			netInfo.ip[0],netInfo.ip[1],netInfo.ip[2],netInfo.ip[3],
+			netInfo.gw[0],netInfo.gw[1],netInfo.gw[2],netInfo.gw[3],
+			netInfo.sn[0],netInfo.sn[1],netInfo.sn[2],netInfo.sn[3],
+			dnsAddr[0],dnsAddr[0],dnsAddr[0],dnsAddr[0]
+			);
+
+	wizchip_setnetinfo(&netInfo);
+
+	while(1)
+	{
+		ret = socket(sn, Sn_MR_TCP, 3000, 0);
+		if(ret < 0)
+		{
+			printf("socket failed.\n");
+			close(sn);
+			break;
+		}
+
+		ret = connect(sn, SERVER_IP, SERVER_PORT);
+		if(ret < 0)
+		{
+			printf("connect failed.\n");
+			close(sn);
+			break;
+		}
+
+		memset(&packet, 0, sizeof(struct time_packet));
+		packet.head = 0xAE; //head
+		packet.type = REQ; //request type
+		packet.tail = 0xEA; //tail
+
+		uint8_t failed = 0;
+		int16_t written = 0;
+		int16_t read = 0;
+
+		do
+		{
+			ret = send(sn, buf + written, sizeof(struct time_packet) - written);
+			if(ret < 0)
+			{
+				printf("send failed.\n");
+				disconnect(sn);
+				close(sn);
+				failed = 1;
+				break;
+			}
+			written += ret;
+		}while(written < sizeof(struct time_packet));
+
+		if(failed) continue; //start again
+
+		while(1)
+		{
+			ret = recv(sn, buf + read, sizeof(struct time_packet) - read);
+			if(ret < 0)
+			{
+				printf("recv failed.\n");
+				disclose(sn);
+				close(sn);
+				failed = 1;
+				break;
+			}
+
+			read += ret;
+			if(read >= sizeof(struct time_packet)) break;
+		}
+
+		if(failed) continue; //start again
+
+		if (read == sizeof(struct time_packet) && packet.type == RESP) //if received length is valid
+		{
+			printf("%04d-%02d-%02d %02d:%02d:%02d\n", packet.year + 2000, packet.month, packet.day, packet.hour, packet.minute, packet.second); //print time information
+			HAL_GPIO_TogglePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin); //toggle data led
+		}
+
+		disclose(sn);
+		close(sn);
+
+		osDelay(100);
+	}
+
+	vTaskDelete(NULL);
+}

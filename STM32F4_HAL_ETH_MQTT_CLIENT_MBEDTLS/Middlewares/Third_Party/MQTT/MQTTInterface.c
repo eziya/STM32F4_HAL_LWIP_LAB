@@ -97,17 +97,6 @@ int net_init(Network *n) {
 		return -1;
 	}
 
-	//register functions
-	n->mqttread = net_read; //receive function
-	n->mqttwrite = net_write; //send function
-	n->disconnect = net_disconnect; //disconnection function
-
-	return 0;
-}
-
-int net_connect(Network *n, char *ip, int port) {
-	int ret;
-
 	// SSL/TLS connection process. refer to ssl client1 example
 	ret = mbedtls_x509_crt_parse(&cacert, (const unsigned char*) mbedtls_root_certificate,
 			mbedtls_root_certificate_len);
@@ -116,15 +105,8 @@ int net_connect(Network *n, char *ip, int port) {
 		return -1;
 	}
 
-	ret = mbedtls_net_connect(&server_fd, SERVER_NAME, SERVER_PORT,
-	MBEDTLS_NET_PROTO_TCP);
-	if (ret < 0) {
-		printf("mbedtls_net_connect failed.\n");
-		return -1;
-	}
-
 	ret = mbedtls_ssl_config_defaults(&conf, MBEDTLS_SSL_IS_CLIENT,
-	MBEDTLS_SSL_TRANSPORT_STREAM, MBEDTLS_SSL_PRESET_DEFAULT);
+			MBEDTLS_SSL_TRANSPORT_STREAM, MBEDTLS_SSL_PRESET_DEFAULT);
 	if (ret < 0) {
 		printf("mbedtls_ssl_config_defaults failed.\n");
 		return -1;
@@ -148,7 +130,25 @@ int net_connect(Network *n, char *ip, int port) {
 	}
 
 	mbedtls_ssl_set_bio(&ssl, &server_fd, mbedtls_net_send, mbedtls_net_recv,
-	NULL);
+			NULL);
+
+	//register functions
+	n->mqttread = net_read; //receive function
+	n->mqttwrite = net_write; //send function
+	n->disconnect = net_disconnect; //disconnection function
+
+	return 0;
+}
+
+int net_connect(Network *n, char *ip, int port) {
+	int ret;
+
+	ret = mbedtls_net_connect(&server_fd, SERVER_NAME, SERVER_PORT,
+	MBEDTLS_NET_PROTO_TCP);
+	if (ret < 0) {
+		printf("mbedtls_net_connect failed.\n");
+		return -1;
+	}
 
 	while ((ret = mbedtls_ssl_handshake(&ssl)) != 0) {
 		if (ret != MBEDTLS_ERR_SSL_WANT_READ && ret != MBEDTLS_ERR_SSL_WANT_WRITE) {

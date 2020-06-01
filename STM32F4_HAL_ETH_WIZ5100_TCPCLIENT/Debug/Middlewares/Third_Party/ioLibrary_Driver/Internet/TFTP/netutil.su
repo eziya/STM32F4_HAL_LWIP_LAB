@@ -1,0 +1,9 @@
+netutil.c:12:9:inet_ntoa	24	static
+netutil.c:27:9:inet_ntoa_pad	24	static
+netutil.c:41:10:inet_addr	64	static
+netutil.c:69:10:swaps	24	static
+netutil.c:83:10:swapl	24	static
+netutil.c:99:10:htons	16	static
+netutil.c:115:10:htonl	16	static
+netutil.c:132:10:ntohs	16	static
+netutil.c:148:10:ntohl	16	static

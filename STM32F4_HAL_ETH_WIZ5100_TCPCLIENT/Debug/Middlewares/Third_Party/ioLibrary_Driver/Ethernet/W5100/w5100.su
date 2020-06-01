@@ -1,0 +1,11 @@
+w5100.c:47:10:WIZCHIP_WRITE	16	static
+w5100.c:81:10:WIZCHIP_READ	24	static
+w5100.c:121:10:WIZCHIP_WRITE_BUF	32	static
+w5100.c:175:10:WIZCHIP_READ_BUF	40	static
+w5100.c:228:10:getSn_TX_FSR	32	static
+w5100.c:245:10:getSn_RX_RSR	32	static
+w5100.c:264:10:getSn_RxBASE	24	static
+w5100.c:278:10:getSn_TxBASE	24	static
+w5100.c:302:6:wiz_send_data	32	static
+w5100.c:344:6:wiz_recv_data	32	static
+w5100.c:376:6:wiz_recv_ignore	32	static

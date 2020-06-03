@@ -7,3 +7,13 @@ F:\Workspace\C#\MyTcpServer\TcpServer\obj\Release\TcpServer.Properties.Resources
 F:\Workspace\C#\MyTcpServer\TcpServer\obj\Release\MyTcpServer.csproj.GenerateResource.cache
 F:\Workspace\C#\MyTcpServer\TcpServer\obj\Release\TcpServer.exe
 F:\Workspace\C#\MyTcpServer\TcpServer\obj\Release\TcpServer.pdb
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpServer\TcpServer\bin\Release\TcpServer.exe.config
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpServer\TcpServer\bin\Release\TcpServer.exe
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpServer\TcpServer\bin\Release\TcpServer.pdb
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpServer\TcpServer\obj\Release\MyTcpServer.csprojAssemblyReference.cache
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpServer\TcpServer\obj\Release\TcpServer.Form1.resources
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpServer\TcpServer\obj\Release\TcpServer.Properties.Resources.resources
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpServer\TcpServer\obj\Release\MyTcpServer.csproj.GenerateResource.cache
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpServer\TcpServer\obj\Release\MyTcpServer.csproj.CoreCompileInputs.cache
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpServer\TcpServer\obj\Release\TcpServer.exe
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpServer\TcpServer\obj\Release\TcpServer.pdb

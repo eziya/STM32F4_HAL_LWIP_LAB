@@ -19,6 +19,7 @@ namespace TcpServer
         private const int LISTEN_PORT = 1234;
 
         private TcpListener server;
+        private TcpClient client;
         private Thread serverThread;
         private int connectionCnt;
 
@@ -80,7 +81,7 @@ namespace TcpServer
                         int nRead = 0;                        
 
                         AddListBox(lbxMessage, "Wait to accept the client...");
-                        TcpClient client = server.AcceptTcpClient();
+                        client = server.AcceptTcpClient();
                         connectionCnt++;
                         AddListBox(lbxMessage, connectionCnt + ": Client accepted...");
                         
@@ -105,17 +106,27 @@ namespace TcpServer
                                 ns.Write(buffer, 0, buffer.Length);
                                 AddListBox(lbxMessage, connectionCnt + ": Write " + buffer.Length + " bytes to the client");
                             }
-                        }                        
-
+                        }
+                        
+                        Thread.Sleep(1); //give client time to close first 
+                        ns.Close();
                         client.Close();
                         AddListBox(lbxMessage, connectionCnt + ": Close the session...");
                     }
-                }
+                }                
                 catch (Exception ex)
                 {
+
+                    client.Close();
+                    server.Stop();
+
+                    client = null;
+                    server = null;
+
                     Debug.WriteLine(ex.Message);
-                }            
-            
+                    AddListBox(lbxMessage, ex.Message);
+                    AddListBox(lbxMessage, "Need to restart server...!!!");
+                }
             });
             serverThread.IsBackground = true;
             serverThread.Start();
@@ -127,6 +138,7 @@ namespace TcpServer
             {
                 if(serverThread != null)
                 {
+                    client.Close();
                     server.Stop();
                     serverThread.Join();
                     serverThread = null;

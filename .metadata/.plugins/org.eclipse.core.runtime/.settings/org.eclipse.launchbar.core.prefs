@@ -13,5 +13,5 @@ org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_MQTT_CLIENT_MBE
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_MQTT_CLIENT_MBEDTLS\ Debug/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_RTOS_TCPECHO/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_RTOS_TCPECHO/activeLaunchTarget=null\:---
-org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_WIZ5100_TCPCLIENT/activeLaunchMode=debug
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_WIZ5100_TCPCLIENT/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_WIZ5100_TCPCLIENT/activeLaunchTarget=null\:---

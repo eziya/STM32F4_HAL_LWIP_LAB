@@ -6,8 +6,11 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="disconnect"/>
+		<item key="selection" value="dhcp_retry"/>
 		<list key="findhistory">
+			<item value="dhcp_retry"/>
+			<item value="ipAssigned"/>
+			<item value="isIPAddrAssigned"/>
 			<item value="disconnect"/>
 			<item value="VERSION"/>
 			<item value="cs_sel"/>
@@ -20,20 +23,19 @@
 			<item value="MBEDTLS_MEMORY_BUFFER_ALLOC_C "/>
 			<item value="mbedtls_x509_crt_parse_der()"/>
 			<item value="DEBUG"/>
-			<item value="mbedtls_ssl_get_session"/>
-			<item value="mbedtls_ssl_set_session"/>
-			<item value="MBEDTLS_SSL_RENEGOTIATION"/>
 		</list>
 		<list key="replacehistory">
+			<item value="ip_assigned"/>
+			<item value="ipAssigned"/>
 			<item value="MQTT_SUCCESS"/>
 			<item value="MQTT_SUCESS"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1360"/>
-		<item key="DIALOG_Y_ORIGIN" value="193"/>
+		<item key="DIALOG_X_ORIGIN" value="1359"/>
+		<item key="DIALOG_Y_ORIGIN" value="184"/>
 		<item key="DIALOG_WIDTH" value="340"/>
 		<item key="DIALOG_HEIGHT" value="454"/>
-		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|5|0|맑은 고딕"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 	</section>
 </section>

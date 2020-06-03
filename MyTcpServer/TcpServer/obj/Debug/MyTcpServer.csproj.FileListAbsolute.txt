@@ -7,3 +7,13 @@ F:\Workspace\C#\TcpServer\TcpServer\obj\Debug\TcpServer.Properties.Resources.res
 F:\Workspace\C#\TcpServer\TcpServer\obj\Debug\MyTcpServer.csproj.GenerateResource.cache
 F:\Workspace\C#\TcpServer\TcpServer\obj\Debug\TcpServer.exe
 F:\Workspace\C#\TcpServer\TcpServer\obj\Debug\TcpServer.pdb
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpServer\TcpServer\bin\Debug\TcpServer.exe.config
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpServer\TcpServer\bin\Debug\TcpServer.exe
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpServer\TcpServer\bin\Debug\TcpServer.pdb
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpServer\TcpServer\obj\Debug\MyTcpServer.csprojAssemblyReference.cache
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpServer\TcpServer\obj\Debug\TcpServer.Form1.resources
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpServer\TcpServer\obj\Debug\TcpServer.Properties.Resources.resources
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpServer\TcpServer\obj\Debug\MyTcpServer.csproj.GenerateResource.cache
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpServer\TcpServer\obj\Debug\MyTcpServer.csproj.CoreCompileInputs.cache
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpServer\TcpServer\obj\Debug\TcpServer.exe
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpServer\TcpServer\obj\Debug\TcpServer.pdb

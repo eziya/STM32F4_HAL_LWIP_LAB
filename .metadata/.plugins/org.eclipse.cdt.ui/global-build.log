@@ -1,4 +1,4 @@
-23:45:44 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_WIZ5100_TCPCLIENT ****
+23:02:56 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_WIZ5100_TCPCLIENT ****
 make -j4 clean 
 rm -rf *
 rm: can't remove 'STM32F4_HAL_ETH_WIZ5100_TCPCLIENT.elf': Permission denied

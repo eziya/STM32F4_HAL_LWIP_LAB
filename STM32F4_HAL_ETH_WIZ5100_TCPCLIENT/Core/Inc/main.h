@@ -72,6 +72,8 @@ void Error_Handler(void);
 #define LED_RED_GPIO_Port GPIOB
 #define WIZ_SPI1_CS_Pin GPIO_PIN_14
 #define WIZ_SPI1_CS_GPIO_Port GPIOD
+#define WIZ_RESET_Pin GPIO_PIN_15
+#define WIZ_RESET_GPIO_Port GPIOD
 #define LED_BLUE_Pin GPIO_PIN_7
 #define LED_BLUE_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */

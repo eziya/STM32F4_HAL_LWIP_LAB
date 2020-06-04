@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -67,56 +68,71 @@ namespace TcpServer
             serverThread = new Thread(delegate () {
 
                 try
-                {
+                {                 
                     connectionCnt = 0;
-                    server = new TcpListener(IPAddress.Any, LISTEN_PORT);
+                    server = new TcpListener(IPAddress.Any, LISTEN_PORT);                    
                     server.Server.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
                     server.Start();
 
                     AddListBox(lbxMessage, "Server started to listen at port " + LISTEN_PORT);
 
+                    byte[] buffer = new byte[256];
+                    int nRead = 0;
+
                     while (true)
                     {
-                        byte[] buffer = new byte[256];
-                        int nRead = 0;                        
-
                         AddListBox(lbxMessage, "Wait to accept the client...");
+                        
+                        while (!server.Pending())
+                        {
+                            Thread.Sleep(1);
+                        }
                         client = server.AcceptTcpClient();
                         connectionCnt++;
                         AddListBox(lbxMessage, connectionCnt + ": Client accepted...");
-                        
+
                         NetworkStream ns = client.GetStream();
+                        ns.ReadTimeout = 100;
+                        ns.WriteTimeout = 100;
 
-                        nRead = ns.Read(buffer, 0, buffer.Length);
-                        AddListBox(lbxMessage, connectionCnt + ": Read " + nRead + " bytes from the client");
+                        try
+                        {                            
+                            nRead = ns.Read(buffer, 0, buffer.Length);
+                            AddListBox(lbxMessage, connectionCnt + ": Read " + nRead + " bytes from the client");
 
-                        if (nRead == 256)
-                        {
-                            if ((buffer[0] == 0xAE) && buffer[255] == 0xEA)
+                            if (nRead == 256)
                             {
-                                DateTime now = DateTime.Now;
-                                buffer[1] = 1;   //RESP
-                                buffer[2] = (byte)(now.Year - 2000); //year
-                                buffer[3] = (byte)now.Month; //month
-                                buffer[4] = (byte)now.Day; //day
-                                buffer[5] = (byte)now.Hour; //hour
-                                buffer[6] = (byte)now.Minute; //minute
-                                buffer[7] = (byte)now.Second; //second
+                                if ((buffer[0] == 0xAE) && buffer[255] == 0xEA)
+                                {
+                                    DateTime now = DateTime.Now;
+                                    buffer[1] = 1;   //RESP
+                                    buffer[2] = (byte)(now.Year - 2000); //year
+                                    buffer[3] = (byte)now.Month; //month
+                                    buffer[4] = (byte)now.Day; //day
+                                    buffer[5] = (byte)now.Hour; //hour
+                                    buffer[6] = (byte)now.Minute; //minute
+                                    buffer[7] = (byte)now.Second; //second
 
-                                ns.Write(buffer, 0, buffer.Length);
-                                AddListBox(lbxMessage, connectionCnt + ": Write " + buffer.Length + " bytes to the client");
+                                    ns.Write(buffer, 0, buffer.Length);
+                                    AddListBox(lbxMessage, connectionCnt + ": Write " + buffer.Length + " bytes to the client");
+                                }
                             }
                         }
+                        catch(IOException ioex)
+                        {
+                            Debug.WriteLine(ioex.Message);
+                            AddListBox(lbxMessage, ioex.Message);
+                            ns.Close();
+                            continue;
+                        }                        
                         
-                        Thread.Sleep(1); //give client time to close first 
-                        ns.Close();
+                        Thread.Sleep(1); //give client time to close first                         
                         client.Close();
                         AddListBox(lbxMessage, connectionCnt + ": Close the session...");
                     }
                 }                
                 catch (Exception ex)
                 {
-
                     client.Close();
                     server.Stop();
 

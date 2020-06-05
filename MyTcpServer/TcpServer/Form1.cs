@@ -71,7 +71,7 @@ namespace TcpServer
                 {                 
                     connectionCnt = 0;
                     server = new TcpListener(IPAddress.Any, LISTEN_PORT);                    
-                    server.Server.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+                    server.Server.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);                    
                     server.Start();
 
                     AddListBox(lbxMessage, "Server started to listen at port " + LISTEN_PORT);
@@ -80,9 +80,7 @@ namespace TcpServer
                     int nRead = 0;
 
                     while (true)
-                    {
-                        AddListBox(lbxMessage, "Wait to accept the client...");
-                        
+                    {   
                         while (!server.Pending())
                         {
                             Thread.Sleep(1);
@@ -92,9 +90,9 @@ namespace TcpServer
                         AddListBox(lbxMessage, connectionCnt + ": Client accepted...");
 
                         NetworkStream ns = client.GetStream();
-                        ns.ReadTimeout = 100;
-                        ns.WriteTimeout = 100;
-
+                        ns.ReadTimeout = 1000;
+                        ns.WriteTimeout = 1000;
+                        
                         try
                         {                            
                             nRead = ns.Read(buffer, 0, buffer.Length);
@@ -114,6 +112,8 @@ namespace TcpServer
                                     buffer[7] = (byte)now.Second; //second
 
                                     ns.Write(buffer, 0, buffer.Length);
+                                    ns.Flush();
+                                                                        
                                     AddListBox(lbxMessage, connectionCnt + ": Write " + buffer.Length + " bytes to the client");
                                 }
                             }
@@ -124,10 +124,10 @@ namespace TcpServer
                             AddListBox(lbxMessage, ioex.Message);
                             ns.Close();
                             continue;
-                        }                        
-                        
-                        Thread.Sleep(1); //give client time to close first                         
-                        client.Close();
+                        }
+
+                        Thread.Sleep(10); //give time to read for client
+                        ns.Close();
                         AddListBox(lbxMessage, connectionCnt + ": Close the session...");
                     }
                 }                

@@ -1,6 +1,4 @@
-23:02:56 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_WIZ5100_TCPCLIENT ****
+00:12:24 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_WIZ5100_TCPCLIENT ****
 make -j4 clean 
-rm -rf *
-rm: can't remove 'STM32F4_HAL_ETH_WIZ5100_TCPCLIENT.elf': Permission denied
-make: [makefile:87: clean] Error 1 (ignored)
- 
+make: *** No rule to make target 'clean'.  Stop.
+"make -j4 clean" terminated with exit code 2. Build might be incomplete.

@@ -1,7 +1,31 @@
-00:12:24 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_WIZ5100_TCPCLIENT ****
-make -j4 clean 
-make: *** No rule to make target 'clean'.  Stop.
-"make -j4 clean" terminated with exit code 2. Build might be incomplete.
+11:14:44 **** Incremental Build of configuration Debug for project STM32F4_HAL_ETH_WIZ5100_TCPCLIENT ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/wizInterface.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DDEBUG -DSTM32F429xx -c -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I"../Middlewares/Third_Party/ioLibrary_Driver/Ethernet" -I"../Middlewares/Third_Party/ioLibrary_Driver/Ethernet/W5100" -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I"../Middlewares/Third_Party/ioLibrary_Driver/Internet/DHCP" -I../Drivers/CMSIS/Include -I../Core/Inc -I"../Middlewares/Third_Party/ioLibrary_Driver/Internet/DNS" -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/wizInterface.d" -MT"Core/Src/wizInterface.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/wizInterface.o"
+../Core/Src/wizInterface.c: In function 'WIZ_ChipInit':
+../Core/Src/wizInterface.c:67:10: warning: unused variable 'tmpstr' [-Wunused-variable]
+  uint8_t tmpstr[6] = { 0, };
+          ^~~~~~
+At top level:
+../Core/Src/wizInterface.c:59:13: warning: 'cbIPAddrConfict' defined but not used [-Wunused-function]
+ static void cbIPAddrConfict(void) {
+             ^~~~~~~~~~~~~~~
+../Core/Src/wizInterface.c:54:13: warning: 'cbIPAddrAssigned' defined but not used [-Wunused-function]
+ static void cbIPAddrAssigned(void) {
+             ^~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "STM32F4_HAL_ETH_WIZ5100_TCPCLIENT.elf" @"objects.list"   -mcpu=cortex-m4 -T"E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\STM32F4_HAL_ETH_WIZ5100_TCPCLIENT\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F4_HAL_ETH_WIZ5100_TCPCLIENT.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F4_HAL_ETH_WIZ5100_TCPCLIENT.elf
+ 
+arm-none-eabi-objdump -h -S  STM32F4_HAL_ETH_WIZ5100_TCPCLIENT.elf  > "STM32F4_HAL_ETH_WIZ5100_TCPCLIENT.list"
+arm-none-eabi-objcopy  -O binary  STM32F4_HAL_ETH_WIZ5100_TCPCLIENT.elf  "STM32F4_HAL_ETH_WIZ5100_TCPCLIENT.bin"
+arm-none-eabi-size   STM32F4_HAL_ETH_WIZ5100_TCPCLIENT.elf 
+   text	   data	    bss	    dec	    hex	filename
+  27192	    208	  37008	  64408	   fb98	STM32F4_HAL_ETH_WIZ5100_TCPCLIENT.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F4_HAL_ETH_WIZ5100_TCPCLIENT.bin
+ 
+Finished building: STM32F4_HAL_ETH_WIZ5100_TCPCLIENT.list
+ 
 
-00:12:24 Build Failed. 1 errors, 0 warnings. (took 154ms)
+11:14:53 Build Finished. 0 errors, 3 warnings. (took 8s.753ms)
 

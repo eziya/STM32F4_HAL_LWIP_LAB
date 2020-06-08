@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="dhcp_retry"/>
+		<item key="selection" value="close("/>
 		<list key="findhistory">
+			<item value="close("/>
 			<item value="dhcp_retry"/>
 			<item value="ipAssigned"/>
 			<item value="isIPAddrAssigned"/>
@@ -22,7 +23,6 @@
 			<item value="cacert"/>
 			<item value="MBEDTLS_MEMORY_BUFFER_ALLOC_C "/>
 			<item value="mbedtls_x509_crt_parse_der()"/>
-			<item value="DEBUG"/>
 		</list>
 		<list key="replacehistory">
 			<item value="ip_assigned"/>

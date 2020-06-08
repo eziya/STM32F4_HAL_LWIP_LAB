@@ -90,8 +90,8 @@ namespace TcpServer
                         AddListBox(lbxMessage, connectionCnt + ": Client accepted...");
 
                         NetworkStream ns = client.GetStream();
-                        ns.ReadTimeout = 1000;
-                        ns.WriteTimeout = 1000;
+                        ns.ReadTimeout = 500;
+                        ns.WriteTimeout = 500;
                         
                         try
                         {                            
@@ -116,7 +116,18 @@ namespace TcpServer
                                                                         
                                     AddListBox(lbxMessage, connectionCnt + ": Write " + buffer.Length + " bytes to the client");
                                 }
+                                else
+                                {
+                                    AddListBox(lbxMessage, "Wrong header & tail");
+                                }
                             }
+                            else
+                            {
+                                AddListBox(lbxMessage, "Wrong received length");
+                            }
+
+                            ns.Close();
+                            client.Close();
                         }
                         catch(IOException ioex)
                         {
@@ -125,9 +136,7 @@ namespace TcpServer
                             ns.Close();
                             continue;
                         }
-
-                        Thread.Sleep(10); //give time to read for client
-                        ns.Close();
+                                                
                         AddListBox(lbxMessage, connectionCnt + ": Close the session...");
                     }
                 }                

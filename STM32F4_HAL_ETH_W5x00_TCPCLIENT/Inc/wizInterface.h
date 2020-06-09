@@ -26,6 +26,8 @@ void WIZ_SPI_Select(void);
 void WIZ_SPI_Deselect(void);
 void WIZ_SPI_TxByte(uint8_t byte);
 uint8_t WIZ_SPI_RxByte(void);
+void WIZ_SPI_TxBuffer(uint8_t *buffer, uint16_t len);
+void WIZ_SPI_RxBuffer(uint8_t *buffer, uint16_t len);
 
 bool WIZ_ChipInit(void);
 bool WIZ_NetworkInit(void);

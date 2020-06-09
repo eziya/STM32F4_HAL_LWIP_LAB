@@ -85,12 +85,8 @@ void StartWizTcpClientTask(void const *argument) {
 			HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
 			printf("send failed{%ld}.\n", ret);
 			close(CLIENT_SOCKET); //unexpected close
-			failed = 1;
-			break;
+			continue;
 		}
-
-		if (failed)
-			continue; //start again
 
 		//receive response
 		while (1) {
@@ -114,8 +110,9 @@ void StartWizTcpClientTask(void const *argument) {
 		 //if received length is valid, print time information & toggle led
 		if (read == sizeof(struct time_packet) && packet.type == RESP)
 				{
-			printf("%04d-%02d-%02d %02d:%02d:%02d\n", packet.year + 2000, packet.month, packet.day, packet.hour,
-					packet.minute, packet.second);
+			printf("%04d-%02d-%02d %02d:%02d:%02d\n",
+					packet.year + 2000, packet.month, packet.day,
+					packet.hour, packet.minute, packet.second);
 			HAL_GPIO_TogglePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin);
 		}
 		close(CLIENT_SOCKET);		//close socket

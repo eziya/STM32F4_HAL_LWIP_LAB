@@ -27,8 +27,9 @@ wiz_NetInfo netInfo = {
 		.sn = { 255, 255, 255, 0 },
 		.gw = { 192, 168, 1, 1 } };
 
-wiz_NetTimeout timeout = {.retry_cnt = 3,         //RCR = 3
-                          .time_100us = 2000};    //200ms
+wiz_NetTimeout timeout = {
+		.retry_cnt = 3, 		//RCR = 3
+		.time_100us = 5000};    //500ms
 
 void WIZ_SPI_Select(void)
 {
@@ -50,6 +51,16 @@ uint8_t WIZ_SPI_RxByte(void)
 	uint8_t ret;
 	HAL_SPI_Receive(WIZ_SPI_HANDLE, &ret, 1, HAL_MAX_DELAY);
 	return ret;
+}
+
+void WIZ_SPI_TxBuffer(uint8_t *buffer, uint16_t len)
+{
+	HAL_SPI_Transmit(WIZ_SPI_HANDLE, buffer, len, HAL_MAX_DELAY);
+}
+
+void WIZ_SPI_RxBuffer(uint8_t *buffer, uint16_t len)
+{
+	HAL_SPI_Receive(WIZ_SPI_HANDLE, buffer, len, HAL_MAX_DELAY);
 }
 
 //dhcp callbacks
@@ -74,6 +85,7 @@ bool WIZ_ChipInit(void)
 	HAL_GPIO_WritePin(WIZ_RESET_GPIO_Port, WIZ_RESET_Pin, GPIO_PIN_SET);
 	osDelay(500);
 
+#if (_WIZCHIP_ == W5100)
 	//register spi functions
 	reg_wizchip_cs_cbfunc(WIZ_SPI_Select, WIZ_SPI_Deselect);
 	reg_wizchip_spi_cbfunc(WIZ_SPI_RxByte, WIZ_SPI_TxByte);
@@ -85,6 +97,28 @@ bool WIZ_ChipInit(void)
 		printf("wozchip_init failed.\n");
 		return false;
 	}
+
+#elif (_WIZCHIP_ == W5500)
+	//register spi functions
+	reg_wizchip_cs_cbfunc(WIZ_SPI_Select, WIZ_SPI_Deselect);
+	reg_wizchip_spi_cbfunc(WIZ_SPI_RxByte, WIZ_SPI_TxByte);
+	reg_wizchip_spiburst_cbfunc(WIZ_SPI_RxBuffer, WIZ_SPI_TxBuffer);
+
+	//check version register
+	uint8_t version = getVERSIONR();
+	if(version != 0x04)
+	{
+		printf("getVERSIONR returns wrong version!\n");
+		return false;
+	}
+
+	//check PHY status
+	wiz_PhyConf phyConf;
+	wizphy_getphystat(&phyConf);
+	printf("PHY conf.by = {%d}, conf.mode={%d}, conf.speed={%d}, conf.duplex={%d}\n",
+			phyConf.by, phyConf.mode, phyConf.speed, phyConf.duplex);
+
+#endif
 
 	return true;
 }
@@ -125,9 +159,9 @@ bool WIZ_NetworkInit(void)
 			tmpInfo.sn[0], tmpInfo.sn[1], tmpInfo.sn[2], tmpInfo.sn[3]);
 
 	if(tmpInfo.mac[0] != netInfo.mac[0] ||
-	   tmpInfo.mac[1] != netInfo.mac[1] ||
-	   tmpInfo.mac[2] != netInfo.mac[2] ||
-	   tmpInfo.mac[3] != netInfo.mac[3])
+			tmpInfo.mac[1] != netInfo.mac[1] ||
+			tmpInfo.mac[2] != netInfo.mac[2] ||
+			tmpInfo.mac[3] != netInfo.mac[3])
 	{
 		printf("wizchip_getnetinfo failed.\n");
 		return false;

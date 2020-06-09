@@ -290,9 +290,16 @@ int8_t connect(uint8_t sn, uint8_t * addr, uint16_t port)
             return SOCKERR_TIMEOUT;
 		}
 
+		//2020.06.09 eziya76, 때때로 Sn_SR 이  SOCK_ESTABLISHED 로 천천히 변하는 현상이 보임
+		//따라서 CONNECT 요청 후 getSn_SR 이 SOCK_ESTABLISHED 가 아닌 경우에는 여러번 확인하고 CLOSE 처리
+		uint16_t retry = 0;
 		if (getSn_SR(sn) == SOCK_CLOSED)
 		{
-			return SOCKERR_SOCKCLOSED;
+			retry++;
+			if(retry >= 100)
+			{
+				return SOCKERR_SOCKCLOSED;
+			}
 		}
 	}
    

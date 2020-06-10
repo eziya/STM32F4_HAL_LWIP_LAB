@@ -59,10 +59,12 @@ void StartWizTcpClientTask(void const *argument) {
 		while(getSn_SR(CLIENT_SOCKET) != SOCK_INIT);
 
 		//connect to the server
+		//modified connect api to make a detour invalid error returns(SOCKERR_SOCKCLOSED)
 		ret = connect(CLIENT_SOCKET, serverIP, SERVER_PORT);
 		if (ret < 0) {
 			HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
 			printf("connect failed{%ld}.Sn_SR()={%d}\n", ret, getSn_SR(CLIENT_SOCKET));
+			//modified connect api to make a detour infinite loop when Sn_SR returns 0x10
 			close(CLIENT_SOCKET);
 			osDelay(500);
 			continue;

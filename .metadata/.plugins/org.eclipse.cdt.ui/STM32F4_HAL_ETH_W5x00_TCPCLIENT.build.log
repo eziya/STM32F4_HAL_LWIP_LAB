@@ -1,7 +1,7 @@
-23:57:26 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_W5x00_TCPCLIENT ****
+23:11:21 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_W5x00_TCPCLIENT ****
 make -j4 clean 
 rm -rf *
  
 
-23:57:27 Build Finished. 0 errors, 0 warnings. (took 791ms)
+23:11:25 Build Finished. 0 errors, 0 warnings. (took 3s.747ms)
 

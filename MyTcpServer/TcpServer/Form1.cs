@@ -90,8 +90,8 @@ namespace TcpServer
                         AddListBox(lbxMessage, connectionCnt + ": Client accepted...");
 
                         NetworkStream ns = client.GetStream();
-                        ns.ReadTimeout = 500;
-                        ns.WriteTimeout = 500;
+                        ns.ReadTimeout = 1000;
+                        ns.WriteTimeout = 1000;
                         
                         try
                         {                            
@@ -126,6 +126,7 @@ namespace TcpServer
                                 AddListBox(lbxMessage, "Wrong received length");
                             }
 
+                            Thread.Sleep(10); //give client time to handle
                             ns.Close();
                             client.Close();
                         }

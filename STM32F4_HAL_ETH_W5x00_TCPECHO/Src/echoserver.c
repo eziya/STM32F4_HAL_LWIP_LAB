@@ -73,7 +73,6 @@ void StartWizEchoServerTask(void const *argument) {
 			osDelay(10);
 		}
 
-
 		if(getSn_SR(CLIENT_SOCKET) == SOCK_ESTABLISHED)
 		{
 			//client accepted
@@ -112,9 +111,6 @@ void StartWizEchoServerTask(void const *argument) {
 		{
 			printf("getSn_SR() != SOCKET_ESTABLISHED.\n");
 		}
-
-		//give the client time to close first
-		osDelay(10);
 
 		//close socket
 		close(CLIENT_SOCKET);

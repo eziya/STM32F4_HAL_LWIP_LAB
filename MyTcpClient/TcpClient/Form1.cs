@@ -124,7 +124,13 @@ namespace MyTcpClient
                         UpdateTextBox(rcvTextBoxes[idx - 1], Convert.ToString(i));
                         UpdateTextBox(errTextBoxes[idx - 1], Convert.ToString(errCnt));
 
-                        tcpClient.Close();
+
+                        if(tcpClient.Connected)
+                        {
+                            ns.Close();
+                            tcpClient.Close();
+                        }
+                        
                         Thread.Sleep(10);
                     }
                     catch (Exception)

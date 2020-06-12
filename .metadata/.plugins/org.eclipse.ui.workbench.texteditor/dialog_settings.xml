@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="wait"/>
+		<item key="selection" value="wizEchoServerTask"/>
 		<list key="findhistory">
+			<item value="wizTcpClientTask"/>
 			<item value="wait"/>
 			<item value="delay"/>
 			<item value="close("/>
@@ -22,9 +23,9 @@
 			<item value="ret"/>
 			<item value="MQTT_PORT"/>
 			<item value="SERVER_IP4"/>
-			<item value="cacert"/>
 		</list>
 		<list key="replacehistory">
+			<item value="wizEchoServerTask"/>
 			<item value="ip_assigned"/>
 			<item value="ipAssigned"/>
 			<item value="MQTT_SUCCESS"/>

@@ -16,3 +16,13 @@ F:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Debug\MyTcpC
 F:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Debug\MyTcpClient.csproj.GenerateResource.cache
 F:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Debug\MyTcpClient.exe
 F:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Debug\MyTcpClient.pdb
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\bin\Debug\MyTcpClient.exe.config
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\bin\Debug\MyTcpClient.exe
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\bin\Debug\MyTcpClient.pdb
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Debug\MyTcpClient.csprojAssemblyReference.cache
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Debug\MyTcpClient.Form1.resources
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Debug\MyTcpClient.Properties.Resources.resources
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Debug\MyTcpClient.csproj.GenerateResource.cache
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Debug\MyTcpClient.csproj.CoreCompileInputs.cache
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Debug\MyTcpClient.exe
+E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Debug\MyTcpClient.pdb

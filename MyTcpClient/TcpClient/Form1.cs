@@ -22,6 +22,8 @@ namespace MyTcpClient
         private TextBox[] rcvTextBoxes;
         private TextBox[] errTextBoxes;
 
+        private bool stopThread = false;
+
         private void UpdateTextBox(TextBox textBox, string data)
         {
             if (textBox.InvokeRequired)
@@ -72,10 +74,16 @@ namespace MyTcpClient
                 t2.IsBackground = true;
                 t3.IsBackground = true;
 
-                t1.Start();
-                t2.Start();
-                t3.Start();
+                stopThread = false;
 
+                t1.Start();
+
+                if(radioButton1.Checked)
+                {
+                    //LwIP supports backlog queue but W5x00 doesn't
+                    t2.Start();
+                    t3.Start();
+                }
             }
             catch (Exception ex)
             {
@@ -98,13 +106,15 @@ namespace MyTcpClient
                 {
                     try
                     {
+                        if (stopThread) break;
+
                         tcpClient = new TcpClient();
                         tcpClient.Connect(ipAddr, 7);
 
                         NetworkStream ns = tcpClient.GetStream();
-                        ns.WriteTimeout = 10;
-                        ns.ReadTimeout = 10;
-
+                        ns.WriteTimeout = 100;
+                        ns.ReadTimeout = 100;
+                                                
                         ns.Write(sndBuffer, 0, sndBuffer.Length);
                         ns.Flush();
                         int nRead = ns.Read(rcvBuffer, 0, rcvBuffer.Length);
@@ -115,7 +125,7 @@ namespace MyTcpClient
                         UpdateTextBox(errTextBoxes[idx - 1], Convert.ToString(errCnt));
 
                         tcpClient.Close();
-                        Thread.Sleep(30);
+                        Thread.Sleep(10);
                     }
                     catch (Exception)
                     {
@@ -123,6 +133,27 @@ namespace MyTcpClient
                     }
                 }
             }
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            txtIP.Text = "192.168.1.179";
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            txtIP.Text = "192.168.1.180";
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            stopThread = true;
+
+            Thread.Sleep(100);
+
+            txtErrCnt1.Text = txtErrCnt2.Text = txtErrCnt3.Text = "0";
+            txtRcvCnt1.Text = txtRcvCnt2.Text = txtRcvCnt3.Text = "0";
+            txtSndCnt1.Text = txtSndCnt2.Text = txtSndCnt3.Text = "0";
         }
     }
 }

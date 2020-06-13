@@ -1,4 +1,4 @@
-00:15:03 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_W5x00_TCPECHO ****
+18:07:45 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_W5x00_TCPECHO ****
 make -j4 clean 
-rm -rf *
- 
+make: *** No rule to make target 'clean'.  Stop.
+"make -j4 clean" terminated with exit code 2. Build might be incomplete.

@@ -12,7 +12,7 @@
 	<item key="org.eclipse.cdt.uiformatter_pagemodify_dialog.preferred_x" value="402"/>
 	<item key="org.eclipse.cdt.uiformatter_pagemodify_dialog.preferred_y" value="0"/>
 	<item key="org.eclipse.cdt.ui.codeformatter.create_profile_dialog.open_edit" value="true"/>
-	<item key="org.eclipse.cdt.utils.ui.controls.FileListControl" value="&quot;../Middlewares/Third_Party/ioLibrary_Driver/Internet/DHCP&quot;"/>
+	<item key="org.eclipse.cdt.utils.ui.controls.FileListControl" value="../Middlewares/Third_Party/MQTT"/>
 	<section name="completion_proposal_size">
 	</section>
 	<section name="org.eclipse.cdt.ui.text.hover.CMacroExpansionExploration">
@@ -25,6 +25,23 @@
 		<item key="caseSensitive" value="false"/>
 		<item key="searchFlags" value="227191"/>
 		<list key="previousPatterns">
+			<item value="f_set_timer"/>
+			<item value="ssl_set_timer"/>
+			<item value="connectParams"/>
+			<item value="SERVER_NAME"/>
+			<item value="net_connect"/>
+			<item value="0x4290"/>
+			<item value="server_name"/>
+			<item value="BEGINCERTIFICATE"/>
+			<item value="iot_tls_connect"/>
+			<item value="mbedtls_net_init"/>
+			<item value="net_sock_open_lwip"/>
+			<item value="pHostURL"/>
+			<item value="tlsData"/>
+			<item value="BEGIN"/>
+			<item value="aws_iot_mqtt_init"/>
+			<item value="iot_tls_init"/>
+			<item value="_iot_tls_set_connect_params"/>
 			<item value="net_clear"/>
 			<item value="MBEDTLS_PLATFORM_PRINTF_MACRO"/>
 			<item value="mbedtls_ssl_set_hostname"/>

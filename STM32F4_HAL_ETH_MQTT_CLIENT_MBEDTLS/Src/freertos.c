@@ -164,8 +164,8 @@ void StartDefaultTask(void const * argument)
 		}
 	}
 
-	osThreadDef(mqttClientSubTask, MqttClientSubTask, osPriorityNormal, 0, configMINIMAL_STACK_SIZE*4); //subscribe task
-	osThreadDef(mqttClientPubTask, MqttClientPubTask, osPriorityNormal, 0, configMINIMAL_STACK_SIZE*4); //publish task
+	osThreadDef(mqttClientSubTask, MqttClientSubTask, osPriorityNormal, 0, configMINIMAL_STACK_SIZE*2); //subscribe task
+	osThreadDef(mqttClientPubTask, MqttClientPubTask, osPriorityNormal, 0, configMINIMAL_STACK_SIZE*2); //publish task
 	mqttClientSubTaskHandle = osThreadCreate(osThread(mqttClientSubTask), NULL);
 	mqttClientPubTaskHandle = osThreadCreate(osThread(mqttClientPubTask), NULL);
 

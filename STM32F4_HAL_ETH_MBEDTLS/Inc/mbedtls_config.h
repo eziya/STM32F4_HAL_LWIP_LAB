@@ -3279,7 +3279,7 @@
 #endif
 
 /* USER CODE BEGIN 1 */
-#define MBEDTLS_MEMORY_BUFFER_ALLOC_C
+//#define MBEDTLS_MEMORY_BUFFER_ALLOC_C
 
 /*
  * Allow user to override any previous default.

@@ -14,9 +14,9 @@
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|5|0|맑은 고딕"/>
 	</section>
 	<section name="org.eclipse.debug.ui.LAUNCH_CONFIGURATION_PROPERTIES_DIALOG_SECTION">
-		<item key="DIALOG_WIDTH" value="885"/>
-		<item key="DIALOG_HEIGHT" value="1150"/>
-		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+		<item key="DIALOG_WIDTH" value="853"/>
+		<item key="DIALOG_HEIGHT" value="1160"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|5|0|맑은 고딕"/>
 	</section>
 	<section name="org.eclipse.debug.ui.SELECT_LAUNCH_SHORTCUT_DIALOG">
 		<item key="DIALOG_WIDTH" value="473"/>

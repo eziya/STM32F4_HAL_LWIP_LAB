@@ -21,9 +21,9 @@
 	<section name="DialogBounds_SearchDialog">
 		<item key="DIALOG_X_ORIGIN" value="684"/>
 		<item key="DIALOG_Y_ORIGIN" value="295"/>
-		<item key="DIALOG_WIDTH" value="679"/>
-		<item key="DIALOG_HEIGHT" value="525"/>
-		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+		<item key="DIALOG_WIDTH" value="568"/>
+		<item key="DIALOG_HEIGHT" value="440"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|5|0|맑은 고딕"/>
 	</section>
 	<section name="org.eclipse.cdt.ui.pdomSearchViewPage">
 		<item key="showEnclosingDefinitions" value="true"/>
@@ -34,30 +34,33 @@
 		<item key="WHOLE_WORD" value="false"/>
 		<item key="SEARCH_DERIVED" value="false"/>
 		<item key="SEARCH_IN_BINARIES" value="false"/>
-		<item key="HISTORY_SIZE" value="11"/>
+		<item key="HISTORY_SIZE" value="12"/>
 		<section name="HISTORY0">
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
-			<item key="textPattern" value="cs_sel"/>
+			<item key="textPattern" value="getIoTDeviceConfig"/>
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
-				<item value="*.c"/>
+				<item value="*"/>
 			</list>
 			<list key="workingSets">
 			</list>
 		</section>
 		<section name="EXTENSIONS">
-			<item key="0" value="*.c"/>
+			<item key="0" value="*"/>
+			<item key="1" value=""/>
+			<item key="2" value="*.*"/>
+			<item key="3" value="*.c"/>
 		</section>
 		<section name="HISTORY1">
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
-			<item key="textPattern" value="mbedtls_net_recv_timeout"/>
+			<item key="textPattern" value="pPassword"/>
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
-				<item value="*.c"/>
+				<item value="*"/>
 			</list>
 			<list key="workingSets">
 			</list>
@@ -66,10 +69,10 @@
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
-			<item key="textPattern" value="mbedtls_memory_buffer_alloc_init"/>
+			<item key="textPattern" value="MQTTConnect"/>
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
-				<item value="*.c"/>
+				<item value="*"/>
 			</list>
 			<list key="workingSets">
 			</list>
@@ -78,10 +81,10 @@
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
-			<item key="textPattern" value="mbedtls_ssl_handshake_client_step"/>
+			<item key="textPattern" value="MQTTPacket_connectData"/>
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
-				<item value="*.c"/>
+				<item value="*"/>
 			</list>
 			<list key="workingSets">
 			</list>
@@ -90,10 +93,10 @@
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
-			<item key="textPattern" value="mbedtls_ssl_handshake_step"/>
+			<item key="textPattern" value="clientID"/>
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
-				<item value="*.c"/>
+				<item value="*"/>
 			</list>
 			<list key="workingSets">
 			</list>
@@ -102,10 +105,10 @@
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
-			<item key="textPattern" value="mbedtls_x509_crt_parse_der"/>
+			<item key="textPattern" value="DestinationPort"/>
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
-				<item value="*.c"/>
+				<item value="*"/>
 			</list>
 			<list key="workingSets">
 			</list>
@@ -114,10 +117,10 @@
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
-			<item key="textPattern" value="struct netif gnetif"/>
+			<item key="textPattern" value="pHostURL"/>
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
-				<item value="*.c"/>
+				<item value="*"/>
 			</list>
 			<list key="workingSets">
 			</list>
@@ -126,10 +129,10 @@
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
-			<item key="textPattern" value="7780"/>
+			<item key="textPattern" value="pDestinationURL"/>
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
-				<item value="*.c"/>
+				<item value="*"/>
 			</list>
 			<list key="workingSets">
 			</list>
@@ -138,10 +141,10 @@
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
-			<item key="textPattern" value="void * mbedtls_calloc( size_t n, size_tsize )"/>
+			<item key="textPattern" value="tls_device_cert"/>
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
-				<item value="*.c"/>
+				<item value="*"/>
 			</list>
 			<list key="workingSets">
 			</list>
@@ -150,10 +153,10 @@
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
-			<item key="textPattern" value="MBEDTLS_CONFIG_FILE"/>
+			<item key="textPattern" value="tls_root_ca_cert"/>
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
-				<item value="*.c"/>
+				<item value="*"/>
 			</list>
 			<list key="workingSets">
 			</list>
@@ -162,10 +165,22 @@
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
-			<item key="textPattern" value="MQTT_SUCESS"/>
+			<item key="textPattern" value="pRootCALocation"/>
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
-				<item value="*.c"/>
+				<item value="*"/>
+			</list>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY11">
+			<item key="ignoreCase" value="true"/>
+			<item key="isRegExSearch" value="false"/>
+			<item key="isWholeWord" value="false"/>
+			<item key="textPattern" value="aws_mebedtls_config.h"/>
+			<item key="scope" value="0"/>
+			<list key="fileNamePatterns">
+				<item value="*"/>
 			</list>
 			<list key="workingSets">
 			</list>

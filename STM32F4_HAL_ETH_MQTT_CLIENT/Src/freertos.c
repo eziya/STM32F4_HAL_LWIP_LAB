@@ -41,7 +41,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define BROKER_IP		"192.168.1.227"
+#define BROKER_IP		"192.168.1.217"
 #define MQTT_PORT		1883
 #define MQTT_BUFSIZE	1024
 

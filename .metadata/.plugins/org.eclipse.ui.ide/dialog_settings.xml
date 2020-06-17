@@ -20,6 +20,10 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="E:\Workspace\STM\STM32CubeExpansion_Cloud_CLD_GEN_V1.0.0\Projects\STM32F413H-Discovery\Applications\Cloud\GenericMQTT\SW4STM32\STM32F413H_DISCOVERY_GenericMQTT"/>
+			<item value="E:\Workspace\STM\en.x-cube-cld-gen\STM32CubeExpansion_Cloud_CLD_GEN_V1.0.0\Projects\STM32F413H-Discovery\Examples\Cloud\httpclient\SW4STM32\STM32F413H_DISCOVERY_httpclient"/>
+			<item value="E:\Workspace\STM\en.x-cube-cld-gen\STM32CubeExpansion_Cloud_CLD_GEN_V1.0.0\Projects\STM32F413H-Discovery\Applications\Cloud\GenericMQTT\SW4STM32"/>
+			<item value="C:\Users\jihoo\Downloads\en.STM32CubeExpansion_Cloud_AWS_V1.2.1\STM32CubeExpansion_Cloud_AWS_V1.2.1\Projects\STM32F413H-Discovery\Applications\Cloud\AWS\SW4STM32\STM32F413H_Discovery"/>
 			<item value="E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\STM32F4_HAL_ETH_W5x00_TCPCLIENT"/>
 			<item value="C:\Users\jihoo\Downloads\cxemotexnika-master\cxemotexnika-master\Examples\NUCLEO_F429ZI\nucleo_f429zi_https_client"/>
 			<item value="C:\Users\jihoo\Downloads\STM32CubeExpansion_Cloud_CLD_GEN_V1.0.0\Projects\STM32F769I-Discovery\Applications\Cloud\GenericMQTT\SW4STM32\STM32F769I_Discovery_GenericMQTT"/>

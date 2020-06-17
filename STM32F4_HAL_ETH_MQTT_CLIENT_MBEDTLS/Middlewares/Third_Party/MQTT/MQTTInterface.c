@@ -67,6 +67,22 @@ mbedtls_ssl_context ssl;
 mbedtls_ssl_config conf;
 mbedtls_x509_crt cacert;
 
+void *mbedtls_calloc( size_t n, size_t size )
+{
+	const size_t poolSize = n * size;
+	void *p = pvPortMalloc(poolSize);
+	if (p != NULL)
+	{
+		memset(p, 0, poolSize);
+	}
+	return p;
+}
+
+void mbedtls_free( void *ptr )
+{
+	vPortFree(ptr);
+}
+
 static void my_debug(void *ctx, int level, const char *file, int line, const char *str) {
 	((void) level);
 	mbedtls_fprintf((FILE*) ctx, "%s:%04d: %s", file, line, str);

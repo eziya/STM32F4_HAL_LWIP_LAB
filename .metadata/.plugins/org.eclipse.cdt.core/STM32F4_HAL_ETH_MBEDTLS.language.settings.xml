@@ -1740,6 +1740,9 @@
 					<entry kind="macro" name="__GXX_TYPEINFO_EQUALITY_INLINE" value="0">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
+					<entry kind="macro" name="__GXX_WEAK__" value="1">
+						<flag value="BUILTIN|READONLY"/>
+					</entry>
 					<entry kind="macro" name="__HA_FBIT__" value="7">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
@@ -2283,6 +2286,9 @@
 					<entry kind="macro" name="__UINT_FAST16_MAX__" value="0xffffffffU">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
+					<entry kind="macro" name="__UINT_FAST16_TYPE__" value="unsigned int">
+						<flag value="BUILTIN|READONLY"/>
+					</entry>
 					<entry kind="macro" name="__UINT_FAST32_MAX__" value="0xffffffffU">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
@@ -2511,9 +2517,6 @@
 					<entry kind="macro" name="__cpp_decltype_auto" value="201304">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__cpp_delegating_constructors" value="1">
-						<flag value="BUILTIN|READONLY"/>
-					</entry>
 					<entry kind="macro" name="__cpp_delegating_constructors" value="200604">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
@@ -2569,9 +2572,6 @@
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__cpp_sized_deallocation" value="201309">
-						<flag value="BUILTIN|READONLY"/>
-					</entry>
-					<entry kind="macro" name="__cpp_static_assert" value="unsigned int">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__cpp_static_assert" value="200410">

@@ -61,6 +61,7 @@ static void platform_free_uninit( void *ptr )
 static void * (*mbedtls_calloc_func)( size_t, size_t ) = MBEDTLS_PLATFORM_STD_CALLOC;
 static void (*mbedtls_free_func)( void * ) = MBEDTLS_PLATFORM_STD_FREE;
 
+#if defined(MBEDTLS_MEMORY_BUFFER_ALLOC_C)
 void * mbedtls_calloc( size_t nmemb, size_t size )
 {
     return (*mbedtls_calloc_func)( nmemb, size );
@@ -70,6 +71,7 @@ void mbedtls_free( void * ptr )
 {
     (*mbedtls_free_func)( ptr );
 }
+#endif
 
 int mbedtls_platform_set_calloc_free( void * (*calloc_func)( size_t, size_t ),
                               void (*free_func)( void * ) )

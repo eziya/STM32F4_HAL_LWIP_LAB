@@ -145,7 +145,7 @@ void MX_FREERTOS_Init(void) {
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void const * argument)
 {
-  /* USER CODE BEGIN StartDefaultTask */
+	/* USER CODE BEGIN StartDefaultTask */
 	MX_LWIP_Init();
 
 	while(1)
@@ -162,7 +162,10 @@ void StartDefaultTask(void const * argument)
 			break;
 		}
 	}
-
+	/*
+	 * !!! Important
+	 * I don't know but mqttClientPubTask failed without compiler optimization option
+	 */
 	osThreadDef(mqttClientSubTask, MqttClientSubTask, osPriorityNormal, 0, 1024); //subscribe task
 	mqttClientSubTaskHandle = osThreadCreate(osThread(mqttClientSubTask), NULL);
 	osThreadDef(mqttClientPubTask, MqttClientPubTask, osPriorityNormal, 0, 1024); //publish task
@@ -174,7 +177,7 @@ void StartDefaultTask(void const * argument)
 		HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin); //toggle running led
 		osDelay(500);
 	}
-  /* USER CODE END StartDefaultTask */
+	/* USER CODE END StartDefaultTask */
 }
 
 /* Private application code --------------------------------------------------*/

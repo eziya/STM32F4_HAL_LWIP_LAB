@@ -8,7 +8,7 @@
 #include "main.h"
 #include "mqtt_task.h"
 
-#define SERVER_ADDR		"a26yl64yu6m7ry-ats.iot.ap-northeast-2.amazonaws.com"
+#define SERVER_ADDR		"a26yl64yu6m7ry-ats.iot.ap-northeast-2.amazonaws.com" //replace your endpoint here
 #define MQTT_PORT		"8883"
 
 //mqtt subscribe task
@@ -25,7 +25,10 @@ void MqttClientSubTask(void const *argument)
 		}
 		else
 		{
-			MQTTYield(&mqttClient, 1000); //problem, time out doesn't work now...
+			/* !!! Need to be fixed
+			 * mbedtls_ssl_conf_read_timeout has problem with accurate timeout
+			 */
+			MQTTYield(&mqttClient, 1000);
 		}
 	}
 }
@@ -43,7 +46,7 @@ void MqttClientPubTask(void const *argument)
 			message.payload = (void*)str;
 			message.payloadlen = strlen(str);
 
-			MQTTPublish(&mqttClient, "test", &message); //publish a message
+			MQTTPublish(&mqttClient, "test", &message); //publish a message to "test" topic
 		}
 		osDelay(10000);
 	}
@@ -73,9 +76,9 @@ int MqttConnectBroker()
 	MQTTPacket_connectData data = MQTTPacket_connectData_initializer;
 	data.willFlag = 0;
 	data.MQTTVersion = 3;
-	data.clientID.cstring = "";
-	data.username.cstring = "";
-	data.password.cstring = "";
+	data.clientID.cstring = ""; //no client id required
+	data.username.cstring = ""; //no user name required
+	data.password.cstring = ""; //no password required
 	data.keepAliveInterval = 60;
 	data.cleansession = 1;
 

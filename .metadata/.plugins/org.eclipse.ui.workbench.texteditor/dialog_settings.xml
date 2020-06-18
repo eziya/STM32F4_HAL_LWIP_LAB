@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="MBEDTLS_ENTROPY_HARDWARE_ALT"/>
+		<item key="selection" value="mbedtls_x509_crt_amazon_suite"/>
 		<list key="findhistory">
+			<item value="mbedtls_x509_crt_amazon_suite"/>
 			<item value="MBEDTLS_ENTROPY_HARDWARE_ALT"/>
 			<item value="MBEDTLS_SSL_ALPN"/>
 			<item value="SMALL"/>
@@ -17,7 +18,6 @@
 			<item value="Fragment"/>
 			<item value="MFL"/>
 			<item value="Maximum Fragment Length"/>
-			<item value="mbedtls_x509_crt_amazon_suite"/>
 			<item value="mbedtls_ssl_set_hostname"/>
 			<item value="SERVER_NAME"/>
 			<item value="mbedtls_net_recv"/>
@@ -35,8 +35,8 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="1359"/>
 		<item key="DIALOG_Y_ORIGIN" value="184"/>
-		<item key="DIALOG_WIDTH" value="288"/>
-		<item key="DIALOG_HEIGHT" value="391"/>
-		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|5|0|맑은 고딕"/>
+		<item key="DIALOG_WIDTH" value="340"/>
+		<item key="DIALOG_HEIGHT" value="454"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|5|0|맑은 고딕"/>
 	</section>
 </section>

@@ -24,6 +24,7 @@
 
 #define DEBUG_LEVEL 1
 
+//Amazon ECC 256 certificate
 const char mbedtls_aws_root_certificate[] =
 		"-----BEGIN CERTIFICATE-----\r\n"
 		"MIIBtjCCAVugAwIBAgITBmyf1XSXNmY/Owua2eiedgPySjAKBggqhkjOPQQDAjA5\r\n"
@@ -38,42 +39,26 @@ const char mbedtls_aws_root_certificate[] =
 		"YyRIHN8wfdVoOw==\r\n"
 		"-----END CERTIFICATE-----\r\n";
 
+//client certificate here
 const char mbedtls_client_certificate[] =
-		"-----BEGIN CERTIFICATE-----\r\n" \
+		"-----BEGIN CERTIFICATE-----\r\n"
 
 		"-----END CERTIFICATE-----\r\n";
 
+//client private key here
 const char mbedtls_client_key[] =
-		"-----BEGIN RSA PRIVATE KEY-----\r\n" \
+		"-----BEGIN RSA PRIVATE KEY-----\r\n"
 
 		"-----END RSA PRIVATE KEY-----\r\n";
+
 
 const size_t mbedtls_aws_root_certificate_len = sizeof(mbedtls_aws_root_certificate);
 const size_t mbedtls_client_certificate_len = sizeof(mbedtls_client_certificate);
 const size_t mbedtls_client_key_len = sizeof(mbedtls_client_key);
 
-/*
- * Amazon Profile
- */
-const mbedtls_x509_crt_profile mbedtls_x509_crt_amazon_suite =
-{
-		/* Only SHA-256 and 384 */
-		MBEDTLS_X509_ID_FLAG( MBEDTLS_MD_SHA256 ) |
-		MBEDTLS_X509_ID_FLAG( MBEDTLS_MD_SHA384 ),
-		/* Only ECDSA */
-		MBEDTLS_X509_ID_FLAG(MBEDTLS_PK_RSA) | /* */
-		MBEDTLS_X509_ID_FLAG(MBEDTLS_PK_ECKEY) | /* */
-		MBEDTLS_X509_ID_FLAG( MBEDTLS_PK_ECDSA ),
-
-		/* Only NIST P-256 and P-384 */
-		MBEDTLS_X509_ID_FLAG( MBEDTLS_ECP_DP_SECP256R1 ) |
-		MBEDTLS_X509_ID_FLAG( MBEDTLS_ECP_DP_SECP384R1 ),
-
-		2048
-};
-
+//if you want to use static memory, enable MBEDTLS_MEMORY_BUFFER_ALLOC_C
 #if defined(MBEDTLS_MEMORY_BUFFER_ALLOC_C)
-#define MEMORY_HEAP_SIZE      (1024*120)
+#define MEMORY_HEAP_SIZE      (1024*64)
 uint8_t alloc_buf[MEMORY_HEAP_SIZE];
 #endif
 
@@ -88,21 +73,24 @@ mbedtls_x509_crt cacert;
 mbedtls_x509_crt cli_cert;
 mbedtls_pk_context cli_key;
 
-//void *mbedtls_calloc( size_t n, size_t size )
-//{
-//	const size_t poolSize = n * size;
-//	void *p = pvPortMalloc(poolSize);
-//	if (p != NULL)
-//	{
-//		memset(p, 0, poolSize);
-//	}
-//	return p;
-//}
-//
-//void mbedtls_free( void *ptr )
-//{
-//	vPortFree(ptr);
-//}
+//freertos calloc & free
+#if !defined(MBEDTLS_MEMORY_BUFFER_ALLOC_C)
+void *mbedtls_calloc( size_t n, size_t size )
+{
+	const size_t poolSize = n * size;
+	void *p = pvPortMalloc(poolSize);
+	if (p != NULL)
+	{
+		memset(p, 0, poolSize);
+	}
+	return p;
+}
+
+void mbedtls_free( void *ptr )
+{
+	vPortFree(ptr);
+}
+#endif
 
 static void my_debug(void *ctx, int level, const char *file, int line, const char *str) {
 	((void) level);
@@ -113,7 +101,7 @@ static void my_debug(void *ctx, int level, const char *file, int line, const cha
 int net_init(Network *n, char *host) {
 	int ret;
 
-	//initialize mbedTLS realted variables
+	//if you want to use static memory, enable MBEDTLS_MEMORY_BUFFER_ALLOC_C
 #if defined(MBEDTLS_MEMORY_BUFFER_ALLOC_C)
 	mbedtls_memory_buffer_alloc_init(alloc_buf, sizeof(alloc_buf));
 #endif
@@ -122,7 +110,7 @@ int net_init(Network *n, char *host) {
 	mbedtls_debug_set_threshold(DEBUG_LEVEL);
 #endif
 
-	//mbedtls_net_init(&server_fd); //MX_LWIP_Init() is called already
+	//mbedtls_net_init(&server_fd); //MX_LWIP_Init() is called already in "StartDefaultTask"
 	mbedtls_ssl_init(&ssl);
 	mbedtls_ssl_config_init(&conf);
 
@@ -138,25 +126,28 @@ int net_init(Network *n, char *host) {
 		return -1;
 	}
 
-	// SSL/TLS connection process. refer to ssl client1 example
+	//parse root CA certificate
 	ret = mbedtls_x509_crt_parse(&cacert, (const unsigned char*) mbedtls_aws_root_certificate, mbedtls_aws_root_certificate_len);
 	if (ret < 0) {
 		printf("mbedtls_x509_crt_parse failed.\n");
 		return -1;
 	}
 
+	//parse client certificate
 	ret = mbedtls_x509_crt_parse(&cli_cert, (const unsigned char *) mbedtls_client_certificate, mbedtls_client_certificate_len);
 	if (ret < 0) {
 		printf("mbedtls_x509_crt_parse failed.\n");
 		return -1;
 	}
 
+	//parse client private key
 	ret = mbedtls_pk_parse_key(&cli_key, (const unsigned char *)mbedtls_client_key, mbedtls_client_key_len , (unsigned char const *)"", 0);
 	if (ret < 0) {
 		printf("mbedtls_pk_parse_key failed.\n");
 		return -1;
 	}
 
+	//configure ssl
 	ret = mbedtls_ssl_config_defaults(&conf, MBEDTLS_SSL_IS_CLIENT,
 			MBEDTLS_SSL_TRANSPORT_STREAM, MBEDTLS_SSL_PRESET_DEFAULT);
 	if (ret < 0) {
@@ -164,35 +155,39 @@ int net_init(Network *n, char *host) {
 		return -1;
 	}
 
-	//mbedtls_ssl_conf_cert_profile( &conf, &mbedtls_x509_crt_amazon_suite );
-
 	mbedtls_ssl_conf_authmode(&conf, MBEDTLS_SSL_VERIFY_OPTIONAL);
 	mbedtls_ssl_conf_ca_chain(&conf, &cacert, NULL);
 	mbedtls_ssl_conf_rng(&conf, mbedtls_ctr_drbg_random, &ctr_drbg);
 	mbedtls_ssl_conf_dbg(&conf, my_debug, stdout);
 
+	//config client certificate & key
 	ret = mbedtls_ssl_conf_own_cert(&conf, &cli_cert, &cli_key);
 	if (ret < 0) {
 		printf("mbedtls_ssl_conf_own_cert failed.\n");
 		return -1;
 	}
 
+	//set timeout 1000ms, mbedtls_ssl_conf_read_timeout has problem with accurate timeout
+	mbedtls_ssl_conf_read_timeout(&conf, 1000);
+
+	//ssl setup
 	ret = mbedtls_ssl_setup(&ssl, &conf);
 	if (ret < 0) {
 		printf("mbedtls_ssl_setup failed.\n");
 		return -1;
 	}
 
+	//set hostname
 	ret = mbedtls_ssl_set_hostname(&ssl, host);
 	if (ret < 0) {
 		printf("mbedtls_ssl_set_hostname failed.\n");
 		return -1;
 	}
 
-	mbedtls_ssl_set_bio(&ssl, &server_fd, mbedtls_net_send, mbedtls_net_recv,
-			NULL);
+	//set bio
+	mbedtls_ssl_set_bio(&ssl, &server_fd, mbedtls_net_send, mbedtls_net_recv, NULL);
 
-	//register functions
+	//register functions for MQTT
 	n->mqttread = net_read; //receive function
 	n->mqttwrite = net_write; //send function
 	n->disconnect = net_disconnect; //disconnection function
@@ -203,27 +198,30 @@ int net_init(Network *n, char *host) {
 int net_connect(Network *n, char *host, char* port) {
 	int ret;
 
+	//connect
 	ret = mbedtls_net_connect(&server_fd, host, port, MBEDTLS_NET_PROTO_TCP);
 	if (ret < 0) {
 		printf("mbedtls_net_connect failed.\n");
 		return -1;
 	}
 
+	//handshake
 	while ((ret = mbedtls_ssl_handshake(&ssl)) != 0) {
 		if (ret != MBEDTLS_ERR_SSL_WANT_READ && ret != MBEDTLS_ERR_SSL_WANT_WRITE) {
 			if(ret == MBEDTLS_ERR_X509_CERT_VERIFY_FAILED)
 			{
-				printf("mbedtls_ssl_handshake certificate verification failed.\n", ret);
+				printf("mbedtls_ssl_handshake certificate verification failed.\n");
 			}
 			else
 			{
-				printf("mbedtls_ssl_handshake failed.\n", ret);
+				printf("mbedtls_ssl_handshake failed.\n");
 			}
 
 			return -1;
 		}
 	}
 
+	//verify
 	ret = mbedtls_ssl_get_verify_result(&ssl);
 	if (ret < 0) {
 		printf("mbedtls_ssl_get_verify_result failed.\n");
@@ -233,6 +231,7 @@ int net_connect(Network *n, char *host, char* port) {
 	return 0;
 }
 
+//receive data
 int net_read(Network *n, unsigned char *buffer, int len, int timeout_ms) {
 	int ret;
 	int received = 0;
@@ -260,6 +259,7 @@ int net_read(Network *n, unsigned char *buffer, int len, int timeout_ms) {
 	return received;
 }
 
+//send data
 int net_write(Network *n, unsigned char *buffer, int len, int timeout_ms) {
 	int ret;
 	int written;
@@ -276,6 +276,7 @@ int net_write(Network *n, unsigned char *buffer, int len, int timeout_ms) {
 	return written;
 }
 
+//disconnect ssl
 void net_disconnect(Network *n) {
 	int ret;
 
@@ -287,10 +288,12 @@ void net_disconnect(Network *n) {
 	mbedtls_net_free(&server_fd);
 }
 
+//clear resources
 void net_clear() {
 	mbedtls_net_free(&server_fd);
 	mbedtls_x509_crt_free(&cacert);
 	mbedtls_x509_crt_free(&cli_cert);
+	mbedtls_pk_free(&cli_key);
 	mbedtls_ssl_free(&ssl);
 	mbedtls_ssl_config_free(&conf);
 	mbedtls_ctr_drbg_free(&ctr_drbg);

@@ -1,7 +1,7 @@
-23:04:37 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_MQTT_AWS ****
+00:00:46 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_MQTT_AWS ****
 make -j4 clean 
 rm -rf *
  
 
-23:04:38 Build Finished. 0 errors, 0 warnings. (took 1s.45ms)
+00:00:47 Build Finished. 0 errors, 0 warnings. (took 981ms)
 

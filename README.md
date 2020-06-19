@@ -9,6 +9,7 @@ https://www.st.com/en/evaluation-tools/nucleo-f429zi.html
 4. STM32F4 HAL Driver 1.25.0
 5. Arduino Ethernet Shield (Wiznet W5100)
 6. Wiznet W5500 module (https://www.wiznet.io/product-item/wiz850io/)
+7. AWS IOT
 
 [Tutorials]
 1. LwIP initialization (https://blog.naver.com/eziya76/221852430347)
@@ -21,6 +22,7 @@ https://www.st.com/en/evaluation-tools/nucleo-f429zi.html
 8. LwIP ROTS + MQTT + mbedTLS client example (https://blog.naver.com/eziya76/221976226378)
 9. WIZNET W5100(W5500) + TCP client example (https://blog.naver.com/eziya76/221996669928)
 10. WIZNET W5100(W5500) + TCP echo server (https://blog.naver.com/eziya76/221999200538)
+11. LwIP ROTS + MQTT + mbedTLS + AWS IOT (https://blog.naver.com/eziya76/222006275453)
 
 
 

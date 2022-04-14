@@ -20,6 +20,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="E:\Workspace\GitHub\STM32F4_HAL_LWIP_LAB\STM32F4_LWIP_TEST"/>
 			<item value="E:\Workspace\STM\STM32CubeExpansion_Cloud_CLD_GEN_V1.0.0\Projects\STM32F413H-Discovery\Applications\Cloud\GenericMQTT\SW4STM32\STM32F413H_DISCOVERY_GenericMQTT"/>
 			<item value="E:\Workspace\STM\en.x-cube-cld-gen\STM32CubeExpansion_Cloud_CLD_GEN_V1.0.0\Projects\STM32F413H-Discovery\Examples\Cloud\httpclient\SW4STM32\STM32F413H_DISCOVERY_httpclient"/>
 			<item value="E:\Workspace\STM\en.x-cube-cld-gen\STM32CubeExpansion_Cloud_CLD_GEN_V1.0.0\Projects\STM32F413H-Discovery\Applications\Cloud\GenericMQTT\SW4STM32"/>

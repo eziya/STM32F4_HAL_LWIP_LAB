@@ -1,7 +1,0 @@
-19:17:44 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_MQTT_AWS ****
-make -j12 clean 
-make: *** No rule to make target 'clean'.  Stop.
-"make -j12 clean" terminated with exit code 2. Build might be incomplete.
-
-19:17:44 Build Failed. 1 errors, 0 warnings. (took 125ms)
-

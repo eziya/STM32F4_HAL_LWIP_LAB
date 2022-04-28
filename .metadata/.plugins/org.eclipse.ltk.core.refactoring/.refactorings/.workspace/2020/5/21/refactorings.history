@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Delete resource &apos;STM32F769I_Discovery_GenericMQTT&apos;" deleteContents="false" description="Delete resource &apos;STM32F769I_Discovery_GenericMQTT&apos;" element1="/STM32F769I_Discovery_GenericMQTT" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1590238009910"/>
-</session>

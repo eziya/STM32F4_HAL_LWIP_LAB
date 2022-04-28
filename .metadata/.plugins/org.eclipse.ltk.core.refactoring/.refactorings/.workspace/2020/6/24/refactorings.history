@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;STM32F4_HAL_ETH_WIZ5100_TCPCLIENT&apos;" deleteContents="true" description="Delete resource &apos;STM32F4_HAL_ETH_WIZ5100_TCPCLIENT&apos;" element1="/STM32F4_HAL_ETH_WIZ5100_TCPCLIENT" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1591529640872"/>&#x0A;<refactoring comment="Delete resource &apos;STM32F4_HLA_ETH_W5x00_TCPCLIENT&apos;" deleteContents="false" description="Delete resource &apos;STM32F4_HLA_ETH_W5x00_TCPCLIENT&apos;" element1="/STM32F4_HLA_ETH_W5x00_TCPCLIENT" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1591624135673"/>
-</session>

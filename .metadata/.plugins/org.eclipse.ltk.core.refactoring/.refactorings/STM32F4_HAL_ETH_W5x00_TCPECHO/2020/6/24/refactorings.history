@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;STM32F4_HAL_ETH_W5x00_TCPECHO/Src/tcpclient.c&apos; to &apos;echoserver.c&apos;" description="Rename resource &apos;tcpclient.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Src/tcpclient.c" name="echoserver.c" stamp="1591922024431" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;STM32F4_HAL_ETH_W5x00_TCPECHO/Inc/tcpclient.h&apos; to &apos;echoserver.h&apos;" description="Rename resource &apos;tcpclient.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Inc/tcpclient.h" name="echoserver.h" stamp="1591922044423" updateReferences="true"/>
-</session>

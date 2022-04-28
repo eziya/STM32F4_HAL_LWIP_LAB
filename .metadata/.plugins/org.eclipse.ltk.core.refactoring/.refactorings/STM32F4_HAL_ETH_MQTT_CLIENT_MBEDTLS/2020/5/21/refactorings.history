@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;STM32F4_HAL_ETH_MQTT_CLIENT_MBEDTLS/Src/mqtt_client.c&apos; to &apos;mqtt_task.c&apos;" description="Rename resource &apos;mqtt_client.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Src/mqtt_client.c" name="mqtt_task.c" stamp="1590062712613" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;STM32F4_HAL_ETH_MQTT_CLIENT_MBEDTLS/Inc/mqtt_client.h&apos; to &apos;mqtt_task.h&apos;" description="Rename resource &apos;mqtt_client.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Inc/mqtt_client.h" name="mqtt_task.h" stamp="1590062731301" updateReferences="true"/>
-</session>

@@ -1,7 +1,0 @@
-19:58:37 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_RTOS_TCPCLIENT ****
-make -j4 clean 
-rm -rf *
- 
-
-19:58:38 Build Finished. 0 errors, 0 warnings. (took 847ms)
-

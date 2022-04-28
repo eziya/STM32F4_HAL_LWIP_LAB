@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;STM32F4_HAL_ETH_MQTT_CLIENT/Middlewares/Third_Party/MQTTClient-C&apos; to &apos;MQTT&apos;" description="Rename resource &apos;MQTTClient-C&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Middlewares/Third_Party/MQTTClient-C" name="MQTT" stamp="1588081258355" updateReferences="true"/>
-</session>

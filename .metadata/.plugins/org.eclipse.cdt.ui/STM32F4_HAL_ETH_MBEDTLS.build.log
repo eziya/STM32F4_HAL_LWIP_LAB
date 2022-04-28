@@ -1,7 +1,0 @@
-19:47:26 **** Clean-only build of configuration Debug for project STM32F4_HAL_ETH_MBEDTLS ****
-make -j4 clean 
-rm -rf *
- 
-
-19:47:28 Build Finished. 0 errors, 0 warnings. (took 2s.705ms)
-

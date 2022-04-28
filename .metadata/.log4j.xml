@@ -3,7 +3,7 @@
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
     <appender name="DEBUGFILE" class="org.apache.log4j.RollingFileAppender">
         <param name="Append" value="true"/>
-        <param name="File" value="D:/Workspace/STM32/STM32F4_HAL_LWIP_LAB/.metadata/.ide.log"/>
+        <param name="File" value="E:/Workspace/GitHub/STM32F4_HAL_LWIP_LAB/.metadata/.ide.log"/>
         <param name="MaxBackupIndex" value="1"/>
         <param name="MaxFileSize" value="50MB"/>
         <param name="Threshold" value="INFO"/>

@@ -58,9 +58,10 @@ int8_t FLASH_If_Erase(uint32_t StartSector)
     FLASH_EraseInitTypeDef FLASH_EraseInitStruct;
     uint32_t sectornb = 0;
 
+    //erase from sector 5 to 16
     FLASH_EraseInitStruct.TypeErase = FLASH_TYPEERASE_SECTORS;
     FLASH_EraseInitStruct.Sector = FLASH_SECTOR_5;
-    FLASH_EraseInitStruct.NbSectors = 7;
+    FLASH_EraseInitStruct.NbSectors = 12;
     FLASH_EraseInitStruct.VoltageRange = FLASH_VOLTAGE_RANGE_3;
 
     if (HAL_FLASHEx_Erase(&FLASH_EraseInitStruct, &sectornb) != HAL_OK)
@@ -111,3 +112,4 @@ uint32_t FLASH_If_Write(__IO uint32_t* FlashAddress, uint32_t* Data ,uint16_t Da
 
   return (0);
 }
+

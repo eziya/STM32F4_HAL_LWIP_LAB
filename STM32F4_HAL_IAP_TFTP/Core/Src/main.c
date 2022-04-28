@@ -106,11 +106,14 @@ int main(void)
 	/* USER CODE BEGIN 2 */
 
 	// check user button is pushed
+	printf("checking user button...\r\n");
 	if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == 0x00)
 	{
 		/* Check if valid stack address (RAM address) then jump to user application */
 		if (((*(__IO uint32_t*)USER_FLASH_FIRST_PAGE_ADDRESS) & 0x2FFF0000 ) == 0x20030000)
 		{
+			printf("valid stack address! jump to application...\r\n");
+
 			/* Jump to user application */
 			JumpAddress = *(__IO uint32_t*) (USER_FLASH_FIRST_PAGE_ADDRESS + 4);
 			Jump_To_Application = (pFunction) JumpAddress;
@@ -120,7 +123,13 @@ int main(void)
 			/* do nothing */
 			while(1);
 		}
+		else
+		{
+			printf("invalid stack address! start tftp server...\r\n");
+		}
 	}
+
+	printf("start tftp server...\r\n");
 
 	// start tftp server
 	IAP_tftpd_init();

@@ -57,8 +57,8 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define USER_Btn_Pin GPIO_PIN_13
-#define USER_Btn_GPIO_Port GPIOC
+#define Button_Pin GPIO_PIN_13
+#define Button_GPIO_Port GPIOC
 #define MCO_Pin GPIO_PIN_0
 #define MCO_GPIO_Port GPIOH
 #define RMII_MDC_Pin GPIO_PIN_1
@@ -99,7 +99,7 @@ void Error_Handler(void);
 
 #define USER_FLASH_FIRST_PAGE_ADDRESS 0x08020000
 #define USER_FLASH_LAST_PAGE_ADDRESS  0x0811F800 //0x8120000-0x800(Page Size)
-#define USER_FLASH_END_ADDRESS        0x080FFFFF
+#define USER_FLASH_END_ADDRESS        0x081FFFFF
 
 /* USER CODE END Private defines */
 

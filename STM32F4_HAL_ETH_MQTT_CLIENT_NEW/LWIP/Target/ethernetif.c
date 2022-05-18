@@ -794,7 +794,8 @@ void ethernet_link_thread(void const * argument)
       MACConf.DuplexMode = duplex;
       MACConf.Speed = speed;
       HAL_ETH_SetMACConfig(&heth, &MACConf);
-      HAL_ETH_Start(&heth);
+      //wrong code generation, it should be HAL_ETH_Start_IT to match with HAL_ETH_Stop_IT
+      HAL_ETH_Start_IT(&heth);
       netif_set_up(netif);
       netif_set_link_up(netif);
     }

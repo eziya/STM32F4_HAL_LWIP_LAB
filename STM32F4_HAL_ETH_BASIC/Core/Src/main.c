@@ -66,6 +66,7 @@ void ethernetif_notify_conn_changed(struct netif *netif)
 	{
 		HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_RESET);
+		printf("IP address: %s\n", ip4addr_ntoa(netif_ip4_addr(&gnetif)));
 	}
 	else
 	{

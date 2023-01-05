@@ -1,8 +1,11 @@
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
-configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_BASIC Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_MBEDTLS Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_MQTT_AWS,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_MQTT_CLIENT Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_MQTT_CLIENT_MBEDTLS Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_RTOS_TCPCLIENT Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_RTOS_TCPECHO,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_TCPCLIENT Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_TCPECHO Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_W5x00_TCPCLIENT,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_W5x00_TCPECHO,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_IAP_BLINK Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_IAP_TFTP Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_LWIP_TEST
+configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_BASIC Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_IAP_TFTP Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ENC28J60 Debug
 eclipse.preferences.version=1
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ENC28J60\ Debug/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_BASIC\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_BASIC\ Debug/activeLaunchTarget=null\:---
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_ETH_MQTT_CLIENT_NEW\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_HAL_IAP_TFTP\ Debug/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:STM32F4_LWIP_TEST/activeLaunchMode=run

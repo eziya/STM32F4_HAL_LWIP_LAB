@@ -6,4 +6,6 @@
 			<item value="org.eclipse.ui.Basic"/>
 		</list>
 	</section>
+	<section name="PreferencesExportWizard">
+	</section>
 </section>

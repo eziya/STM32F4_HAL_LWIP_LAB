@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item key="org.eclipse.cdt.utils.ui.controls.FileListControl" value="../Middlewares/Third_Party/MQTT/MQTTPacket"/>
+	<item key="org.eclipse.cdt.uiformatter_page.white_space.c_view.inner" value="72"/>
+	<item key="org.eclipse.cdt.uiformatter_page.white_space_tab_page.node" value="0"/>
+	<item key="org.eclipse.cdt.uiformatter_page.line_wrapping_tab_page.last_category_index" value="1"/>
+	<item key="formatter_page.modify_dialog_tab_page.last_focus_index" value="-1"/>
+	<item key="org.eclipse.cdt.uiformatter_pagemodify_dialog.preferred_width" value="1329"/>
+	<item key="org.eclipse.cdt.uiformatter_pagemodify_dialog.preferred_height" value="1104"/>
+	<item key="org.eclipse.cdt.uiformatter_pagemodify_dialog.preferred_x" value="616"/>
+	<item key="org.eclipse.cdt.uiformatter_pagemodify_dialog.preferred_y" value="0"/>
+	<item key="org.eclipse.cdt.ui.codeformatter.create_profile_dialog.open_edit" value="true"/>
+	<item key="org.eclipse.cdt.uiformatter_pagemodify_dialog.last_focus" value="5"/>
+	<item key="org.eclipse.cdt.ui.codeformatter.line_wrapping_tab_page.preview_line_width" value="120"/>
+	<item key="ProjectSelectionDialog.show_all" value="true"/>
+	<item key="org.eclipse.cdt.ui.codeformatter.savepath.savepath" value="E:\Workspace\STM32\STM32L4_HAL_EXAMPLES"/>
 	<section name="completion_proposal_size">
 	</section>
 	<section name="org.eclipse.cdt.ui.text.hover.CMacroExpansionExploration">
@@ -12,7 +26,15 @@
 		<item key="caseSensitive" value="false"/>
 		<item key="searchFlags" value="227191"/>
 		<list key="previousPatterns">
+			<item value="ENC_Transmit"/>
+			<item value="fsdata"/>
+			<item value="file__400_html"/>
+			<item value="file__img_sics_gif"/>
+			<item value="API_MSG_M_DEF_C"/>
 			<item value="USER_FLASH_END_ADDRESS"/>
 		</list>
+	</section>
+	<section name="OptionalMessageDialog.hide.">
+		<item key="askReindex.detail" value="0"/>
 	</section>
 </section>

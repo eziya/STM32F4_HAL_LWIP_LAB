@@ -70,8 +70,8 @@ all: main-build
 main-build: STM32F4_HAL_IAP_TFTP.elf secondary-outputs
 
 # Tool invocations
-STM32F4_HAL_IAP_TFTP.elf STM32F4_HAL_IAP_TFTP.map: $(OBJS) $(USER_OBJS) E:\Workspace\GitHub\STM32F4_HAL_LWIP_LAB\STM32F4_HAL_IAP_TFTP\STM32F429ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "STM32F4_HAL_IAP_TFTP.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"E:\Workspace\GitHub\STM32F4_HAL_LWIP_LAB\STM32F4_HAL_IAP_TFTP\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F4_HAL_IAP_TFTP.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+STM32F4_HAL_IAP_TFTP.elf STM32F4_HAL_IAP_TFTP.map: $(OBJS) $(USER_OBJS) E:\Workspace\STM32\STM32F4_HAL_LWIP_LAB\STM32F4_HAL_IAP_TFTP\STM32F429ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "STM32F4_HAL_IAP_TFTP.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"E:\Workspace\STM32\STM32F4_HAL_LWIP_LAB\STM32F4_HAL_IAP_TFTP\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F4_HAL_IAP_TFTP.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -96,7 +96,7 @@
 /*----- Value in opt.h for CHECKSUM_CHECK_TCP: 1 -----*/
 #define CHECKSUM_CHECK_TCP 0
 /*----- Value in opt.h for CHECKSUM_CHECK_ICMP: 1 -----*/
-#define CHECKSUM_CHECK_ICMP 0
+#define CHECKSUM_CHECK_ICMP 1
 /*----- Value in opt.h for CHECKSUM_CHECK_ICMP6: 1 -----*/
 #define CHECKSUM_CHECK_ICMP6 0
 /*-----------------------------------------------------------------------------*/

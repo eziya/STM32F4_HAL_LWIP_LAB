@@ -4314,3 +4314,12 @@ org.eclipse.core.runtime.CoreException: attempt to set description for a project
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
 !SUBENTRY 1 org.eclipse.cdt.core 4 -1 2023-01-05 21:59:35.471
 !MESSAGE attempt to set description for a project which does not exist or not open
+
+!ENTRY org.eclipse.cdt.core 1 0 2023-01-05 22:35:39.373
+!MESSAGE Indexed 'STM32F4_HAL_ENC28J60' (87 sources, 199 headers) in 2.33 sec: 13,127 declarations; 67,965 references; 8 unresolved inclusions; 48 syntax errors; 367 unresolved names (0.45%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2023-01-05 22:41:42.969
+!MESSAGE Indexed 'STM32F4_HAL_ENC28J60' (87 sources, 199 headers) in 2.4 sec: 13,127 declarations; 67,965 references; 8 unresolved inclusions; 48 syntax errors; 367 unresolved names (0.45%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2023-01-05 22:43:24.631
+!MESSAGE Indexed 'STM32F4_HAL_ENC28J60' (87 sources, 199 headers) in 2.12 sec: 13,127 declarations; 67,969 references; 8 unresolved inclusions; 48 syntax errors; 367 unresolved names (0.45%)

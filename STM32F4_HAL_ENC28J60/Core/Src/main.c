@@ -24,12 +24,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "lwip/opt.h"
-#include "lwip/init.h"
-#include "lwip/netif.h"
-#include "netif/etharp.h"
-#include "lwip/lwip_timers.h"
-#include "ethernetif.h"
+#include "app_ethernet.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -49,7 +44,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+extern struct netif gnetif;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -64,57 +59,6 @@ int __io_putchar (int ch)
 {
   HAL_UART_Transmit(&huart2, (const uint8_t*)&ch, 1, 10);
   return ch;
-}
-
-struct netif gnetif;
-
-static void Netif_Config(void)
-{
-  struct ip_addr ipaddr;
-  struct ip_addr netmask;
-  struct ip_addr gw;
-
-  uint8_t IP_ADDRESS[4];
-  uint8_t NETMASK_ADDRESS[4];
-  uint8_t GATEWAY_ADDRESS[4];
-
-  IP_ADDRESS[0] = 192;
-  IP_ADDRESS[1] = 168;
-  IP_ADDRESS[2] = 1;
-  IP_ADDRESS[3] = 100;
-  NETMASK_ADDRESS[0] = 255;
-  NETMASK_ADDRESS[1] = 255;
-  NETMASK_ADDRESS[2] = 255;
-  NETMASK_ADDRESS[3] = 0;
-  GATEWAY_ADDRESS[0] = 192;
-  GATEWAY_ADDRESS[1] = 168;
-  GATEWAY_ADDRESS[2] = 1;
-  GATEWAY_ADDRESS[3] = 1;
-
-
-  IP4_ADDR(&ipaddr, IP_ADDRESS[0], IP_ADDRESS[1], IP_ADDRESS[2], IP_ADDRESS[3]);
-  IP4_ADDR(&netmask, NETMASK_ADDRESS[0], NETMASK_ADDRESS[1] , NETMASK_ADDRESS[2], NETMASK_ADDRESS[3]);
-  IP4_ADDR(&gw, GATEWAY_ADDRESS[0], GATEWAY_ADDRESS[1], GATEWAY_ADDRESS[2], GATEWAY_ADDRESS[3]);
-
-  /* add the network interface */
-  netif_add(&gnetif, &ipaddr, &netmask, &gw, NULL, &ethernetif_init, &ethernet_input);
-
-  /*  Registers the default network interface */
-  netif_set_default(&gnetif);
-
-  if (netif_is_link_up(&gnetif))
-  {
-    /* When the netif is fully configured this function must be called */
-    netif_set_up(&gnetif);
-  }
-  else
-  {
-    /* When the netif link is down this function must be called */
-    netif_set_down(&gnetif);
-  }
-
-  /* Set the link callback function, this function is called on change of link status*/
-  netif_set_link_callback(&gnetif, ethernetif_update_config);
 }
 
 /* USER CODE END 0 */
@@ -150,9 +94,7 @@ int main(void)
   MX_SPI2_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  lwip_init();
-  Netif_Config();
-  User_notification(&gnetif);
+  MX_LWIP_Init();
 
   /* USER CODE END 2 */
 
@@ -163,15 +105,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    /* Read a received packet from the Ethernet buffers and send it
-           to the lwIP for handling */
-    ethernetif_input(&gnetif);
-
-    /* Triggers actual ethernet transmission if transmission buffers are not empty */
-    ethernet_transmit();
-
-    /* Handle timeouts */
-    sys_check_timeouts();
+    MX_LWIP_Process();
   }
   /* USER CODE END 3 */
 }

@@ -8,4 +8,10 @@
 	</section>
 	<section name="PreferencesExportWizard">
 	</section>
+	<section name="PreferencesImportWizard">
+		<item key="" value="E:\Workspace\STM32\STM32F4_HAL_LWIP_LAB\eclipseConfig.epf"/>
+		<list key="WizardPreferencesExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="E:\Workspace\STM32\STM32F4_HAL_LWIP_LAB\eclipseConfig.epf"/>
+		</list>
+	</section>
 </section>

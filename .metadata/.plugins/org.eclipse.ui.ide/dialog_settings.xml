@@ -7,6 +7,7 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="E:\Workspace\STM32\STM32F4_HAL_LWIP_LAB"/>
 			<item value="E:\Workspace\GitHub\STM32F4_HAL_LWIP_LAB"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">

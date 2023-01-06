@@ -28,7 +28,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
 #include "lwip/opt.h"
-#include "lwip/lwip_timers.h"
 #include "netif/etharp.h"
 #include "ethernetif.h"
 #include "enc28j60.h"

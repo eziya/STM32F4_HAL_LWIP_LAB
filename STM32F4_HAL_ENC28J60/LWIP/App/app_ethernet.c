@@ -37,9 +37,9 @@
 
 struct netif gnetif;
 
-struct ip_addr ipaddr;
-struct ip_addr netmask;
-struct ip_addr gw;
+struct ip4_addr ipaddr;
+struct ip4_addr netmask;
+struct ip4_addr gw;
 
 uint8_t IP_ADDRESS[4];
 uint8_t NETMASK_ADDRESS[4];

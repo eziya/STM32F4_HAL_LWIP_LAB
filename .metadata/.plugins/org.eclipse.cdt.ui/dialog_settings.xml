@@ -26,6 +26,8 @@
 		<item key="caseSensitive" value="false"/>
 		<item key="searchFlags" value="227191"/>
 		<list key="previousPatterns">
+			<item value="sys_check_timeouts"/>
+			<item value="LWIP_PROVIDE_ERRNO"/>
 			<item value="ENC_Transmit"/>
 			<item value="fsdata"/>
 			<item value="file__400_html"/>

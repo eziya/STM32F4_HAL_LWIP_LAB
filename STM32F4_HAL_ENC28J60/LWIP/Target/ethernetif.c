@@ -1,36 +1,31 @@
 /**
-  ******************************************************************************
-  * @file    LwIP/LwIP_TCP_Echo_Server/Src/ethernetif.c
-  * @author  MCD Application Team
-  * @version V1.2.1
-  * @date    13-March-2015
-  * @brief   This file implements Ethernet network interface drivers for lwIP
-  ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; COPYRIGHT(c) 2015 STMicroelectronics</center></h2>
-  *
-  * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
-  * You may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at:
-  *
-  *        http://www.st.com/software_license_agreement_liberty_v2
-  *
-  * Unless required by applicable law or agreed to in writing, software
-  * distributed under the License is distributed on an "AS IS" BASIS,
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * File Name          : ethernetif.c
+ * Description        : This file provides code for the configuration
+ *                      of the Target/ethernetif.c MiddleWare.
+ ******************************************************************************
+ * @attention
+ *
+ * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+ * All rights reserved.</center></h2>
+ *
+ * This software component is licensed by ST under Ultimate Liberty license
+ * SLA0044, the "License"; You may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at:
+ *                             www.st.com/SLA0044
+ *
+ ******************************************************************************
+ */
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx_hal.h"
+#include "main.h"
 #include "lwip/opt.h"
+#include "lwip/mem.h"
+#include "lwip/memp.h"
+#include "lwip/timeouts.h"
+#include "netif/ethernet.h"
 #include "netif/etharp.h"
 #include "ethernetif.h"
-#include "enc28j60.h"
 #include <string.h>
 
 /* Within 'USER CODE' section, code will be kept by default at each generation */
@@ -45,13 +40,13 @@
 #define IFNAME1 'n'
 
 /* USER CODE BEGIN 1 */
-
+ENC_HandleTypeDef EncHandle;
 /* USER CODE END 1 */
 
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN 2 */
-ENC_HandleTypeDef EncHandle;
+
 /* USER CODE END 2 */
 
 /* USER CODE BEGIN 3 */
@@ -60,7 +55,7 @@ ENC_HandleTypeDef EncHandle;
 
 /* Private functions ---------------------------------------------------------*/
 
-static void ENC_MSPInit(ENC_HandleTypeDef *henc)
+void ENC_MspInit(ENC_HandleTypeDef* encHandle)
 {
   GPIO_InitTypeDef GPIO_InitStructure;
 
@@ -77,11 +72,19 @@ static void ENC_MSPInit(ENC_HandleTypeDef *henc)
 
   /* Deselect ENC28J60 module */
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
+
+  /* USER CODE BEGIN ETH_MspInit 1 */
+
+  /* USER CODE END ETH_MspInit 1 */
 }
 
-void HAL_ENC_MspDeInit(ENC_HandleTypeDef *henc)
+void ENC_MspDeInit(ENC_HandleTypeDef* encHandle)
 {
   HAL_GPIO_DeInit(GPIOB, GPIO_PIN_12);
+
+  /* USER CODE BEGIN ETH_MspDeInit 1 */
+
+  /* USER CODE END ETH_MspDeInit 1 */
 }
 
 /* USER CODE BEGIN 4 */
@@ -89,7 +92,7 @@ void HAL_ENC_MspDeInit(ENC_HandleTypeDef *henc)
 /* USER CODE END 4 */
 
 /*******************************************************************************
- LL Driver Interface ( LwIP stack --> ETH)
+                       LL Driver Interface ( LwIP stack --> ETH)
  *******************************************************************************/
 /**
  * In this function, the hardware should be initialized.
@@ -117,7 +120,7 @@ static void low_level_init(struct netif *netif)
   EncHandle.Init.InterruptEnableBits = EIE_LINKIE;
 
   /* configure ethernet peripheral (GPIOs, clocks, MAC, DMA) */
-  ENC_MSPInit(&EncHandle);
+  ENC_MspInit(&EncHandle);
 
   /* maximum transfer unit */
   netif->mtu = 1500;
@@ -193,7 +196,7 @@ static err_t low_level_output(struct netif *netif, struct pbuf *p)
  * @return a pbuf filled with the received packet (including MAC header)
  *         NULL on memory error
  */
-static struct pbuf* low_level_input(struct netif *netif)
+static struct pbuf * low_level_input(struct netif *netif)
 {
   struct pbuf *p = NULL;
   struct pbuf *q;
@@ -332,7 +335,7 @@ u32_t sys_now(void)
  * @param  netif: the network interface
  * @retval None
  */
-uint32_t EthernetLinkTimer = 0;
+uint32_t EthernetLinkTimer=0;
 
 void ethernetif_set_link(struct netif *netif)
 {
@@ -384,7 +387,7 @@ void ethernetif_update_config(struct netif *netif)
 __weak void ethernetif_notify_conn_changed(struct netif *netif)
 {
   /* NOTE : This is function could be implemented in user file
-   when the callback is needed,
+            when the callback is needed,
    */
 
 }
@@ -392,8 +395,10 @@ __weak void ethernetif_notify_conn_changed(struct netif *netif)
 #endif /* LWIP_NETIF_LINK_CALLBACK */
 
 /* USER CODE BEGIN 9 */
-void ethernet_transmit(void) {
+void ethernet_transmit(void)
+{
   ENC_Transmit(&EncHandle);
 }
 /* USER CODE END 9 */
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
 

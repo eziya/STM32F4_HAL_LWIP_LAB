@@ -17,6 +17,7 @@
  */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
+#include <lwip.h>
 #include "main.h"
 #include "spi.h"
 #include "usart.h"
@@ -24,7 +25,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "app_ethernet.h"
 #include "tcp_echo.h"
 /* USER CODE END Includes */
 

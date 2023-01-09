@@ -26,6 +26,10 @@
 		<item key="caseSensitive" value="false"/>
 		<item key="searchFlags" value="227191"/>
 		<list key="previousPatterns">
+			<item value="ENC_WriteBuffer"/>
+			<item value="ENC_SPI_SendWithoutSelection"/>
+			<item value="ENC_SPI_Select"/>
+			<item value="ENC_SPI_Send"/>
 			<item value="MEMP_MEM_MALLOC"/>
 			<item value="sys_check_timeouts"/>
 			<item value="LWIP_PROVIDE_ERRNO"/>

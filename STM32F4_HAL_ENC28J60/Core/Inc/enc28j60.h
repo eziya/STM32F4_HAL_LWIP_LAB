@@ -53,9 +53,7 @@
 
 /* Callback  functions  *********************************************************/
 
-void ENC_SPI_Select(bool select);
 uint8_t ENC_SPI_SendWithoutSelection(uint8_t command);
-uint8_t ENC_SPI_Send(uint8_t command);
 void ENC_SPI_SendBuf(uint8_t *master2slave, uint8_t *slave2master, uint16_t bufferSize);
 
 /**
@@ -428,15 +426,14 @@ typedef struct
 
 /* Exported functions --------------------------------------------------------*/
 
-bool ENC_Start(ENC_HandleTypeDef *handle);
-void ENC_SetMacAddr(ENC_HandleTypeDef *handle);
-int8_t ENC_RestoreTXBuffer(ENC_HandleTypeDef *handle, uint16_t len);
-void ENC_WriteBuffer(void *buffer, uint16_t buflen);
-void ENC_Transmit(ENC_HandleTypeDef *handle);
-bool ENC_GetReceivedFrame(ENC_HandleTypeDef *handle);
-void ENC_IRQHandler(ENC_HandleTypeDef *handle);
-void ENC_EnableInterrupts(uint8_t bits);
-void ENC_GetPkcnt(ENC_HandleTypeDef *handle);
-void up_udelay(uint32_t us);
+bool enc_start(ENC_HandleTypeDef *handle);
+void enc_set_MAC(ENC_HandleTypeDef *handle);
+int8_t enc_prepare_txbuffer(ENC_HandleTypeDef *handle, uint16_t len);
+void enc_wrbuffer(void *buffer, uint16_t buflen);
+void enc_transmit(ENC_HandleTypeDef *handle);
+bool enc_get_received_frame(ENC_HandleTypeDef *handle);
+void enc_irq_handler(ENC_HandleTypeDef *handle);
+void enc_enable_interrupts(uint8_t bits);
+void udelay(uint32_t us);
 
 #endif /* ENC28J60_H_INCLUDED */

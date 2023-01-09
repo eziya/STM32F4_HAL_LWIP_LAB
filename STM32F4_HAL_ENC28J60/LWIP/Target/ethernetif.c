@@ -130,10 +130,10 @@ static void low_level_init(struct netif *netif)
   netif->flags |= NETIF_FLAG_BROADCAST | NETIF_FLAG_ETHARP;
 
   /* Start the EN28J60 module */
-  if(ENC_Start(&EncHandle))
+  if(enc_start(&EncHandle))
   {
     /* Set the MAC address */
-    ENC_SetMacAddr(&EncHandle);
+    enc_set_MAC(&EncHandle);
 
     /* Set netif link flag */
     netif->flags |= NETIF_FLAG_LINK_UP;
@@ -164,7 +164,7 @@ static err_t low_level_output(struct netif *netif, struct pbuf *p)
   uint32_t framelength = 0;
 
   /* Prepare ENC28J60 Tx buffer */
-  errval = ENC_RestoreTXBuffer(&EncHandle, p->tot_len);
+  errval = enc_prepare_txbuffer(&EncHandle, p->tot_len);
   if(errval != ERR_OK)
   {
     return errval;
@@ -173,7 +173,7 @@ static err_t low_level_output(struct netif *netif, struct pbuf *p)
   /* copy frame from pbufs to driver buffers and send packet */
   for(q = p;q != NULL;q = q->next)
   {
-    ENC_WriteBuffer(q->payload, q->len);
+    enc_wrbuffer(q->payload, q->len);
     framelength += q->len;
   }
 
@@ -204,7 +204,7 @@ static struct pbuf * low_level_input(struct netif *netif)
   uint8_t *buffer;
   uint32_t bufferoffset = 0;
 
-  if(!ENC_GetReceivedFrame(&EncHandle))
+  if(!enc_get_received_frame(&EncHandle))
   {
     return NULL;
   }
@@ -340,7 +340,7 @@ uint32_t EthernetLinkTimer=0;
 void ethernetif_set_link(struct netif *netif)
 {
   /* Handle ENC28J60 interrupt */
-  ENC_IRQHandler(&EncHandle);
+  enc_irq_handler(&EncHandle);
 
   /* Check whether the link is up or down*/
   if(((EncHandle.LinkStatus) & PHSTAT2_LSTAT) != 0)
@@ -353,7 +353,7 @@ void ethernetif_set_link(struct netif *netif)
   }
 
   /* Reenable interrupts */
-  ENC_EnableInterrupts(EIE_INTIE);
+  enc_enable_interrupts(EIE_INTIE);
 }
 
 /* USER CODE BEGIN 7 */
@@ -397,7 +397,7 @@ __weak void ethernetif_notify_conn_changed(struct netif *netif)
 /* USER CODE BEGIN 9 */
 void ethernet_transmit(void)
 {
-  ENC_Transmit(&EncHandle);
+  enc_transmit(&EncHandle);
 }
 /* USER CODE END 9 */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

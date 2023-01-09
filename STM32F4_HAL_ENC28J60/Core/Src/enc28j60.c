@@ -45,54 +45,54 @@
 #include "spi.h"
 #include "gpio.h"
 
+/* Poll timeout */
+#define ENC_POLLTIMEOUT 50
+
+/* Packet Memory ************************************************************/
+/* Packet memory layout */
+#define ALIGNED_BUFSIZE ((CONFIG_NET_ETH_MTU + 255) & ~255)
+
+/* Work around Errata #5 (spurious reset of ERXWRPT to 0) by placing the RX */
+#define PKTMEM_RX_START 0x0000                            /* RX buffer must be at addr 0 for errata 5 */
+#define PKTMEM_RX_END   (PKTMEM_END-ALIGNED_BUFSIZE)      /* RX buffer length is total SRAM minus TX buffer */
+#define PKTMEM_TX_START (PKTMEM_RX_END+1)                 /* Start TX buffer after */
+#define PKTMEM_TX_ENDP1 (PKTMEM_TX_START+ALIGNED_BUFSIZE) /* Allow TX buffer for two frames */
+
+/* Misc. Helper Macros ******************************************************/
+#define enc_rdgreg(ctrlreg) enc_rdgreg2(ENC_RCR | GETADDR(ctrlreg))
+#define enc_wrgreg(ctrlreg, wrdata) enc_wrgreg2(ENC_WCR | GETADDR(ctrlreg), wrdata)
+#define enc_bfcgreg(ctrlreg,clrbits) enc_wrgreg2(ENC_BFC | GETADDR(ctrlreg), clrbits)
+#define enc_bfsgreg(ctrlreg,setbits) enc_wrgreg2(ENC_BFS | GETADDR(ctrlreg), setbits)
+
 /* platform-dependent functions */
-#define SPIx_CS   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);up_udelay(1)
-#define SPIx_DS   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);up_udelay(1)
+#define SPIx_TIMEOUT  10
+#define SPIx_CS   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);udelay(1)
+#define SPIx_DS   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);udelay(1)
 
-uint8_t ENC_SPI_SendWithoutSelection(uint8_t command)
+static uint8_t SPIx_TxRx(uint8_t cmd)
 {
-  HAL_SPI_TransmitReceive(&hspi2, &command, &command, 1, 100);
-  return command;
+  HAL_SPI_TransmitReceive(&hspi2, &cmd, &cmd, 1, SPIx_TIMEOUT);
+  return cmd;
 }
 
-uint8_t ENC_SPI_Send(uint8_t command)
-{
-  SPIx_CS;
-  HAL_SPI_TransmitReceive(&hspi2, &command, &command, 1, 100);
-  SPIx_DS;
-  return command;
-}
-
-void ENC_SPI_SendBuf(uint8_t *master2slave, uint8_t *slave2master, uint16_t bufferSize)
+static void SPIx_TxBuf(uint8_t *m2s, uint8_t *s2m, uint16_t bufflen)
 {
   SPIx_CS;
 
-  if((slave2master == NULL) && (master2slave != NULL))
+  if((s2m == NULL) && (m2s != NULL))
   {
-    HAL_SPI_Transmit(&hspi2, master2slave, bufferSize, 100);
+    HAL_SPI_Transmit(&hspi2, m2s, bufflen, SPIx_TIMEOUT);
   }
-  else if(master2slave == NULL)
+  else if(m2s == NULL)
   {
-    HAL_SPI_Receive(&hspi2, slave2master, bufferSize, 100);
+    HAL_SPI_Receive(&hspi2, s2m, bufflen, SPIx_TIMEOUT);
   }
   else
   {
-    HAL_SPI_TransmitReceive(&hspi2, master2slave, slave2master, bufferSize, 100);
+    HAL_SPI_TransmitReceive(&hspi2, m2s, s2m, bufflen, SPIx_TIMEOUT);
   }
 
   SPIx_DS;
-}
-
-void ENC_SPI_Select(bool select)
-{
-  if(select)
-  {
-    SPIx_CS;
-  }
-  else
-  {
-    SPIx_DS;
-  }
 }
 
 /* Start watchdog timer */
@@ -103,7 +103,6 @@ static void calibrate(void)
 
   DWT->CTRL &= ~DWT_CTRL_CYCCNTENA_Msk; //~0x00000001;
   DWT->CTRL |=  DWT_CTRL_CYCCNTENA_Msk; //0x00000001;
-
   DWT->CYCCNT = 0;
 
   /* 3 NO OPERATION instructions */
@@ -114,7 +113,7 @@ static void calibrate(void)
 }
 
 /* Software delay in us */
-void up_udelay(uint32_t us)
+void udelay(uint32_t us)
 {
   uint32_t cycles = (SystemCoreClock/1000000L)*us;
   uint32_t start = DWT->CYCCNT;
@@ -128,172 +127,34 @@ void up_udelay(uint32_t us)
 }
 /* platform-dependent functions */
 
-/* Poll timeout */
-#define ENC_POLLTIMEOUT 50
-
-/* Packet Memory ************************************************************/
-/* Packet memory layout */
-#define ALIGNED_BUFSIZE ((CONFIG_NET_ETH_MTU + 255) & ~255)
-
-/* Work around Errata #5 (spurious reset of ERXWRPT to 0) by placing the RX */
-#  define PKTMEM_RX_START 0x0000                            /* RX buffer must be at addr 0 for errata 5 */
-#  define PKTMEM_RX_END   (PKTMEM_END-ALIGNED_BUFSIZE)      /* RX buffer length is total SRAM minus TX buffer */
-#  define PKTMEM_TX_START (PKTMEM_RX_END+1)                 /* Start TX buffer after */
-#  define PKTMEM_TX_ENDP1 (PKTMEM_TX_START+ALIGNED_BUFSIZE) /* Allow TX buffer for two frames */
-
-/* Misc. Helper Macros ******************************************************/
-#define enc_rdgreg(ctrlreg) enc_rdgreg2(ENC_RCR | GETADDR(ctrlreg))
-#define enc_wrgreg(ctrlreg, wrdata) enc_wrgreg2(ENC_WCR | GETADDR(ctrlreg), wrdata)
-#define enc_bfcgreg(ctrlreg,clrbits) enc_wrgreg2(ENC_BFC | GETADDR(ctrlreg), clrbits)
-#define enc_bfsgreg(ctrlreg,setbits) enc_wrgreg2(ENC_BFS | GETADDR(ctrlreg), setbits)
-
-/* Read a global register (EIE, EIR, ESTAT, ECON2, or ECON1). */
-static uint8_t enc_rdgreg2(uint8_t cmd)
-{
-  uint8_t cmdpdata[2];
-  cmdpdata[0] = cmd;
-  ENC_SPI_SendBuf(cmdpdata, cmdpdata, 2);
-
-  return cmdpdata[1];
-}
-
-/* Write to a global register (EIE, EIR, ESTAT, ECON2, or ECON1). */
-static void enc_wrgreg2(uint8_t cmd, uint8_t wrdata)
-{
-  uint8_t cmdpdata[2];
-  cmdpdata[0] = cmd;
-  cmdpdata[1] = wrdata;
-  ENC_SPI_SendBuf(cmdpdata, NULL, 2);
-}
-
-
-/* Wait until grouped register bit(s) take a specific value */
-static bool enc_waitgreg(uint8_t ctrlreg, uint8_t bits, uint8_t value)
-{
-  uint32_t start = HAL_GetTick();
-  uint32_t elapsed;
-  uint8_t rddata;
-
-  do
-  {
-    rddata = enc_rdgreg(ctrlreg);
-    elapsed = HAL_GetTick() - start;
-  }while((rddata & bits) != value && elapsed < ENC_POLLTIMEOUT);
-
-  return (rddata & bits) == value;
-}
-
-
-/* Wait while grouped register bit(s) have a specific value */
-static bool enc_waitwhilegreg(uint8_t ctrlreg, uint8_t bits, uint8_t value)
-{
-  uint32_t start = HAL_GetTick();
-  uint32_t elapsed;
-  uint8_t rddata;
-
-  do
-  {
-    rddata = enc_rdgreg(ctrlreg);
-    elapsed = HAL_GetTick() - start;
-  }while((rddata & bits) == value && elapsed < ENC_POLLTIMEOUT);
-
-  return (rddata & bits) != value;
-}
+/* static function prototypes */
+static void enc_setbank(ENC_HandleTypeDef *handle, uint8_t bank);
+static uint8_t enc_rdgreg2(uint8_t cmd);
+static void enc_wrgreg2(uint8_t cmd, uint8_t wrdata);
+static bool enc_waitgreg(uint8_t ctrlreg, uint8_t bits, uint8_t value);
+static bool enc_waitwhilegreg(uint8_t ctrlreg, uint8_t bits, uint8_t value);
+static uint8_t enc_rdbreg(ENC_HandleTypeDef *handle, uint8_t ctrlreg);
+static void enc_wrbreg(ENC_HandleTypeDef *handle, uint8_t ctrlreg, uint8_t wrdata);
+static bool enc_waitbreg(ENC_HandleTypeDef *handle, uint8_t ctrlreg, uint8_t bits, uint8_t value);
+static uint16_t enc_rdphy(ENC_HandleTypeDef *handle, uint8_t phyaddr);
+static void enc_wrphy(ENC_HandleTypeDef *handle, uint8_t phyaddr, uint16_t phydata);
+static void enc_rdbuffer(void *buffer, int16_t buflen);
+static void enc_linkstatus(ENC_HandleTypeDef *handle);
 
 /* Send the single byte system reset command (SRC). */
 void enc_reset(ENC_HandleTypeDef *handle)
 {
   /* Send the system reset command. */
-  ENC_SPI_Send(ENC_SRC);
+  SPIx_CS;
+  SPIx_TxRx(ENC_SRC);
+  SPIx_DS;
+
   handle->bank = 0; /* Initialize the trace on the current selected bank */
   HAL_Delay(2); /* >1000 us, conforms to errata #2 */
 }
 
-/* Set the bank for these next control register access. */
-void enc_setbank(ENC_HandleTypeDef *handle, uint8_t bank)
-{
-  if(bank != handle->bank)
-  {
-    /* Select bank 0 (just so that all of the bits are cleared) */
-    enc_bfcgreg(ENC_ECON1, ECON1_BSEL_MASK);
-
-    if(bank != 0)
-    {
-      enc_bfsgreg(ENC_ECON1, (bank << ECON1_BSEL_SHIFT));
-    }
-
-    handle->bank = bank;
-  }
-}
-
-/* Read from a banked control register using the RCR command. */
-static uint8_t enc_rdbreg(ENC_HandleTypeDef *handle, uint8_t ctrlreg)
-{
-  uint8_t data[3];
-
-  enc_setbank(handle, GETBANK(ctrlreg));
-  data[0] = ENC_RCR | GETADDR(ctrlreg);
-  ENC_SPI_SendBuf(data, data, (ISPHYMAC(ctrlreg)) ? 3 : 2);
-  return (ISPHYMAC(ctrlreg)) ? data[2] : data[1];
-}
-
-/* Write to a banked control register using the WCR command. */
-static void enc_wrbreg(ENC_HandleTypeDef *handle, uint8_t ctrlreg, uint8_t wrdata)
-{
-  uint8_t data[2];
-  enc_setbank(handle, GETBANK(ctrlreg));
-  data[0] = ENC_WCR | GETADDR(ctrlreg);
-  data[1] = wrdata;
-  ENC_SPI_SendBuf(data, NULL, 2);
-}
-
-/* Wait until banked register bit(s) take a specific value */
-static bool enc_waitbreg(ENC_HandleTypeDef *handle, uint8_t ctrlreg, uint8_t bits, uint8_t value)
-{
-  uint32_t start = HAL_GetTick();
-  uint32_t elapsed;
-  uint8_t rddata;
-
-  do
-  {
-    rddata = enc_rdbreg(handle, ctrlreg);
-    elapsed = HAL_GetTick() - start;
-  }while((rddata & bits) != value && elapsed < ENC_POLLTIMEOUT);
-
-  return (rddata & bits) == value;
-}
-
-/* Read 16-bits of PHY data. */
-static uint16_t enc_rdphy(ENC_HandleTypeDef *handle, uint8_t phyaddr)
-{
-  uint16_t data = 0;
-
-  enc_wrbreg(handle, ENC_MIREGADR, phyaddr);
-  enc_wrbreg(handle, ENC_MICMD, MICMD_MIIRD);
-  up_udelay(12);
-
-  if(enc_waitbreg(handle, ENC_MISTAT, MISTAT_BUSY, 0x00))
-  {
-    enc_wrbreg(handle, ENC_MICMD, 0x00);
-    data = (uint16_t) enc_rdbreg(handle, ENC_MIRDL);
-    data |= (uint16_t) enc_rdbreg(handle, ENC_MIRDH) << 8;
-  }
-
-  return data;
-}
-
-/* write 16-bits of PHY data. */
-static void enc_wrphy(ENC_HandleTypeDef *handle, uint8_t phyaddr, uint16_t phydata)
-{
-  enc_wrbreg(handle, ENC_MIREGADR, phyaddr);
-  enc_wrbreg(handle, ENC_MIWRL, phydata);
-  enc_wrbreg(handle, ENC_MIWRH, phydata >> 8);
-  up_udelay(12);
-  enc_waitbreg(handle, ENC_MISTAT, MISTAT_BUSY, 0x00);
-}
-
 /* Initialize the enc28j60 and configure the needed hardware resources */
-bool ENC_Start(ENC_HandleTypeDef *handle)
+bool enc_start(ENC_HandleTypeDef *handle)
 {
   uint8_t regval;
 
@@ -416,7 +277,7 @@ bool ENC_Start(ENC_HandleTypeDef *handle)
 }
 
 /* Set the MAC address to the configured value. */
-void ENC_SetMacAddr(ENC_HandleTypeDef *handle)
+void enc_set_MAC(ENC_HandleTypeDef *handle)
 {
   enc_wrbreg(handle, ENC_MAADR1, handle->Init.MACAddr[0]);
   enc_wrbreg(handle, ENC_MAADR2, handle->Init.MACAddr[1]);
@@ -426,24 +287,8 @@ void ENC_SetMacAddr(ENC_HandleTypeDef *handle)
   enc_wrbreg(handle, ENC_MAADR6, handle->Init.MACAddr[5]);
 }
 
-/* Write a buffer of data. */
-void ENC_WriteBuffer(void *buffer, uint16_t buflen)
-{
-  ENC_SPI_Select(true);
-  ENC_SPI_SendWithoutSelection(ENC_WBM);
-  ENC_SPI_SendBuf(buffer, NULL, buflen);
-}
-
-/* Read a buffer of data. */
-static void enc_rdbuffer(void *buffer, int16_t buflen)
-{
-  ENC_SPI_Select(true);
-  ENC_SPI_SendWithoutSelection(ENC_RBM);
-  ENC_SPI_SendBuf(NULL, buffer, buflen);
-}
-
 /* Prepare TX buffer */
-int8_t ENC_RestoreTXBuffer(ENC_HandleTypeDef *handle, uint16_t len)
+int8_t enc_prepare_txbuffer(ENC_HandleTypeDef *handle, uint16_t len)
 {
   uint16_t txend;
   uint8_t control_write[2];
@@ -474,13 +319,21 @@ int8_t ENC_RestoreTXBuffer(ENC_HandleTypeDef *handle, uint16_t len)
 
   control_write[0] = ENC_WBM;
   control_write[1] = PKTCTRL_PCRCEN | PKTCTRL_PPADEN | PKTCTRL_PHUGEEN;
-  ENC_SPI_SendBuf(control_write, control_write, 2);
+  SPIx_TxBuf(control_write, control_write, 2);
 
   return ERR_OK;
 }
 
+/* Write a buffer of data. */
+void enc_wrbuffer(void *buffer, uint16_t buflen)
+{
+  SPIx_CS;
+  SPIx_TxRx(ENC_WBM);
+  SPIx_TxBuf(buffer, NULL, buflen);
+}
+
 /* Start hardware transmission. */
-void ENC_Transmit(ENC_HandleTypeDef *handle)
+void enc_transmit(ENC_HandleTypeDef *handle)
 {
   if(handle->transmitLength != 0)
   {
@@ -524,7 +377,7 @@ void ENC_Transmit(ENC_HandleTypeDef *handle)
 }
 
 /* Check if we have received packet, and if so, retrieve them. */
-bool ENC_GetReceivedFrame(ENC_HandleTypeDef *handle)
+bool enc_get_received_frame(ENC_HandleTypeDef *handle)
 {
   uint8_t rsv[6];
   uint16_t pktlen;
@@ -585,20 +438,14 @@ bool ENC_GetReceivedFrame(ENC_HandleTypeDef *handle)
   return result;
 }
 
-/* The current link status can be obtained from the PHSTAT1.LLSTAT or PHSTAT2.LSTAT.*/
-static void enc_linkstatus(ENC_HandleTypeDef *handle)
-{
-  handle->LinkStatus = enc_rdphy(handle, ENC_PHSTAT2);
-}
-
 /* Enable individual ENC28J60 interrupts */
-void ENC_EnableInterrupts(uint8_t bits)
+void enc_enable_interrupts(uint8_t bits)
 {
   enc_bfsgreg(ENC_EIE, bits);
 }
 
 /* Perform interrupt handling logic outside of the interrupt handler */
-void ENC_IRQHandler(ENC_HandleTypeDef *handle)
+void enc_irq_handler(ENC_HandleTypeDef *handle)
 {
   uint8_t eir;
 
@@ -631,8 +478,151 @@ void ENC_IRQHandler(ENC_HandleTypeDef *handle)
   /* done after effective process on interrupts enc_bfsgreg(ENC_EIE, EIE_INTIE); */
 }
 
-/* Get the number of pending receive packets */
-void ENC_GetPkcnt(ENC_HandleTypeDef *handle)
+/* Set the bank for these next control register access. */
+static void enc_setbank(ENC_HandleTypeDef *handle, uint8_t bank)
 {
-  handle->pktCnt = enc_rdbreg(handle, ENC_EPKTCNT);
+  if(bank != handle->bank)
+  {
+    /* Select bank 0 (just so that all of the bits are cleared) */
+    enc_bfcgreg(ENC_ECON1, ECON1_BSEL_MASK);
+
+    if(bank != 0)
+    {
+      enc_bfsgreg(ENC_ECON1, (bank << ECON1_BSEL_SHIFT));
+    }
+
+    handle->bank = bank;
+  }
 }
+
+/* Read a global register (EIE, EIR, ESTAT, ECON2, or ECON1). */
+static uint8_t enc_rdgreg2(uint8_t cmd)
+{
+  uint8_t cmdpdata[2];
+  cmdpdata[0] = cmd;
+  SPIx_TxBuf(cmdpdata, cmdpdata, 2);
+
+  return cmdpdata[1];
+}
+
+/* Write to a global register (EIE, EIR, ESTAT, ECON2, or ECON1). */
+static void enc_wrgreg2(uint8_t cmd, uint8_t wrdata)
+{
+  uint8_t cmdpdata[2];
+  cmdpdata[0] = cmd;
+  cmdpdata[1] = wrdata;
+  SPIx_TxBuf(cmdpdata, NULL, 2);
+}
+
+/* Wait until grouped register bit(s) take a specific value */
+static bool enc_waitgreg(uint8_t ctrlreg, uint8_t bits, uint8_t value)
+{
+  uint32_t start = HAL_GetTick();
+  uint32_t elapsed;
+  uint8_t rddata;
+
+  do
+  {
+    rddata = enc_rdgreg(ctrlreg);
+    elapsed = HAL_GetTick() - start;
+  }while((rddata & bits) != value && elapsed < ENC_POLLTIMEOUT);
+
+  return (rddata & bits) == value;
+}
+
+/* Wait while grouped register bit(s) have a specific value */
+static bool enc_waitwhilegreg(uint8_t ctrlreg, uint8_t bits, uint8_t value)
+{
+  uint32_t start = HAL_GetTick();
+  uint32_t elapsed;
+  uint8_t rddata;
+
+  do
+  {
+    rddata = enc_rdgreg(ctrlreg);
+    elapsed = HAL_GetTick() - start;
+  }while((rddata & bits) == value && elapsed < ENC_POLLTIMEOUT);
+
+  return (rddata & bits) != value;
+}
+
+/* Read from a banked control register using the RCR command. */
+static uint8_t enc_rdbreg(ENC_HandleTypeDef *handle, uint8_t ctrlreg)
+{
+  uint8_t data[3];
+
+  enc_setbank(handle, GETBANK(ctrlreg));
+  data[0] = ENC_RCR | GETADDR(ctrlreg);
+  SPIx_TxBuf(data, data, (ISPHYMAC(ctrlreg)) ? 3 : 2);
+  return (ISPHYMAC(ctrlreg)) ? data[2] : data[1];
+}
+
+/* Write to a banked control register using the WCR command. */
+static void enc_wrbreg(ENC_HandleTypeDef *handle, uint8_t ctrlreg, uint8_t wrdata)
+{
+  uint8_t data[2];
+  enc_setbank(handle, GETBANK(ctrlreg));
+  data[0] = ENC_WCR | GETADDR(ctrlreg);
+  data[1] = wrdata;
+  SPIx_TxBuf(data, NULL, 2);
+}
+
+/* Wait until banked register bit(s) take a specific value */
+static bool enc_waitbreg(ENC_HandleTypeDef *handle, uint8_t ctrlreg, uint8_t bits, uint8_t value)
+{
+  uint32_t start = HAL_GetTick();
+  uint32_t elapsed;
+  uint8_t rddata;
+
+  do
+  {
+    rddata = enc_rdbreg(handle, ctrlreg);
+    elapsed = HAL_GetTick() - start;
+  }while((rddata & bits) != value && elapsed < ENC_POLLTIMEOUT);
+
+  return (rddata & bits) == value;
+}
+
+/* Read 16-bits of PHY data. */
+static uint16_t enc_rdphy(ENC_HandleTypeDef *handle, uint8_t phyaddr)
+{
+  uint16_t data = 0;
+
+  enc_wrbreg(handle, ENC_MIREGADR, phyaddr);
+  enc_wrbreg(handle, ENC_MICMD, MICMD_MIIRD);
+  udelay(12);
+
+  if(enc_waitbreg(handle, ENC_MISTAT, MISTAT_BUSY, 0x00))
+  {
+    enc_wrbreg(handle, ENC_MICMD, 0x00);
+    data = (uint16_t) enc_rdbreg(handle, ENC_MIRDL);
+    data |= (uint16_t) enc_rdbreg(handle, ENC_MIRDH) << 8;
+  }
+
+  return data;
+}
+
+/* write 16-bits of PHY data. */
+static void enc_wrphy(ENC_HandleTypeDef *handle, uint8_t phyaddr, uint16_t phydata)
+{
+  enc_wrbreg(handle, ENC_MIREGADR, phyaddr);
+  enc_wrbreg(handle, ENC_MIWRL, phydata);
+  enc_wrbreg(handle, ENC_MIWRH, phydata >> 8);
+  udelay(12);
+  enc_waitbreg(handle, ENC_MISTAT, MISTAT_BUSY, 0x00);
+}
+
+/* Read a buffer of data. */
+static void enc_rdbuffer(void *buffer, int16_t buflen)
+{
+  SPIx_CS;
+  SPIx_TxRx(ENC_RBM);
+  SPIx_TxBuf(NULL, buffer, buflen);
+}
+
+/* The current link status can be obtained from the PHSTAT1.LLSTAT or PHSTAT2.LSTAT.*/
+static void enc_linkstatus(ENC_HandleTypeDef *handle)
+{
+  handle->LinkStatus = enc_rdphy(handle, ENC_PHSTAT2);
+}
+

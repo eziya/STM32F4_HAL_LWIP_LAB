@@ -95,8 +95,8 @@ static void SPIx_TxBuf(uint8_t *m2s, uint8_t *s2m, uint16_t bufflen)
   SPIx_DS;
 }
 
-/* Start watchdog timer */
-static void calibrate(void)
+/* Initialize STM32 watchdog timer */
+static void init_udelay(void)
 {
   CoreDebug->DEMCR &= ~CoreDebug_DEMCR_TRCENA_Msk;
   CoreDebug->DEMCR |=  CoreDebug_DEMCR_TRCENA_Msk;
@@ -158,8 +158,8 @@ bool enc_start(ENC_HandleTypeDef *handle)
 {
   uint8_t regval;
 
-  /* Calibrate time constant */
-  calibrate();
+  /* Initialize watchdog timer */
+  init_udelay();
 
   /* System reset */
   enc_reset(handle);

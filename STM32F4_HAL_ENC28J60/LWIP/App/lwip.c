@@ -37,6 +37,8 @@
 /* USER CODE END 1 */
 
 /* Variables Initialization */
+//#define USE_DHCP
+
 struct netif gnetif;
 ip4_addr_t ipaddr;
 ip4_addr_t netmask;
@@ -57,14 +59,18 @@ void ethernetif_notify_conn_changed(struct netif *netif)
 {
   if(netif_is_link_up(netif))
   {
+#ifndef USE_DHCP
     IP4_ADDR(&ipaddr, IP_ADDRESS[0], IP_ADDRESS[1], IP_ADDRESS[2], IP_ADDRESS[3]);
     IP4_ADDR(&netmask, NETMASK_ADDRESS[0], NETMASK_ADDRESS[1] , NETMASK_ADDRESS[2], NETMASK_ADDRESS[3]);
     IP4_ADDR(&gw, GATEWAY_ADDRESS[0], GATEWAY_ADDRESS[1], GATEWAY_ADDRESS[2], GATEWAY_ADDRESS[3]);
+#endif
     netif_set_addr(netif, &ipaddr , &netmask, &gw);
 
     /* When the netif is fully configured this function must be called.*/
     netif_set_up(netif);
-
+#ifdef USE_DHCP
+    dhcp_start(&gnetif);
+#endif
     /* led on */
     HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_SET);
   }
@@ -89,6 +95,11 @@ void MX_LWIP_Init(void)
   lwip_init();
 
   /* IP addresses initialization with DHCP (IPv4) */
+#ifdef USE_DHCP
+  ipaddr.addr = 0;
+  netmask.addr = 0;
+  gw.addr = 0;
+#else
   IP_ADDRESS[0] = 192;
   IP_ADDRESS[1] = 168;
   IP_ADDRESS[2] = 1;
@@ -105,8 +116,9 @@ void MX_LWIP_Init(void)
   IP4_ADDR(&ipaddr, IP_ADDRESS[0], IP_ADDRESS[1], IP_ADDRESS[2], IP_ADDRESS[3]);
   IP4_ADDR(&netmask, NETMASK_ADDRESS[0], NETMASK_ADDRESS[1] , NETMASK_ADDRESS[2], NETMASK_ADDRESS[3]);
   IP4_ADDR(&gw, GATEWAY_ADDRESS[0], GATEWAY_ADDRESS[1], GATEWAY_ADDRESS[2], GATEWAY_ADDRESS[3]);
+#endif
 
-  /* add the network interface (IPv4/IPv6) without RTOS */
+/* add the network interface (IPv4/IPv6) without RTOS */
   netif_add(&gnetif, &ipaddr, &netmask, &gw, NULL, &ethernetif_init, &ethernet_input);
 
   /* Registers the default network interface */
@@ -127,7 +139,9 @@ void MX_LWIP_Init(void)
   netif_set_link_callback(&gnetif, ethernetif_update_config);
 
   /* USER CODE BEGIN 3 */
-
+#ifdef USE_DHCP
+  dhcp_start(&gnetif);
+#endif
   /* USER CODE END 3 */
 }
 

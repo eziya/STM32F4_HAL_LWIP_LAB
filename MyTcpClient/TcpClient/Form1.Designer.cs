@@ -31,6 +31,9 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnStop = new System.Windows.Forms.Button();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.btnConnect = new System.Windows.Forms.Button();
             this.txtIP = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -59,9 +62,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtSndCnt1 = new System.Windows.Forms.TextBox();
             this.txtRcvCnt1 = new System.Windows.Forms.TextBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.btnStop = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -87,7 +87,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.90874F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.09126F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(921, 174);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1059, 174);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -102,7 +102,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(915, 75);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1053, 75);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // panel2
@@ -117,8 +117,43 @@
             this.panel2.Location = new System.Drawing.Point(3, 4);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(909, 67);
+            this.panel2.Size = new System.Drawing.Size(1047, 67);
             this.panel2.TabIndex = 1;
+            // 
+            // btnStop
+            // 
+            this.btnStop.Location = new System.Drawing.Point(305, 34);
+            this.btnStop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(86, 29);
+            this.btnStop.TabIndex = 4;
+            this.btnStop.Text = "Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(129, 9);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(126, 19);
+            this.radioButton2.TabIndex = 3;
+            this.radioButton2.Text = "wizNet(W5x00)";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(12, 9);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(56, 19);
+            this.radioButton1.TabIndex = 2;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "LwIP";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // btnConnect
             // 
@@ -165,17 +200,17 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(915, 83);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1053, 83);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // panel5
             // 
             this.panel5.Controls.Add(this.groupBox3);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(613, 4);
+            this.panel5.Location = new System.Drawing.Point(705, 4);
             this.panel5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(299, 75);
+            this.panel5.Size = new System.Drawing.Size(345, 75);
             this.panel5.TabIndex = 2;
             // 
             // groupBox3
@@ -191,7 +226,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox3.Size = new System.Drawing.Size(299, 75);
+            this.groupBox3.Size = new System.Drawing.Size(345, 75);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Thread#3";
@@ -199,11 +234,11 @@
             // txtErrCnt3
             // 
             this.txtErrCnt3.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtErrCnt3.Location = new System.Drawing.Point(187, 40);
+            this.txtErrCnt3.Location = new System.Drawing.Point(237, 40);
             this.txtErrCnt3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtErrCnt3.Name = "txtErrCnt3";
             this.txtErrCnt3.ReadOnly = true;
-            this.txtErrCnt3.Size = new System.Drawing.Size(76, 25);
+            this.txtErrCnt3.Size = new System.Drawing.Size(100, 25);
             this.txtErrCnt3.TabIndex = 20;
             // 
             // label8
@@ -218,7 +253,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(187, 21);
+            this.label9.Location = new System.Drawing.Point(237, 21);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(45, 15);
             this.label9.TabIndex = 16;
@@ -227,11 +262,11 @@
             // txtRcvCnt3
             // 
             this.txtRcvCnt3.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtRcvCnt3.Location = new System.Drawing.Point(97, 40);
+            this.txtRcvCnt3.Location = new System.Drawing.Point(122, 40);
             this.txtRcvCnt3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRcvCnt3.Name = "txtRcvCnt3";
             this.txtRcvCnt3.ReadOnly = true;
-            this.txtRcvCnt3.Size = new System.Drawing.Size(76, 25);
+            this.txtRcvCnt3.Size = new System.Drawing.Size(100, 25);
             this.txtRcvCnt3.TabIndex = 19;
             // 
             // txtSndCnt3
@@ -241,13 +276,13 @@
             this.txtSndCnt3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSndCnt3.Name = "txtSndCnt3";
             this.txtSndCnt3.ReadOnly = true;
-            this.txtSndCnt3.Size = new System.Drawing.Size(76, 25);
+            this.txtSndCnt3.Size = new System.Drawing.Size(100, 25);
             this.txtSndCnt3.TabIndex = 17;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(97, 21);
+            this.label10.Location = new System.Drawing.Point(122, 21);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(68, 15);
             this.label10.TabIndex = 15;
@@ -257,10 +292,10 @@
             // 
             this.panel4.Controls.Add(this.groupBox2);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(308, 4);
+            this.panel4.Location = new System.Drawing.Point(354, 4);
             this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(299, 75);
+            this.panel4.Size = new System.Drawing.Size(345, 75);
             this.panel4.TabIndex = 1;
             // 
             // groupBox2
@@ -276,7 +311,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Size = new System.Drawing.Size(299, 75);
+            this.groupBox2.Size = new System.Drawing.Size(345, 75);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thread#2";
@@ -284,11 +319,11 @@
             // txtErrCnt2
             // 
             this.txtErrCnt2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtErrCnt2.Location = new System.Drawing.Point(187, 40);
+            this.txtErrCnt2.Location = new System.Drawing.Point(239, 40);
             this.txtErrCnt2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtErrCnt2.Name = "txtErrCnt2";
             this.txtErrCnt2.ReadOnly = true;
-            this.txtErrCnt2.Size = new System.Drawing.Size(76, 25);
+            this.txtErrCnt2.Size = new System.Drawing.Size(100, 25);
             this.txtErrCnt2.TabIndex = 12;
             // 
             // label2
@@ -303,7 +338,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(187, 21);
+            this.label3.Location = new System.Drawing.Point(239, 21);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 15);
             this.label3.TabIndex = 8;
@@ -312,11 +347,11 @@
             // txtRcvCnt2
             // 
             this.txtRcvCnt2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtRcvCnt2.Location = new System.Drawing.Point(97, 40);
+            this.txtRcvCnt2.Location = new System.Drawing.Point(123, 40);
             this.txtRcvCnt2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRcvCnt2.Name = "txtRcvCnt2";
             this.txtRcvCnt2.ReadOnly = true;
-            this.txtRcvCnt2.Size = new System.Drawing.Size(76, 25);
+            this.txtRcvCnt2.Size = new System.Drawing.Size(100, 25);
             this.txtRcvCnt2.TabIndex = 11;
             // 
             // txtSndCnt2
@@ -326,13 +361,13 @@
             this.txtSndCnt2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSndCnt2.Name = "txtSndCnt2";
             this.txtSndCnt2.ReadOnly = true;
-            this.txtSndCnt2.Size = new System.Drawing.Size(76, 25);
+            this.txtSndCnt2.Size = new System.Drawing.Size(100, 25);
             this.txtSndCnt2.TabIndex = 9;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(97, 21);
+            this.label7.Location = new System.Drawing.Point(123, 21);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(68, 15);
             this.label7.TabIndex = 7;
@@ -345,7 +380,7 @@
             this.panel3.Location = new System.Drawing.Point(3, 4);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(299, 75);
+            this.panel3.Size = new System.Drawing.Size(345, 75);
             this.panel3.TabIndex = 0;
             // 
             // groupBox1
@@ -361,7 +396,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(299, 75);
+            this.groupBox1.Size = new System.Drawing.Size(345, 75);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thread#1";
@@ -369,12 +404,13 @@
             // txtErrCnt1
             // 
             this.txtErrCnt1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtErrCnt1.Location = new System.Drawing.Point(190, 40);
+            this.txtErrCnt1.Location = new System.Drawing.Point(239, 40);
             this.txtErrCnt1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtErrCnt1.Name = "txtErrCnt1";
             this.txtErrCnt1.ReadOnly = true;
-            this.txtErrCnt1.Size = new System.Drawing.Size(76, 25);
+            this.txtErrCnt1.Size = new System.Drawing.Size(100, 25);
             this.txtErrCnt1.TabIndex = 5;
+            this.txtErrCnt1.TextChanged += new System.EventHandler(this.txtErrCnt1_TextChanged);
             // 
             // label4
             // 
@@ -388,7 +424,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(190, 21);
+            this.label6.Location = new System.Drawing.Point(239, 21);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 15);
             this.label6.TabIndex = 2;
@@ -397,7 +433,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(99, 21);
+            this.label5.Location = new System.Drawing.Point(124, 21);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(68, 15);
             this.label5.TabIndex = 1;
@@ -410,59 +446,24 @@
             this.txtSndCnt1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSndCnt1.Name = "txtSndCnt1";
             this.txtSndCnt1.ReadOnly = true;
-            this.txtSndCnt1.Size = new System.Drawing.Size(76, 25);
+            this.txtSndCnt1.Size = new System.Drawing.Size(100, 25);
             this.txtSndCnt1.TabIndex = 3;
             // 
             // txtRcvCnt1
             // 
             this.txtRcvCnt1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtRcvCnt1.Location = new System.Drawing.Point(99, 40);
+            this.txtRcvCnt1.Location = new System.Drawing.Point(124, 40);
             this.txtRcvCnt1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRcvCnt1.Name = "txtRcvCnt1";
             this.txtRcvCnt1.ReadOnly = true;
-            this.txtRcvCnt1.Size = new System.Drawing.Size(76, 25);
+            this.txtRcvCnt1.Size = new System.Drawing.Size(100, 25);
             this.txtRcvCnt1.TabIndex = 4;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(12, 9);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(59, 19);
-            this.radioButton1.TabIndex = 2;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "LwIP";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(129, 9);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(129, 19);
-            this.radioButton2.TabIndex = 3;
-            this.radioButton2.Text = "wizNet(W5x00)";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
-            // 
-            // btnStop
-            // 
-            this.btnStop.Location = new System.Drawing.Point(305, 34);
-            this.btnStop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(86, 29);
-            this.btnStop.TabIndex = 4;
-            this.btnStop.Text = "Stop";
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(921, 174);
+            this.ClientSize = new System.Drawing.Size(1059, 174);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";

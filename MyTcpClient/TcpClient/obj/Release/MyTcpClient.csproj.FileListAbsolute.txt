@@ -17,3 +17,14 @@ E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Release\MyTc
 E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Release\MyTcpClient.csproj.CoreCompileInputs.cache
 E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Release\MyTcpClient.exe
 E:\Workspace\STM\ETH\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Release\MyTcpClient.pdb
+G:\WorkSpace\STM32\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\bin\Release\MyTcpClient.exe.config
+G:\WorkSpace\STM32\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\bin\Release\MyTcpClient.exe
+G:\WorkSpace\STM32\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\bin\Release\MyTcpClient.pdb
+G:\WorkSpace\STM32\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Release\MyTcpClient.csproj.AssemblyReference.cache
+G:\WorkSpace\STM32\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Release\MyTcpClient.csproj.SuggestedBindingRedirects.cache
+G:\WorkSpace\STM32\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Release\MyTcpClient.Form1.resources
+G:\WorkSpace\STM32\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Release\MyTcpClient.Properties.Resources.resources
+G:\WorkSpace\STM32\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Release\MyTcpClient.csproj.GenerateResource.cache
+G:\WorkSpace\STM32\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Release\MyTcpClient.csproj.CoreCompileInputs.cache
+G:\WorkSpace\STM32\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Release\MyTcpClient.exe
+G:\WorkSpace\STM32\STM32F4_HAL_LWIP_LAB\MyTcpClient\TcpClient\obj\Release\MyTcpClient.pdb
